@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>register page</title>
+    </head>
+    <body>
+        <div>
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Register</legend>
+                    {{ form }}
+                </fieldset>
+                <div>
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+            <div>
+                <small>
+                    Already Have An Account? <a href="#">Sign In</a>
+                </small>
+            </div>
+        </div>
+    </body>
+</html>
