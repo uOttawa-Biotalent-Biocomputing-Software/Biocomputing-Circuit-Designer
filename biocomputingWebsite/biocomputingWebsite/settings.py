@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from secret import *
+import json
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -21,6 +22,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
+# load SECRET_KEY from json file
+try:
+    with open("biocomputingWebsite/secrets.json") as json_file:
+        json_content = json.load(json_file)
+        SECRET_KEY = json_content["SECRET_KEY"]
+except:
+    print("Error while reading the secrets.json file. Please setup the file.")
+    exit()
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
