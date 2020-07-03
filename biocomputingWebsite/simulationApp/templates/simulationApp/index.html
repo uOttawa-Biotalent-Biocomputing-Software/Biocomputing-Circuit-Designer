@@ -1,11 +1,17 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>
-
+			
 		</title>
 	</head>
-	<body>
-		Hello
+	<body style="height: 100vh; margin: 0px;" onresize="resize()">
+		<div id="myContainer" style="width: 100%; height: 100%;"></div>
+		
+		
+		
+		<script src="{% static 'simulationApp/p5.js' %}"></script>
+		<script src="{% static 'simulationApp/sketch.js' %}"></script>
 	</body>
 </html>
