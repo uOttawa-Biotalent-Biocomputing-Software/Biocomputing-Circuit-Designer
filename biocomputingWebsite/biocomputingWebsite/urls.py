@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from usersApp import views as usersApp_views
-
+from simulationApp import views as simulation_views
 
 urlpatterns = [
     path('admin/', admin.site.urls), 
-    path("register/", usersApp_views.register, name='register')
+    path("register/", usersApp_views.register, name='register'),
+    path("simulation/", simulation_views.simulation, name='sim')
 ]
