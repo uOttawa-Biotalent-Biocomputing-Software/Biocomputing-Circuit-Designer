@@ -16,10 +16,10 @@ const s = ( sketch ) => {
     sketch.pixelDensity(1);
 
     
-    sketch.allComponents.push(new Component(im, 0, 0));
-    sketch.allComponents.push(new Component(im, 500, 500));
-    sketch.allComponents.push(new Component(im, 200, 400));
-    sketch.allComponents.push(new Component(im, 600, 500));
+    sketch.allComponents.push(new Component(im, 0, 0, 0));
+    sketch.allComponents.push(new Component(im, 500, 500, 1));
+    sketch.allComponents.push(new Component(im, 200, 400, 2));
+    sketch.allComponents.push(new Component(im, 600, 500, 3));
     
   }
 
@@ -39,20 +39,41 @@ const s = ( sketch ) => {
     sketch.resizeCanvas(sketch.wanted_width, sketch.wanted_height, true);
   }
 
+  sketch.mousePressed = () => {
+    for (let comp of sketch.allComponents) {
+      if (comp.isMouseOver()) {
+        comp.calculateOffset();
+        comp.move = true;
+      }
+    }
+  }
+
+  sketch.mouseReleased = () => {
+    for (let comp of sketch.allComponents) {
+      if (comp.move) {
+        comp.resetOffset();
+        comp.move = false;
+      }
+    }
+  }
+
   class Component {
-    constructor(path, initialX, initialY) {
+    constructor(path, initialX, initialY, id) {
       this.img = sketch.loadImage(path);;
       this.w = 300;
       this.h = 100;
       this.x = initialX;
       this.y = initialY;
-
+      this.move = false
+      this.offsetX = 0;
+      this.offsetY = 0;
+      this.id = id;
     }
 
     show() {
-      if (this.isMouseOver()) {
-        this.x = sketch.mouseX - this.w/2;
-        this.y = sketch.mouseY - this.h/2
+      if (this.move) {
+        this.x = sketch.mouseX - this.w/2 + this.offsetX;
+        this.y = sketch.mouseY - this.h/2 + this.offsetY;
       }
       sketch.image(this.img, this.x, this.y, this.w, this.h);
     }
@@ -63,7 +84,21 @@ const s = ( sketch ) => {
       }
       return false;
     }
+
+    calculateOffset() {
+      this.offsetX = -sketch.mouseX + this.x + this.w/2;
+      this.offsetY = -sketch.mouseY + this.y + this.h/2;
+    }
+    
+    resetOffset() {
+      this.x = sketch.mouseX - this.w/2 + this.offsetX;
+      this.y = sketch.mouseY - this.h/2 + this.offsetY;
+      
+      this.offsetX = 0;
+      this.offsetY = 0;
+    }
   }
+
 
 }
 // create the canvas with the sketch
