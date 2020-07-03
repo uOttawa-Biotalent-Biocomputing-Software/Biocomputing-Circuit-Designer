@@ -1,4 +1,3 @@
-
 const s = ( sketch ) => {
   
   sketch.getDimensions = () => {
@@ -14,13 +13,16 @@ const s = ( sketch ) => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
+
+    img = sketch.loadImage(im);
     
   }
 
 
   sketch.draw = () => {
     sketch.background(120);
-    
+    sketch.image(img, 0, 0);
+
   }
   
   sketch.resize = () => {
