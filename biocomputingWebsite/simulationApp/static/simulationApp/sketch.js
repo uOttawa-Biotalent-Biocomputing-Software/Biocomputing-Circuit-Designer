@@ -1,22 +1,37 @@
 class Grid {
-  constructor() {
+  constructor(sketch) {
     this.xOffset = 60;
     this.yOffset = 150;
+    this.mousePressOffsetX = 0;
+    this.mousePressOffsetY = 0;
+    this.move = false;
+    this.sketch = sketch;
+
+  }
+  calculateOffset(){
+    if (!this.move) {
+      this.mousePressOffsetX = this.sketch.mouseX;
+      this.mousePressOffsetY = this.sketch.mouseY;
+    }
   }
 
   getRealCoordinateX(x) {
-    return x + this.xOffset
+    this.calculateOffset();
+    return x + this.xOffset + (this.sketch.mouseX - this.mousePressOffsetX);
   }
   getRealCoordinateY(y) {
-    return y + this.yOffset;
+    this.calculateOffset();
+    return y + this.yOffset + (this.sketch.mouseY - this.mousePressOffsetY);
   }
 
   getGridCoordinateX(x) {
-    return x - this.xOffset;
+    this.calculateOffset();
+    return x - this.xOffset - (this.sketch.mouseX - this.mousePressOffsetX);
   }
 
   getGridCoordinateY(y) {
-    return y - this.yOffset;
+    this.calculateOffset();
+    return y - this.yOffset - (this.sketch.mouseY - this.mousePressOffsetY);
   }
 }
 
@@ -74,7 +89,8 @@ class Component {
 
 const s = ( sketch ) => {
   
-  
+  sketch.grid = new Grid(sketch);
+
   sketch.getDimensions = () => {
     sketch.wanted_height = document.body.clientHeight;
     sketch.wanted_width = document.body.clientWidth;
@@ -89,15 +105,14 @@ const s = ( sketch ) => {
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
-    let grid = new Grid();
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
     
-    sketch.allComponents.push(new Component(im, 0, 0, 0, sketch, grid));
-    sketch.allComponents.push(new Component(im, 500, 500, 1, sketch, grid));
-    sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, grid));
-    sketch.allComponents.push(new Component(im, 600, 500, 3, sketch, grid));
+    sketch.allComponents.push(new Component(im, 0, 0, 0, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 500, 500, 1, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 600, 500, 3, sketch, sketch.grid));
     
   }
 
@@ -132,7 +147,7 @@ const s = ( sketch ) => {
     }
 
     if (pressedBackground) {
-      console.log("background");
+      sketch.grid.move = true;
     }
   }
 
@@ -145,6 +160,7 @@ const s = ( sketch ) => {
         comp.move = false;
       }
     }
+    sketch.grid.move = false;
   }
 
 
