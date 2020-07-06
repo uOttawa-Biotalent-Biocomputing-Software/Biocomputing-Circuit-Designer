@@ -1,7 +1,7 @@
 class Grid {
   constructor(sketch) {
-    this.xOffset = 60;
-    this.yOffset = 150;
+    this.xOffset = 0;
+    this.yOffset = 0;
     this.mousePressOffsetX = 0;
     this.mousePressOffsetY = 0;
     this.move = false;
@@ -13,6 +13,14 @@ class Grid {
       this.mousePressOffsetX = this.sketch.mouseX;
       this.mousePressOffsetY = this.sketch.mouseY;
     }
+  }
+
+  resetOffset() {
+    this.xOffset += (this.sketch.mouseX - this.mousePressOffsetX);
+    this.yOffset += (this.sketch.mouseY - this.mousePressOffsetY);
+
+    this.mousePressOffsetX = this.sketch.mouseX;
+    this.mousePressOffsetY = this.sketch.mouseY;
   }
 
   getRealCoordinateX(x) {
@@ -89,12 +97,14 @@ class Component {
 
 const s = ( sketch ) => {
   
-  sketch.grid = new Grid(sketch);
-
+  
   sketch.getDimensions = () => {
     sketch.wanted_height = document.body.clientHeight;
     sketch.wanted_width = document.body.clientWidth;
   }
+  
+  sketch.grid = new Grid(sketch);
+  sketch.backgroundPressed = false;
 
   sketch.wanted_height = 0;
   sketch.wanted_width = 0;
@@ -135,18 +145,18 @@ const s = ( sketch ) => {
 
   // mouse pressed event
   sketch.mousePressed = () => {
-    let pressedBackground = true;
+    sketch.backgroundPressed = true;
 
     // loop over each component in the canvas and drag it if the mouse is over it
     for (let comp of sketch.allComponents) {
       if (comp.isMouseOver()) {
-        pressedBackground = false;
+        sketch.backgroundPressed = false;
         comp.calculateOffset();
         comp.move = true;
       }
     }
 
-    if (pressedBackground) {
+    if (sketch.backgroundPressed) {
       sketch.grid.move = true;
     }
   }
@@ -160,7 +170,11 @@ const s = ( sketch ) => {
         comp.move = false;
       }
     }
-    sketch.grid.move = false;
+    if(sketch.backgroundPressed) {
+      sketch.backgroundPressed = false; 
+      sketch.grid.move = false;
+      sketch.grid.resetOffset();
+    }
   }
 
 
