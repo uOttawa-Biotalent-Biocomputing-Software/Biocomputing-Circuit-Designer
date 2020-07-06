@@ -120,12 +120,19 @@ const s = ( sketch ) => {
 
   // mouse pressed event
   sketch.mousePressed = () => {
+    let pressedBackground = true;
+
     // loop over each component in the canvas and drag it if the mouse is over it
     for (let comp of sketch.allComponents) {
       if (comp.isMouseOver()) {
+        pressedBackground = false;
         comp.calculateOffset();
         comp.move = true;
       }
+    }
+
+    if (pressedBackground) {
+      console.log("background");
     }
   }
 
