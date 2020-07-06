@@ -11,6 +11,7 @@ class Component {
       this.id = id;
       this.sketch = sketch;
       this.grid = grid;
+      this.scalingFactor = 1;
     }
   
     // show component on the canvas
@@ -20,9 +21,9 @@ class Component {
         this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
         
       }
-      this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
+      this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.grid.getSize(this.w), this.grid.getSize(this.h));
     }
-  
+
     // return true if mouse is over the component
     isMouseOver() {
       let realX = this.grid.getRealCoordinateX(this.x);

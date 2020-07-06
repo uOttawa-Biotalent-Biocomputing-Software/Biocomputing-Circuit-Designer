@@ -8,7 +8,6 @@ const s = ( sketch ) => {
   
   sketch.grid = new Grid(sketch);
   sketch.backgroundPressed = false;
-
   sketch.wanted_height = 0;
   sketch.wanted_width = 0;
   sketch.getDimensions();
@@ -79,6 +78,13 @@ const s = ( sketch ) => {
       sketch.grid.resetOffset();
     }
   }
+
+  // when user scroll to resize the grid
+  sketch.mouseWheel = (event) => { 
+    deltaScalingFactor = -event.delta/1000;
+    // call the resize method in each component
+    sketch.grid.resize(deltaScalingFactor)
+} 
 
 
 }
