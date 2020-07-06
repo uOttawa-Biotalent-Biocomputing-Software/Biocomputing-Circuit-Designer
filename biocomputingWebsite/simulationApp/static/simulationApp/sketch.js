@@ -1,5 +1,27 @@
+class Grid {
+  constructor() {
+    this.xOffset = 60;
+    this.yOffset = 150;
+  }
+
+  getRealCoordinateX(x) {
+    return x + this.xOffset
+  }
+  getRealCoordinateY(y) {
+    return y + this.yOffset;
+  }
+
+  getGridCoordinateX(x) {
+    return x - this.xOffset;
+  }
+
+  getGridCoordinateY(y) {
+    return y - this.yOffset;
+  }
+}
+
 class Component {
-  constructor(path, initialX, initialY, id, sketch) {
+  constructor(path, initialX, initialY, id, sketch, grid) {
     this.img = sketch.loadImage(path);;
     this.w = 300;
     this.h = 100;
@@ -10,20 +32,24 @@ class Component {
     this.offsetY = 0;
     this.id = id;
     this.sketch = sketch;
+    this.grid = grid;
   }
 
   // show component on the canvas
   show() {
     if (this.move) {
-      this.x = sketch.mouseX - this.w/2 + this.offsetX;
-      this.y = sketch.mouseY - this.h/2 + this.offsetY;
+      this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
+      this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
+      
     }
-    this.sketch.image(this.img, this.x, this.y, this.w, this.h);
+    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
   }
 
   // return true if mouse is over the component
   isMouseOver() {
-    if(this.x < this.sketch.mouseX && this.sketch.mouseX < this.x+this.w && this.y < this.sketch.mouseY && this.sketch.mouseY < this.y+this.h && this.sketch.mouseIsPressed) {
+    let realX = this.grid.getRealCoordinateX(this.x);
+    let realY = this.grid.getRealCoordinateY(this.y);
+    if(realX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w && realY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h && this.sketch.mouseIsPressed) {
       return true;
     }
     return false;
@@ -63,14 +89,15 @@ const s = ( sketch ) => {
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
+    let grid = new Grid();
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
     
-    sketch.allComponents.push(new Component(im, 0, 0, 0, sketch));
-    sketch.allComponents.push(new Component(im, 500, 500, 1, sketch));
-    sketch.allComponents.push(new Component(im, 200, 400, 2, sketch));
-    sketch.allComponents.push(new Component(im, 600, 500, 3, sketch));
+    sketch.allComponents.push(new Component(im, 0, 0, 0, sketch, grid));
+    sketch.allComponents.push(new Component(im, 500, 500, 1, sketch, grid));
+    sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, grid));
+    sketch.allComponents.push(new Component(im, 600, 500, 3, sketch, grid));
     
   }
 
