@@ -49,7 +49,7 @@ class Component {
   isMouseOver() {
     let realX = this.grid.getRealCoordinateX(this.x);
     let realY = this.grid.getRealCoordinateY(this.y);
-    if(realX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w && realY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h && this.sketch.mouseIsPressed) {
+    if(realX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w && realY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h) {
       return true;
     }
     return false;
