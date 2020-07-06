@@ -5,7 +5,9 @@ const s = ( sketch ) => {
     sketch.wanted_height = document.body.clientHeight;
     sketch.wanted_width = document.body.clientWidth;
   }
-
+  
+  sketch.grid = new Grid(sketch);
+  sketch.backgroundPressed = false;
   sketch.wanted_height = 0;
   sketch.wanted_width = 0;
   sketch.getDimensions();
@@ -19,10 +21,10 @@ const s = ( sketch ) => {
     sketch.pixelDensity(1);
 
     
-    sketch.allComponents.push(new Component(im, 0, 0, 0));
-    sketch.allComponents.push(new Component(im, 500, 500, 1));
-    sketch.allComponents.push(new Component(im, 200, 400, 2));
-    sketch.allComponents.push(new Component(im, 600, 500, 3));
+    sketch.allComponents.push(new Component(im, 0, 0, 0, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 500, 500, 1, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 600, 500, 3, sketch, sketch.grid));
     
   }
 
@@ -45,12 +47,19 @@ const s = ( sketch ) => {
 
   // mouse pressed event
   sketch.mousePressed = () => {
+    sketch.backgroundPressed = true;
+
     // loop over each component in the canvas and drag it if the mouse is over it
     for (let comp of sketch.allComponents) {
       if (comp.isMouseOver()) {
+        sketch.backgroundPressed = false;
         comp.calculateOffset();
         comp.move = true;
       }
+    }
+
+    if (sketch.backgroundPressed) {
+      sketch.grid.move = true;
     }
   }
 
@@ -63,54 +72,19 @@ const s = ( sketch ) => {
         comp.move = false;
       }
     }
-  }
-
-  class Component {
-    constructor(path, initialX, initialY, id) {
-      this.img = sketch.loadImage(path);;
-      this.w = 300;
-      this.h = 100;
-      this.x = initialX;
-      this.y = initialY;
-      this.move = false
-      this.offsetX = 0;
-      this.offsetY = 0;
-      this.id = id;
-    }
-
-    // show component on the canvas
-    show() {
-      if (this.move) {
-        this.x = sketch.mouseX - this.w/2 + this.offsetX;
-        this.y = sketch.mouseY - this.h/2 + this.offsetY;
-      }
-      sketch.image(this.img, this.x, this.y, this.w, this.h);
-    }
-
-    // return true if mouse is over the component
-    isMouseOver() {
-      if(this.x < sketch.mouseX && sketch.mouseX < this.x+this.w && this.y < sketch.mouseY && sketch.mouseY < this.y+this.h && sketch.mouseIsPressed) {
-        return true;
-      }
-      return false;
-    }
-
-    // calculate where the mouse is located relative to x and y of the component
-    calculateOffset() {
-      this.offsetX = -sketch.mouseX + this.x + this.w/2;
-      this.offsetY = -sketch.mouseY + this.y + this.h/2;
-    }
-    
-    // when mouse release, we need to reajust the x and y of the component with the offset
-    resetOffset() {
-      this.x = sketch.mouseX - this.w/2 + this.offsetX;
-      this.y = sketch.mouseY - this.h/2 + this.offsetY;
-      
-      // set the offset at 0 after ajusting x and y
-      this.offsetX = 0;
-      this.offsetY = 0;
+    if(sketch.backgroundPressed) {
+      sketch.backgroundPressed = false; 
+      sketch.grid.move = false;
+      sketch.grid.resetOffset();
     }
   }
+
+  // when user scroll to resize the grid
+  sketch.mouseWheel = (event) => { 
+    deltaScalingFactor = -event.delta/1000;
+    // call the resize method in each component
+    sketch.grid.resize(deltaScalingFactor)
+} 
 
 
 }
