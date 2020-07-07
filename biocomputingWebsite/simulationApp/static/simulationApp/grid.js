@@ -7,11 +7,11 @@ class Grid {
     this.move = false;
     this.sketch = sketch;
 
-    this.scallingFactor = 1;
+    this.scalingFactor = 1;
   }
 
   resize(deltaScalingFactor) {
-    this.scallingFactor = this.scallingFactor + deltaScalingFactor;
+    this.scalingFactor = this.scalingFactor + deltaScalingFactor;
 
     let x = this.getGridCoordinateX(this.sketch.mouseX);
     let y = this.getGridCoordinateY(this.sketch.mouseY);
