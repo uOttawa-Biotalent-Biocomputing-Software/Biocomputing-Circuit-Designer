@@ -18,8 +18,10 @@ class Grid {
     let y = this.getGridCoordinateY(this.sketch.mouseY);
 
     for (let comp of this.sketch.allComponents) {
-        comp.x = ((1 + deltaScallingFactor) * (comp.x - x)) + x;
-        comp.y = ((1 + deltaScallingFactor) * (comp.y - y)) + y;
+      comp.x = ((1 + deltaScallingFactor) * (comp.x - x)) + x;
+      comp.y = ((1 + deltaScallingFactor) * (comp.y - y)) + y;
+      comp.w = comp.w * (1+deltaScallingFactor);
+      comp.h = comp.h * (1+deltaScallingFactor);
     }
 
   }
