@@ -17,7 +17,7 @@ class Component {
   
     // show component on the canvas
     calculatePadding() {
-      return this.grid.absoluteScalingFactor * this.padding * 400;
+      return this.grid.scalingFactor * this.padding * 300;
     }
 
 
