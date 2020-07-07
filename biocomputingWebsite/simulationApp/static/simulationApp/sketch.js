@@ -53,13 +53,12 @@ const s = ( sketch ) => {
     for (let comp of sketch.allComponents) {
       if (comp.isMouseOver()) {
         sketch.backgroundPressed = false;
-        comp.calculateOffset();
-        comp.move = true;
+        comp.startMoving();
       }
     }
 
     if (sketch.backgroundPressed) {
-      sketch.grid.move = true;
+      sketch.grid.startMoving();
     }
   }
 
@@ -68,14 +67,12 @@ const s = ( sketch ) => {
     // drop each component if it was previously dragged
     for (let comp of sketch.allComponents) {
       if (comp.move) {
-        comp.resetOffset();
-        comp.move = false;
+        comp.stopMoving();
       }
     }
     if(sketch.backgroundPressed) {
-      sketch.backgroundPressed = false; 
-      sketch.grid.move = false;
-      sketch.grid.resetOffset();
+      sketch.grid.stopMoving();
+      this.backgroundPressed = false;
     }
   }
 

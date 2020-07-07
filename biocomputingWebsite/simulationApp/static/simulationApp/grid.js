@@ -25,6 +25,15 @@ class Grid {
 
   }
 
+  startMoving() {
+    this.move = true;
+  }
+
+  stopMoving() { 
+    this.move = false;
+    this.resetOffset();
+  }
+
   calculateOffset() {
     if (!this.move) {
       this.mousePressOffsetX = this.sketch.mouseX;

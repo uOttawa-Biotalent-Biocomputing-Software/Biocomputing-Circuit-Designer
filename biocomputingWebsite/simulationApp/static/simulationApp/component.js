@@ -32,7 +32,16 @@ class Component {
       }
       return false;
     }
-  
+
+    startMoving() {
+      this.calculateOffset();
+      this.move = true;
+    }
+    
+    stopMoving() {
+      this.move = false;
+      this.resetOffset();
+    }
     // calculate where the mouse is located relative to x and y of the component
     calculateOffset() {
       this.offsetX = -this.sketch.mouseX + this.x + this.w/2;
