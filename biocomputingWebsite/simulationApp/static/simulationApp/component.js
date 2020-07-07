@@ -13,6 +13,7 @@ class Component {
       this.grid = grid;
       this.padding = 0.1;
       this.rectangleContour = new RectangleContour(this);
+      this.mouseOnNode = false;
     }
   
     // show component on the canvas
@@ -29,9 +30,12 @@ class Component {
       }
       this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
       
+      this.mouseOnNode = false;
       if (this.isMouseOver()) {
         this.rectangleContour.show();
       }
+
+
     }
 
     // return true if mouse is over the component
@@ -47,9 +51,11 @@ class Component {
     }
 
     startMoving() {
-      this.calculateOffset();
-      this.move = true;
-      this.grid.cursorMove();
+      if (!this.mouseOnNode) {
+        this.calculateOffset();
+        this.move = true;
+        this.grid.cursorMove();
+      }
     }
     
     stopMoving() {
