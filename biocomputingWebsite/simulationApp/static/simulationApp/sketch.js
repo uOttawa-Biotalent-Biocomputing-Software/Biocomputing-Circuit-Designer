@@ -72,15 +72,13 @@ const s = ( sketch ) => {
     }
     if(sketch.backgroundPressed) {
       sketch.grid.stopMoving();
-      this.backgroundPressed = false;
     }
   }
 
   // when user scroll to resize the grid
   sketch.mouseWheel = (event) => { 
-    deltaScalingFactor = -event.delta/1000;
     // call the resize method in each component
-    sketch.grid.resize(deltaScalingFactor)
+    sketch.grid.resize(-event.delta/1000)
 } 
 
 

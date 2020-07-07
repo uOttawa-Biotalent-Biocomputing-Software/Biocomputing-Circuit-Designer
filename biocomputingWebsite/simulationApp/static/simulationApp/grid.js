@@ -10,17 +10,17 @@ class Grid {
     this.scallingFactor = 1;
   }
 
-  resize(deltaScallingFactor) {
-    this.scallingFactor += deltaScalingFactor;
+  resize(deltaScalingFactor) {
+    this.scallingFactor = this.scallingFactor + deltaScalingFactor;
 
     let x = this.getGridCoordinateX(this.sketch.mouseX);
     let y = this.getGridCoordinateY(this.sketch.mouseY);
 
     for (let comp of this.sketch.allComponents) {
-      comp.x = ((1 + deltaScallingFactor) * (comp.x - x)) + x;
-      comp.y = ((1 + deltaScallingFactor) * (comp.y - y)) + y;
-      comp.w = comp.w * (1+deltaScallingFactor);
-      comp.h = comp.h * (1+deltaScallingFactor);
+      comp.x = ((1 + deltaScalingFactor) * (comp.x - x)) + x;
+      comp.y = ((1 + deltaScalingFactor) * (comp.y - y)) + y;
+      comp.w = comp.w * (1+deltaScalingFactor);
+      comp.h = comp.h * (1+deltaScalingFactor);
     }
 
   }
