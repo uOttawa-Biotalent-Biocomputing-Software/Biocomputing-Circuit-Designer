@@ -11,7 +11,6 @@ class Component {
       this.id = id;
       this.sketch = sketch;
       this.grid = grid;
-      this.scalingFactor = 1;
     }
   
     // show component on the canvas

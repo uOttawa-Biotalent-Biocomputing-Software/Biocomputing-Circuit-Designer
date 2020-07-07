@@ -8,7 +8,6 @@ class Grid {
     this.sketch = sketch;
 
     this.scallingFactor = 1;
-    this.scroll = 1;
   }
 
   resize(deltaScallingFactor) {
@@ -47,20 +46,20 @@ class Grid {
 
   getRealCoordinateX(x) {
     this.calculateOffset();
-    return (x + this.xOffset + (this.sketch.mouseX - this.mousePressOffsetX)) * this.scroll;
+    return (x + this.xOffset + (this.sketch.mouseX - this.mousePressOffsetX));
   }
   getRealCoordinateY(y) {
     this.calculateOffset();
-    return (y + this.yOffset + (this.sketch.mouseY - this.mousePressOffsetY)) * this.scroll;
+    return (y + this.yOffset + (this.sketch.mouseY - this.mousePressOffsetY));
   }
 
   getGridCoordinateX(x) {
     this.calculateOffset();
-    return (x - this.xOffset - (this.sketch.mouseX - this.mousePressOffsetX)) * this.scroll;
+    return (x - this.xOffset - (this.sketch.mouseX - this.mousePressOffsetX));
   }
 
   getGridCoordinateY(y) {
     this.calculateOffset();
-    return (y - this.yOffset - (this.sketch.mouseY - this.mousePressOffsetY)) * this.scroll;
+    return (y - this.yOffset - (this.sketch.mouseY - this.mousePressOffsetY));
   }
 }
