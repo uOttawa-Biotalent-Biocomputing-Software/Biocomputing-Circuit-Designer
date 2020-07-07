@@ -21,10 +21,10 @@ const s = ( sketch ) => {
     sketch.pixelDensity(1);
 
     
-    sketch.allComponents.push(new Component(im, 0, 0, 0, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 500, 500, 1, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 50, 200, 0, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 500, 700, 1, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 600, 500, 3, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 600, 200, 3, sketch, sketch.grid));
     
   }
 
@@ -53,13 +53,12 @@ const s = ( sketch ) => {
     for (let comp of sketch.allComponents) {
       if (comp.isMouseOver()) {
         sketch.backgroundPressed = false;
-        comp.calculateOffset();
-        comp.move = true;
+        comp.startMoving();
       }
     }
 
     if (sketch.backgroundPressed) {
-      sketch.grid.move = true;
+      sketch.grid.startMoving();
     }
   }
 
@@ -68,22 +67,18 @@ const s = ( sketch ) => {
     // drop each component if it was previously dragged
     for (let comp of sketch.allComponents) {
       if (comp.move) {
-        comp.resetOffset();
-        comp.move = false;
+        comp.stopMoving();
       }
     }
     if(sketch.backgroundPressed) {
-      sketch.backgroundPressed = false; 
-      sketch.grid.move = false;
-      sketch.grid.resetOffset();
+      sketch.grid.stopMoving();
     }
   }
 
   // when user scroll to resize the grid
   sketch.mouseWheel = (event) => { 
-    deltaScalingFactor = -event.delta/1000;
     // call the resize method in each component
-    sketch.grid.resize(deltaScalingFactor)
+    sketch.grid.resize(-event.delta/1000)
 } 
 
 

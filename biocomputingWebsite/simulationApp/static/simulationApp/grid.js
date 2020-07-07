@@ -7,21 +7,40 @@ class Grid {
     this.move = false;
     this.sketch = sketch;
 
-    this.scallingFactor = 1;
-    this.scroll = 1;
+    this.scalingFactor = 1;
   }
 
-  resize(deltaScallingFactor) {
-    this.scallingFactor += deltaScalingFactor;
+  cursorMove() {
+    document.getElementById("body").style.cursor = "move";
+  }
+  cursorNormal() {
+    document.getElementById("body").style.cursor = "default";
+  }
+
+  resize(deltaScalingFactor) {
+    this.scalingFactor = this.scalingFactor * (1 + deltaScalingFactor);
 
     let x = this.getGridCoordinateX(this.sketch.mouseX);
     let y = this.getGridCoordinateY(this.sketch.mouseY);
 
     for (let comp of this.sketch.allComponents) {
-        comp.x = ((1 + deltaScallingFactor) * (comp.x - x)) + x;
-        comp.y = ((1 + deltaScallingFactor) * (comp.y - y)) + y;
+      comp.x = ((1 + deltaScalingFactor) * (comp.x - x)) + x;
+      comp.y = ((1 + deltaScalingFactor) * (comp.y - y)) + y;
+      comp.w = comp.w * (1+deltaScalingFactor);
+      comp.h = comp.h * (1+deltaScalingFactor);
     }
 
+  }
+
+  startMoving() {
+    this.move = true;
+    this.cursorMove();
+  }
+
+  stopMoving() { 
+    this.move = false;
+    this.resetOffset();
+    this.cursorNormal();
   }
 
   calculateOffset() {
@@ -45,20 +64,20 @@ class Grid {
 
   getRealCoordinateX(x) {
     this.calculateOffset();
-    return (x + this.xOffset + (this.sketch.mouseX - this.mousePressOffsetX)) * this.scroll;
+    return (x + this.xOffset + (this.sketch.mouseX - this.mousePressOffsetX));
   }
   getRealCoordinateY(y) {
     this.calculateOffset();
-    return (y + this.yOffset + (this.sketch.mouseY - this.mousePressOffsetY)) * this.scroll;
+    return (y + this.yOffset + (this.sketch.mouseY - this.mousePressOffsetY));
   }
 
   getGridCoordinateX(x) {
     this.calculateOffset();
-    return (x - this.xOffset - (this.sketch.mouseX - this.mousePressOffsetX)) * this.scroll;
+    return (x - this.xOffset - (this.sketch.mouseX - this.mousePressOffsetX));
   }
 
   getGridCoordinateY(y) {
     this.calculateOffset();
-    return (y - this.yOffset - (this.sketch.mouseY - this.mousePressOffsetY)) * this.scroll;
+    return (y - this.yOffset - (this.sketch.mouseY - this.mousePressOffsetY));
   }
 }

@@ -11,29 +11,58 @@ class Component {
       this.id = id;
       this.sketch = sketch;
       this.grid = grid;
-      this.scalingFactor = 1;
+      this.padding = 0.1;
+      this.rectangleContour = new RectangleContour(this);
+      this.mouseOnNode = false;
     }
   
     // show component on the canvas
+    calculatePadding() {
+      return this.grid.scalingFactor * this.padding * 300;
+    }
+
+
     show() {
       if (this.move) {
         this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
         this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
         
       }
-      this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.grid.getSize(this.w), this.grid.getSize(this.h));
+      this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
+      
+      this.mouseOnNode = false;
+      if (this.isMouseOver()) {
+        this.rectangleContour.show();
+      }
+
+
     }
 
     // return true if mouse is over the component
     isMouseOver() {
       let realX = this.grid.getRealCoordinateX(this.x);
       let realY = this.grid.getRealCoordinateY(this.y);
-      if(realX < this.sketch.mouseX && this.sketch.mouseX < realX+this.grid.getSize(this.w) && realY < this.sketch.mouseY && this.sketch.mouseY < realY+this.grid.getSize(this.h)) {
+      let realPaddingX = this.calculatePadding();
+      let realPaddingY = this.calculatePadding();
+      if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h+realPaddingY) {
         return true;
       }
       return false;
     }
-  
+
+    startMoving() {
+      if (!this.mouseOnNode) {
+        this.calculateOffset();
+        this.move = true;
+        this.grid.cursorMove();
+      }
+    }
+    
+    stopMoving() {
+      this.move = false;
+      this.resetOffset();
+      this.grid.cursorNormal();
+    }
     // calculate where the mouse is located relative to x and y of the component
     calculateOffset() {
       this.offsetX = -this.sketch.mouseX + this.x + this.w/2;
