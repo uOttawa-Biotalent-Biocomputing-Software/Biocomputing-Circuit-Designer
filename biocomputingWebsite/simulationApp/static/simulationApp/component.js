@@ -16,13 +16,10 @@ class Component {
     }
   
     // show component on the canvas
-    calculatePaddingX() {
-      return this.w*this.padding*0.5;
+    calculatePadding() {
+      return this.grid.absoluteScalingFactor * this.padding * 400;
     }
 
-    calculatPaddingY() {
-      return this.h*this.padding*0.5;
-    }
 
     show() {
       if (this.move) {
@@ -41,8 +38,8 @@ class Component {
     isMouseOver() {
       let realX = this.grid.getRealCoordinateX(this.x);
       let realY = this.grid.getRealCoordinateY(this.y);
-      let realPaddingX = this.calculatePaddingX();
-      let realPaddingY = this.calculatPaddingY();
+      let realPaddingX = this.calculatePadding();
+      let realPaddingY = this.calculatePadding();
       if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h+realPaddingY) {
         return true;
       }
