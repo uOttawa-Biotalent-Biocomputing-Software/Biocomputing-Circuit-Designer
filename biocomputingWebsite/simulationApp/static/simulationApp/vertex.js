@@ -11,7 +11,7 @@ class Node {
     }
 
     getIsMouseOver() {
-        this.isMouseOver = ((((this.sketch.mouseX-this.realX) ** 2) + ((this.sketch.mouseY - this.realY) **2)) ** (0.5) < this.contour.size2);
+        this.isMouseOver = ((((this.sketch.mouseX-this.realX) ** 2) + ((this.sketch.mouseY - this.realY) **2)) ** (0.5) < this.contour.size2 * this.grid.scalingFactor);
         return this.isMouseOver;
     }
 
