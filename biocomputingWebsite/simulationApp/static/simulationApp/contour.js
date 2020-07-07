@@ -10,6 +10,6 @@ class RectangleContour {
         let paddingX = this.component.calculatePadding();
         let paddingY = this.component.calculatePadding();
         this.sketch.fill(0, 0, 0, 0)
-        this.sketch.rect(this.grid.getRealCoordinateX(this.component.x) - paddingX/2, this.grid.getRealCoordinateY(this.component.y) - paddingY/2, this.component.w + paddingX, this.component.h + paddingY, 20);
+        this.sketch.rect(this.grid.getRealCoordinateX(this.component.x) - paddingX/2, this.grid.getRealCoordinateY(this.component.y) - paddingY/2, this.component.w + paddingX, this.component.h + paddingY, this.grid.scalingFactor * 20);
     }
 }
