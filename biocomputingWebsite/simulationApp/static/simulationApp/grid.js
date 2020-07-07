@@ -10,6 +10,13 @@ class Grid {
     this.scalingFactor = 1;
   }
 
+  cursorMove() {
+    document.getElementById("body").style.cursor = "move";
+  }
+  cursorNormal() {
+    document.getElementById("body").style.cursor = "default";
+  }
+
   resize(deltaScalingFactor) {
     this.scalingFactor = this.scalingFactor * (1 + deltaScalingFactor);
 
@@ -27,11 +34,13 @@ class Grid {
 
   startMoving() {
     this.move = true;
+    this.cursorMove();
   }
 
   stopMoving() { 
     this.move = false;
     this.resetOffset();
+    this.cursorNormal();
   }
 
   calculateOffset() {

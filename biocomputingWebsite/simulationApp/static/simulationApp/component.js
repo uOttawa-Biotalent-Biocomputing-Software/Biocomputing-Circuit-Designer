@@ -49,11 +49,13 @@ class Component {
     startMoving() {
       this.calculateOffset();
       this.move = true;
+      this.grid.cursorMove();
     }
     
     stopMoving() {
       this.move = false;
       this.resetOffset();
+      this.grid.cursorNormal();
     }
     // calculate where the mouse is located relative to x and y of the component
     calculateOffset() {
