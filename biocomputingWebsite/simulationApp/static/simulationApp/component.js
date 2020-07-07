@@ -11,9 +11,19 @@ class Component {
       this.id = id;
       this.sketch = sketch;
       this.grid = grid;
+      this.padding = 0.4;
+      this.rectangleContour = new RectangleContour(this);
     }
   
     // show component on the canvas
+    calculatePaddingX() {
+      return this.w*this.padding * this.padding;
+    }
+
+    calculatPaddingY() {
+      return this.h*this.padding *this.padding;
+    }
+
     show() {
       if (this.move) {
         this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
@@ -21,13 +31,19 @@ class Component {
         
       }
       this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
+      
+      if (this.isMouseOver()) {
+        this.rectangleContour.show();
+      }
     }
 
     // return true if mouse is over the component
     isMouseOver() {
       let realX = this.grid.getRealCoordinateX(this.x);
       let realY = this.grid.getRealCoordinateY(this.y);
-      if(realX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w && realY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h) {
+      let realPaddingX = this.calculatePaddingX();
+      let realPaddingY = this.calculatPaddingY();
+      if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h+realPaddingY) {
         return true;
       }
       return false;
