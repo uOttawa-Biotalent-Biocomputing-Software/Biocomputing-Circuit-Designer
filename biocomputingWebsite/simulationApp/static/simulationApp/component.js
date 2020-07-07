@@ -11,17 +11,17 @@ class Component {
       this.id = id;
       this.sketch = sketch;
       this.grid = grid;
-      this.padding = 0.4;
+      this.padding = 0.1;
       this.rectangleContour = new RectangleContour(this);
     }
   
     // show component on the canvas
     calculatePaddingX() {
-      return this.w*this.padding * this.padding;
+      return this.w*this.padding*0.5;
     }
 
     calculatPaddingY() {
-      return this.h*this.padding *this.padding;
+      return this.h*this.padding*0.5;
     }
 
     show() {
