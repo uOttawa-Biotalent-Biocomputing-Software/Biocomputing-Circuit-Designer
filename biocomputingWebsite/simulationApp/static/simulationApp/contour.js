@@ -5,7 +5,7 @@ class RectangleContour {
         this.sketch = this.component.sketch;
         this.grid = this.component.grid;
         this.size1 = 10;
-        this.size2 = 70;
+        this.size2 = 20;
 
         this.nodesLocation = [
             [function(component) {return component.x - component.calculatePadding()/2}, function(component){return component.y - component.calculatePadding()/2}],
