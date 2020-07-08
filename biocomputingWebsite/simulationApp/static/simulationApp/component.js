@@ -1,5 +1,5 @@
 class Component {
-
+  static active = [];
   constructor(path, initialX, initialY, id, sketch, grid) {
     this.img = sketch.loadImage(path);;
     this.w = 300;
@@ -32,7 +32,8 @@ class Component {
     this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
     
     this.mouseOnNode = false;
-    if (this.isMouseOver()) {
+
+    if (Component.active.includes(this.id)) {
       this.rectangleContour.show();
     }
 
@@ -52,6 +53,12 @@ class Component {
   }
 
   startMoving() {
+    if ((this.sketch.keyIsPressed == true) && (this.sketch.keyCode == 17)) {
+      Component.active.push(this.id);
+    } else {
+      Component.active = [this.id];
+    }
+    
     if (!this.mouseOnNode) {
       this.calculateOffset();
       this.move = true;
