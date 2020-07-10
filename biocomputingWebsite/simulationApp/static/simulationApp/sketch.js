@@ -51,7 +51,7 @@ const s = ( sketch ) => {
 
     // loop over each component in the canvas and drag it if the mouse is over it
     for (let comp of sketch.allComponents) {
-      if (comp.isMouseOver()) {
+      if (comp.isMouseOver() || Component.active.includes(comp.id)) {
         sketch.backgroundPressed = false;
         comp.startMoving();
       }
