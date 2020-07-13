@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"></link>
+  </head>
+
+  <body>
+    <div id="navigator">
+      <nav>
+        <label class="logo">BTC2020</label>
+        <ul>
+          <li><a class="active" href="{% url 'home' %}" id="b">Home</a></li>
+          <li><a href="{% url 'about' %}" id="b">About</a></li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <h1>BioTalent 2020</h1>
+    <h2>Biocomputing Team</h2>
+
+    <div id="home_container">
+      <a href="{% url 'sim' %}" id="a" class="btn1">CREATE GENE CIRCUIT</a>
+      <a href="{% url 'renderSBGN' %}" id="a" class="btn2">RENDER SBGN TO PNG FILE</a>
+    </div>
+
+  </body>
+</html>

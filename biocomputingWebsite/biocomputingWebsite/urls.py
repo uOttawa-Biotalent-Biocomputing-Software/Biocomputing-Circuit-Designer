@@ -19,7 +19,11 @@ from usersApp import views as usersApp_views
 from simulationApp import views as simulation_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls), 
+    path('admin/', admin.site.urls),
     path("register/", usersApp_views.register, name='register'),
-    path("", simulation_views.simulation, name='sim')
+    path("simulation/", simulation_views.simulation, name='sim'),
+    path("", simulation_views.home, name='home'),
+    path("about/", simulation_views.about, name='about'),
+    path("rendersbgn/", simulation_views.renderSBGN, name='renderSBGN'),
+    path("renderoutput/", simulation_views.renderOutput, name='render-button'),
 ]
