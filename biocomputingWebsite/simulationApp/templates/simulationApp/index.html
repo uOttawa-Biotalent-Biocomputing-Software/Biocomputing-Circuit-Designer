@@ -3,13 +3,22 @@
 <html>
 	<head>
 		<title>
-			
+
 		</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"></link>
 	</head>
-	<body id="body" style="height: 100vh; margin: 0px;" onresize="resize()">
+	<body id="body" style="height: 93.6vh; margin: 0px;" onresize="resize()">
+		<nav>
+        <label class="logo">BTC2020</label>
+        <ul>
+          <li><a href="{% url 'home' %}" id="b">Home</a></li>
+          <li><a href="{% url 'about' %}" id="b">About</a></li>
+        </ul>
+      </nav>
+
+
 		<div id="myContainer" style="width: 100%; height: 100%;"></div>
-		
-		
+
 		<script>
 			var im = "{% static 'simulationApp/images/test.png' %}";
 		</script>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Circuit page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"></link>
+  </head>
+  <body>
+
+    <div class="navigator">
+      <nav>
+        <label class="logo">BTC2020</label>
+        <ul>
+          <li><a href="{% url 'home' %}" id="b">Home</a></li>
+          <li><a href="{% url 'about' %}" id="b">About</a></li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <button onclick="location.href='{% url 'render-button' %}'">RENDER SBGN TO PNG</button>
+
+    <input type="file" accept=".sbgn"></input>
+    <textarea id="text"resize=none; placeholder="Import or write your SBGN file here..."></textarea>
+
+
+  </body>
+</html>
