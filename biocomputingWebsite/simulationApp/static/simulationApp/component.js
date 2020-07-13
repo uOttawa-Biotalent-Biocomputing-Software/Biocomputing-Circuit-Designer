@@ -1,12 +1,27 @@
 class Component {
   static active = [];
+
+  static isInActive(component) {
+    return Component.active.includes(component);
+  }
+
+  static resetActiveComponents(){
+    Component.active = [];
+  }
+
+  static addToActiveComponents(component) {
+    Component.active.push(component);
+  }
+  static setActiveComponent(component) {
+    Component.active = component;
+  }
+
   constructor(path, initialX, initialY, id, sketch, grid) {
     this.img = sketch.loadImage(path);;
     this.w = 300;
     this.h = 100;
     this.x = initialX;
     this.y = initialY;
-    this.move = false
     this.offsetX = 0;
     this.offsetY = 0;
     this.id = id;
@@ -53,8 +68,8 @@ class Component {
   }
 
   startMoving() {
-    if ((this.sketch.keyIsPressed == true) && (this.sketch.keyCode == 17)) {
-      Component.active.push(this.id);
+    if (this.sketch.keyCode == 17) {
+      Component.addToActiveComponents(this.id);
     } else {
       Component.active = [this.id];
     }
