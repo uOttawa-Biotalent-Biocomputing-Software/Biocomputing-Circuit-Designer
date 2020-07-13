@@ -37,21 +37,25 @@ class Component {
     return this.grid.scalingFactor * this.padding * 300;
   }
 
-
-  show() {
-    if (this.move) {
-      this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
-      this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
-      
-    }
-    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
+  update() {
     
+    this.show();
     this.mouseOnNode = false;
 
     if (Component.active.includes(this.id)) {
       this.rectangleContour.show();
     }
 
+  }
+
+  show() {
+    
+    if (this.move) {
+      this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
+      this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
+      
+    }
+    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
 
   }
 
@@ -68,7 +72,8 @@ class Component {
   }
 
   startMoving() {
-    if (this.sketch.keyCode == 17) {
+    if (this.sketch.keyIsDown(17)) {
+      
       Component.addToActiveComponents(this.id);
     } else {
       Component.active = [this.id];

@@ -33,7 +33,7 @@ const s = ( sketch ) => {
     sketch.background(120);
 
     for (let comp of sketch.allComponents) {
-      comp.show();
+      comp.update();
     }
     
 
