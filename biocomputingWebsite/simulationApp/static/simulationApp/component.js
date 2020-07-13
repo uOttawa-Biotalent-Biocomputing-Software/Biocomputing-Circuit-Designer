@@ -29,7 +29,6 @@ class Component {
     this.grid = grid;
     this.padding = 0.1;
     this.rectangleContour = new RectangleContour(this);
-    this.mouseOnNode = false;
   }
 
   // show component on the canvas
@@ -40,7 +39,6 @@ class Component {
   update() {
     
     this.show();
-    this.mouseOnNode = false;
 
     if (Component.active.includes(this.id)) {
       this.rectangleContour.show();
@@ -79,11 +77,10 @@ class Component {
       Component.active = [this.id];
     }
     
-    if (!this.mouseOnNode) {
-      this.calculateOffset();
-      this.move = true;
-      this.grid.cursorMove();
-    }
+    this.calculateOffset();
+    this.move = true;
+    this.grid.cursorMove();
+    
   }
   
   stopMoving() {
