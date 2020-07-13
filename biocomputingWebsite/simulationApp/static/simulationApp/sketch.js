@@ -57,8 +57,15 @@ const s = ( sketch ) => {
       }
     }
 
+    for (comp of sketch.allComponents) {
+      if (Component.isInActive(comp.id)) {
+        comp.startMoving();
+      }
+    }
+
     if (sketch.backgroundPressed) {
       sketch.grid.startMoving();
+      Component.resetActiveComponents();
 
     }
   }
@@ -73,6 +80,11 @@ const s = ( sketch ) => {
     }
     if(sketch.backgroundPressed) {
       sketch.grid.stopMoving();
+    }
+  }
+  for (comp of sketch.allComponents) {
+    if (Component.isInActive(comp.id)) {
+      comp.stopMoving();
     }
   }
 
