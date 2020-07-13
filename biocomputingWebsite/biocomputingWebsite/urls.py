@@ -21,5 +21,7 @@ from simulationApp import views as simulation_views
 urlpatterns = [
     path('admin/', admin.site.urls), 
     path("register/", usersApp_views.register, name='register'),
-    path("", simulation_views.simulation, name='sim')
+    path("", simulation_views.simulation, name='sim'),
+
+    path("save_file", simulation_views.save_file, name='save_file'),
 ]
