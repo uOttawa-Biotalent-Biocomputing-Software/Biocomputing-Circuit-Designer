@@ -18,16 +18,19 @@ class Grid {
   }
 
   resize(deltaScalingFactor) {
-    this.scalingFactor = this.scalingFactor * (1 + deltaScalingFactor);
 
-    let x = this.getGridCoordinateX(this.sketch.mouseX);
-    let y = this.getGridCoordinateY(this.sketch.mouseY);
-
-    for (let comp of this.sketch.allComponents) {
-      comp.x = ((1 + deltaScalingFactor) * (comp.x - x)) + x;
-      comp.y = ((1 + deltaScalingFactor) * (comp.y - y)) + y;
-      comp.w = comp.w * (1+deltaScalingFactor);
-      comp.h = comp.h * (1+deltaScalingFactor);
+    if((this.scalingFactor > 0.15 && deltaScalingFactor < 0) || (this.scalingFactor < 20 && deltaScalingFactor > 0)) {
+      this.scalingFactor = this.scalingFactor * (1 + deltaScalingFactor);
+  
+      let x = this.getGridCoordinateX(this.sketch.mouseX);
+      let y = this.getGridCoordinateY(this.sketch.mouseY);
+  
+      for (let comp of this.sketch.allComponents) {
+        comp.x = ((1 + deltaScalingFactor) * (comp.x - x)) + x;
+        comp.y = ((1 + deltaScalingFactor) * (comp.y - y)) + y;
+        comp.w = comp.w * (1+deltaScalingFactor);
+        comp.h = comp.h * (1+deltaScalingFactor);
+      }
     }
 
   }
