@@ -64,8 +64,14 @@ const s = ( sketch ) => {
     }
 
     if (sketch.backgroundPressed) {
-      sketch.grid.startMoving();
       Component.resetActiveComponents();
+      sketch.grid.startMoving();
+      console.log(Component.active);
+      for (let comp of sketch.allComponents) {
+        if (comp.move) {
+          comp.stopMoving();
+        }
+      }
 
     }
   }

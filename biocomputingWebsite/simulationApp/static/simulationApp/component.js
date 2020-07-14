@@ -38,6 +38,7 @@ class Component {
 
   update() {
     
+    this.updatePosition();
     this.show();
 
     if (Component.active.includes(this.id)) {
@@ -46,13 +47,15 @@ class Component {
 
   }
 
-  show() {
-    
+  updatePosition() {
     if (this.move) {
       this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
       this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
       
     }
+  }
+
+  show() {
     this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
 
   }
