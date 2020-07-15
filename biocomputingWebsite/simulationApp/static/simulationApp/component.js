@@ -21,6 +21,7 @@ class Component {
   }
 
   static mouseOnNode = false;
+  static clickedNode;
 
   constructor(path, initialX, initialY, id, sketch, grid) {
     this.img = sketch.loadImage(path);;
@@ -46,10 +47,8 @@ class Component {
     // Component.mouseOnNode = false;
     this.updatePosition();
     this.show();
-
-    if (Component.active.includes(this.id)) {
-      this.rectangleContour.show();
-    }
+    this.rectangleContour.update();
+    
 
   }
 
@@ -62,7 +61,7 @@ class Component {
   }
 
   show() {
-    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
+    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);  
 
   }
 

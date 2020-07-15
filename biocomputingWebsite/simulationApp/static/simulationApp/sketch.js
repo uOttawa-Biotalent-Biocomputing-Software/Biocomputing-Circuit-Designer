@@ -13,6 +13,7 @@ const s = ( sketch ) => {
   sketch.getDimensions();
 
   sketch.allComponents = [];
+  sketch.allEdges = [];
 
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
@@ -25,6 +26,7 @@ const s = ( sketch ) => {
     sketch.allComponents.push(new Component(im, 500, 700, 1, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 600, 200, 3, sketch, sketch.grid));
+
     
   }
 
@@ -34,6 +36,10 @@ const s = ( sketch ) => {
     Component.beginUpdate();
     for (let comp of sketch.allComponents) {
       comp.update();
+    }
+
+    for (let edge of sketch.allEdges) {
+      edge.update();
     }
     
 
@@ -48,6 +54,12 @@ const s = ( sketch ) => {
   // mouse pressed event
   sketch.mousePressed = () => {
     sketch.backgroundPressed = true;
+
+    if (Component.mouseOnNode) {
+      console.log(Component.clickedNode);
+      sketch.allEdges.push(new Edge(Component.clickedNode, sketch));
+
+    }
 
     // loop over each component in the canvas and drag it if the mouse is over it
     for (let comp of sketch.allComponents) {

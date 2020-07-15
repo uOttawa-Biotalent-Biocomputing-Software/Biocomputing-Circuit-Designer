@@ -67,6 +67,24 @@ class RectangleContour {
     }
   }
 
+  update() {
+    let showBox = Component.active.includes(this.component.id);
+    for (let i = 0; i < this.nodesLocation.length; i++) {
+      this.nodes[i].update(
+        this.nodesLocation[i][0](this.component),
+        this.nodesLocation[i][1](this.component)
+      );
+
+      if(showBox) {
+        // console.log(this.nodes[i]);
+        this.nodes[i].show();
+      }
+    }
+    if(showBox) {
+      this.show();
+    }
+  }
+
   show() {
     let paddingX = this.component.calculatePadding();
     let paddingY = this.component.calculatePadding();
@@ -79,11 +97,6 @@ class RectangleContour {
       this.grid.scalingFactor * 0
     );
 
-    for (let i = 0; i < this.nodesLocation.length; i++) {
-      this.nodes[i].show(
-        this.nodesLocation[i][0](this.component),
-        this.nodesLocation[i][1](this.component)
-      );
-    }
+    
   }
 }
