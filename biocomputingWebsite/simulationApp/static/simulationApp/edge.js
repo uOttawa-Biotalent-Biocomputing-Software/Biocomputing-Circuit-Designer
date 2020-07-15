@@ -1,5 +1,7 @@
 class Edge {
 
+    static isDrawingNewEdge = false;
+
     constructor(from, sketch) {
         this.from = from;
         this.to;
@@ -40,4 +42,28 @@ class Edge {
         this.sketch.line(this.realx1, this.realy1, this.realx2, this.realy2);
     }
 
+    isOnANode() {
+        let onNode = false;
+        let selectedNode;
+        for(let component of this.sketch.allComponents) {
+            for(let node of component.rectangleContour.nodes) {
+                if (node.getIsMouseOver()) {
+                    onNode = true;
+                    selectedNode = node; 
+                }
+            }
+        }
+
+        this.to = selectedNode;
+        if(this.from.component == this.to.component) {
+            return false;
+        }
+
+        return onNode;
+    }
+
+    changeState(s) {
+        this.state = s;
+    }
+    
 }

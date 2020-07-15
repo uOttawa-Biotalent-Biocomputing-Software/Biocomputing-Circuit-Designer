@@ -36,6 +36,7 @@ class Node {
   }
 
   show() {
+    this.sketch.fill(0, 0, 0, 0);
     this.sketch.ellipse(
       this.realX,
       this.realY,

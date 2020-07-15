@@ -68,7 +68,7 @@ class RectangleContour {
   }
 
   update() {
-    let showBox = Component.active.includes(this.component.id);
+    let showBox = Component.active.includes(this.component.id) || Edge.isDrawingNewEdge;
     for (let i = 0; i < this.nodesLocation.length; i++) {
       this.nodes[i].update(
         this.nodesLocation[i][0](this.component),

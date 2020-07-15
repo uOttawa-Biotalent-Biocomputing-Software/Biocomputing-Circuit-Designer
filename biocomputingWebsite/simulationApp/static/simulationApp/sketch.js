@@ -56,39 +56,56 @@ const s = ( sketch ) => {
     sketch.backgroundPressed = true;
 
     if (Component.mouseOnNode) {
-      console.log(Component.clickedNode);
       sketch.allEdges.push(new Edge(Component.clickedNode, sketch));
-
-    }
-
-    // loop over each component in the canvas and drag it if the mouse is over it
-    for (let comp of sketch.allComponents) {
-      if (comp.isMouseOver()) {
-        sketch.backgroundPressed = false;
-        comp.startMoving();
-      }
-    }
-
-    for (comp of sketch.allComponents) {
-      if (Component.isInActive(comp.id)) {
-        comp.startMoving();
-      }
-    }
-
-    if (sketch.backgroundPressed) {
       Component.resetActiveComponents();
-      sketch.grid.startMoving();
+      Edge.isDrawingNewEdge = true;
+
+    } else if (!Component.mouseOnNode) {
+      // loop over each component in the canvas and drag it if the mouse is over it
       for (let comp of sketch.allComponents) {
-        if (comp.move) {
-          comp.stopMoving();
+        if (comp.isMouseOver()) {
+          sketch.backgroundPressed = false;
+          comp.startMoving();
         }
       }
 
+      for (comp of sketch.allComponents) {
+        if (Component.isInActive(comp.id)) {
+          comp.startMoving();
+        }
+      }
+
+      if (sketch.backgroundPressed) {
+        Component.resetActiveComponents();
+        sketch.grid.startMoving();
+        for (let comp of sketch.allComponents) {
+          if (comp.move) {
+            comp.stopMoving();
+          }
+        }
+
+      }
     }
+
   }
 
   // mouse released event
   sketch.mouseReleased = () => {
+
+    if (Edge.isDrawingNewEdge) {
+      Edge.isDrawingNewEdge = false;
+      // console.log(sketch.allEdges[sketch.allEdges.length -1]);
+      // console.log(sketch.allEdges);
+
+      let valid = sketch.allEdges[sketch.allEdges.length -1].isOnANode();
+      if (valid) {
+        sketch.allEdges[sketch.allEdges.length -1].changeState(1);
+      } else {
+        sketch.allEdges.pop();
+      }
+    }
+    
+
     // drop each component if it was previously dragged
     for (let comp of sketch.allComponents) {
       if (comp.move) {

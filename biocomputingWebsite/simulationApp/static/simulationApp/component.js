@@ -34,7 +34,7 @@ class Component {
     this.id = id;
     this.sketch = sketch;
     this.grid = grid;
-    this.padding = 0.1;
+    this.padding = 0.01;
     this.rectangleContour = new RectangleContour(this);
   }
 
