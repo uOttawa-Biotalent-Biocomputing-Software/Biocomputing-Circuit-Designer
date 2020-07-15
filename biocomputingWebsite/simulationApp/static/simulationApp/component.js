@@ -16,6 +16,13 @@ class Component {
     Component.active = component;
   }
 
+  static beginUpdate() {
+    Component.mouseOnNode = false;
+  }
+
+  static mouseOnNode = false;
+  static clickedNode;
+
   constructor(path, initialX, initialY, id, sketch, grid) {
     this.img = sketch.loadImage(path);;
     this.w = 300;
@@ -27,7 +34,7 @@ class Component {
     this.id = id;
     this.sketch = sketch;
     this.grid = grid;
-    this.padding = 0.1;
+    this.padding = 0.01;
     this.rectangleContour = new RectangleContour(this);
   }
 
@@ -37,23 +44,24 @@ class Component {
   }
 
   update() {
-    
+    // Component.mouseOnNode = false;
+    this.updatePosition();
     this.show();
-
-    if (Component.active.includes(this.id)) {
-      this.rectangleContour.show();
-    }
+    this.rectangleContour.update();
+    
 
   }
 
-  show() {
-    
+  updatePosition() {
     if (this.move) {
       this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
       this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
       
     }
-    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
+  }
+
+  show() {
+    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);  
 
   }
 
@@ -76,10 +84,11 @@ class Component {
     } else {
       Component.active = [this.id];
     }
-    
-    this.calculateOffset();
-    this.move = true;
-    this.grid.cursorMove();
+    if (!Component.mouseOnNode) {
+      this.calculateOffset();
+      this.move = true;
+      this.grid.cursorMove();
+    }
     
   }
   

@@ -13,6 +13,7 @@ const s = ( sketch ) => {
   sketch.getDimensions();
 
   sketch.allComponents = [];
+  sketch.allEdges = [];
 
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
@@ -25,15 +26,20 @@ const s = ( sketch ) => {
     sketch.allComponents.push(new Component(im, 500, 700, 1, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 600, 200, 3, sketch, sketch.grid));
+
     
   }
 
   // p5.js continuously call this method
   sketch.draw = () => {
     sketch.background(120);
-
+    Component.beginUpdate();
     for (let comp of sketch.allComponents) {
       comp.update();
+    }
+
+    for (let edge of sketch.allEdges) {
+      edge.update();
     }
     
 
@@ -49,29 +55,57 @@ const s = ( sketch ) => {
   sketch.mousePressed = () => {
     sketch.backgroundPressed = true;
 
-    // loop over each component in the canvas and drag it if the mouse is over it
-    for (let comp of sketch.allComponents) {
-      if (comp.isMouseOver()) {
-        sketch.backgroundPressed = false;
-        comp.startMoving();
-      }
-    }
-
-    for (comp of sketch.allComponents) {
-      if (Component.isInActive(comp.id)) {
-        comp.startMoving();
-      }
-    }
-
-    if (sketch.backgroundPressed) {
-      sketch.grid.startMoving();
+    if (Component.mouseOnNode) {
+      sketch.allEdges.push(new Edge(Component.clickedNode, sketch));
       Component.resetActiveComponents();
+      Edge.isDrawingNewEdge = true;
 
+    } else if (!Component.mouseOnNode) {
+      // loop over each component in the canvas and drag it if the mouse is over it
+      for (let comp of sketch.allComponents) {
+        if (comp.isMouseOver()) {
+          sketch.backgroundPressed = false;
+          comp.startMoving();
+        }
+      }
+
+      for (comp of sketch.allComponents) {
+        if (Component.isInActive(comp.id)) {
+          comp.startMoving();
+        }
+      }
+
+      if (sketch.backgroundPressed) {
+        Component.resetActiveComponents();
+        sketch.grid.startMoving();
+        for (let comp of sketch.allComponents) {
+          if (comp.move) {
+            comp.stopMoving();
+          }
+        }
+
+      }
     }
+
   }
 
   // mouse released event
   sketch.mouseReleased = () => {
+
+    if (Edge.isDrawingNewEdge) {
+      Edge.isDrawingNewEdge = false;
+      // console.log(sketch.allEdges[sketch.allEdges.length -1]);
+      // console.log(sketch.allEdges);
+
+      let valid = sketch.allEdges[sketch.allEdges.length -1].isOnANode();
+      if (valid) {
+        sketch.allEdges[sketch.allEdges.length -1].changeState(1);
+      } else {
+        sketch.allEdges.pop();
+      }
+    }
+    
+
     // drop each component if it was previously dragged
     for (let comp of sketch.allComponents) {
       if (comp.move) {
