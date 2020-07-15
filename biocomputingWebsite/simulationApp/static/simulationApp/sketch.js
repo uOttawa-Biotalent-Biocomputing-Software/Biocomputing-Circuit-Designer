@@ -31,7 +31,7 @@ const s = ( sketch ) => {
   // p5.js continuously call this method
   sketch.draw = () => {
     sketch.background(120);
-
+    Component.beginUpdate();
     for (let comp of sketch.allComponents) {
       comp.update();
     }
@@ -66,7 +66,6 @@ const s = ( sketch ) => {
     if (sketch.backgroundPressed) {
       Component.resetActiveComponents();
       sketch.grid.startMoving();
-      console.log(Component.active);
       for (let comp of sketch.allComponents) {
         if (comp.move) {
           comp.stopMoving();

@@ -16,7 +16,7 @@ class Node {
         (this.sketch.mouseY - this.realY) ** 2) ** 
         0.5) < this.contour.size2 * this.grid.scalingFactor;
     if (this.isMouseOver) {
-      this.component.mouseOnNode = true;
+      Component.mouseOnNode = true;
     }
     return this.isMouseOver;
   }

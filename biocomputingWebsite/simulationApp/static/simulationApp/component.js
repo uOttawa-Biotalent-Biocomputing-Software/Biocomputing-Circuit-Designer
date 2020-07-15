@@ -16,6 +16,12 @@ class Component {
     Component.active = component;
   }
 
+  static beginUpdate() {
+    Component.mouseOnNode = false;
+  }
+
+  static mouseOnNode = false;
+
   constructor(path, initialX, initialY, id, sketch, grid) {
     this.img = sketch.loadImage(path);;
     this.w = 300;
@@ -37,7 +43,7 @@ class Component {
   }
 
   update() {
-    
+    // Component.mouseOnNode = false;
     this.updatePosition();
     this.show();
 
@@ -79,10 +85,11 @@ class Component {
     } else {
       Component.active = [this.id];
     }
-    
-    this.calculateOffset();
-    this.move = true;
-    this.grid.cursorMove();
+    if (!Component.mouseOnNode) {
+      this.calculateOffset();
+      this.move = true;
+      this.grid.cursorMove();
+    }
     
   }
   
