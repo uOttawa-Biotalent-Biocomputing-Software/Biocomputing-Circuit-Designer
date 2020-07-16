@@ -1,31 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-  </head>
 
-  <body>
+{% block imports %}
+  <link rel="stylesheet" type="text/css" href="{% static 'simulationApp/css/styleParticles.css' %}"></link>
+
+{% endblock imports %}
+
+{% block activehome %}
+  <li class="nav-item active">
+{% endblock activehome %}
 
 
-    {% block activehome %}<li class="nav-item active">{% endblock activehome %}
+{% block content %}
+  <div class="banner-area">
 
-
-    {% block content %}
-      <div class="banner-area">
-        <video class="bg-area" autoplay loop muted>
-          <source src="{% static 'bluesky.mp4' type='video/mp4' %}">  
-        </video>
-
+    <!-- particles.js Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Home Page Text -->
+    <div class="banner-container">
+      <div class="banner-text-container" >
         <div class="banner-text">
           <h1>BIOTALENT <span>2020</span></h1>
           <h2>Biocomputing Team</h2>
-          <a href="{% url 'sim' %}" class="btn btn-circuit">CREATE CIRCUIT</a>
-          <a href="{% url 'renderSBGN' %}" class="btn btn-sbgn">RENDER SBGN</a>
         </div>
+        <a href="{% url 'sim' %}" class="btn btn-circuit">CREATE CIRCUIT</a>
+        <a href="{% url 'renderSBGN' %}" class="btn btn-sbgn">RENDER SBGN</a>
       </div>
+    </div>
+  </div>
 
-    {% endblock content %}
+  <!-- scripts -->
+  <script src="{% static 'simulationApp/js/particles.js' %}"></script>
+  <script src="{% static 'simulationApp/js/app.js' %}"></script>
 
-  </body>
-</html>
+
+    <!-- <video class="bg-area" autoplay loop muted>
+      <source src="{% static 'bluesky.mp4' type='video/mp4' %}">  
+    </video> -->
+
+{% endblock content %}
