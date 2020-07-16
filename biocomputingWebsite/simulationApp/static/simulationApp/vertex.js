@@ -16,12 +16,14 @@ class Node {
         (this.sketch.mouseY - this.realY) ** 2) ** 
         0.5) < this.contour.size2 * this.grid.scalingFactor;
     if (this.isMouseOver) {
-      this.component.mouseOnNode = true;
+      Component.mouseOnNode = true;
+      Component.clickedNode = this;
     }
     return this.isMouseOver;
   }
 
-  show(x, y) {
+
+  update(x, y) {
     this.realX = this.grid.getRealCoordinateX(x);
     this.realY = this.grid.getRealCoordinateY(y);
     if (this.getIsMouseOver()) {
@@ -30,6 +32,11 @@ class Node {
       this.size = this.contour.size1;
     }
 
+    
+  }
+
+  show() {
+    this.sketch.fill(0, 0, 0, 0);
     this.sketch.ellipse(
       this.realX,
       this.realY,
