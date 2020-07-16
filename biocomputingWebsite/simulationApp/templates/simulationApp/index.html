@@ -1,33 +1,52 @@
+{% extends "base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>
-
 		</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"></link>
 	</head>
-	<body id="body" style="height: 93.6vh; margin: 0px;" onresize="resize()">
-		<nav>
-        <label class="logo">BTC2020</label>
-        <ul>
-          <li><a href="{% url 'home' %}" id="b">Home</a></li>
-          <li><a href="{% url 'about' %}" id="b">About</a></li>
-        </ul>
-      </nav>
+	{% block bodysetting %}<body id="body" style="height: 93.6vh; margin: 0px;" onresize="resize()">{% endblock bodysetting %}
 
-
+		{% block content %}
 		<div id="myContainer" style="width: 100%; height: 100%;"></div>
 
 		<script>
+		//testing
 			var im = "{% static 'simulationApp/images/test.png' %}";
+
+			//interactions
+			var control = "{% static 'simulationApp/images/interactions/control.png' %}";
+			var degradation_test = "{% static 'simulationApp/images/interactions/degradation-test.png' %}";
+			var degradation = "{% static 'simulationApp/images/interactions/degradation.png' %}";
+			var inhibition = "{% static 'simulationApp/images/interactions/inhibition.png' %}";
+			var process_ = "{% static 'simulationApp/images/interactions/process.png' %}";
+			var stimulation = "{% static 'simulationApp/images/interactions/stimulation.png' %}";
+			//molecular species
+			var complex_pp_spec = "{% static 'simulationApp/images/sequence_features/complex-pp-specification.png' %}";
+			var complex_sbgn_spec = "{% static 'simulationApp/images/sequence_features/complex-sbgn-specification.png' %}";
+			var dsNA = "{% static 'simulationApp/images/sequence_features/dsNA.png' %}";
+			var generic_sbgn = "{% static 'simulationApp/images/sequence_features/generic-sbgn.png' %}";
+			var macromolecule = "{% static 'simulationApp/images/sequence_features/macromolecule.png' %}";
+			var na_sbgn = "{% static 'simulationApp/images/sequence_features/na-sbgn.png' %}";
+			var no_glyph_assigned = "{% static 'simulationApp/images/sequence_features/no-glyph-assigned.png' %}";
+			var replacement_glyph = "{% static 'simulationApp/images/sequence_features/replacement-glyph.png' %}";
+			var small_molecule = "{% static 'simulationApp/images/sequence_features/small-molecule.png' %}";
+			var ssNA = "{% static 'simulationApp/images/sequence_features/ssNA.png' %}";
+			//sequence features
+
+
+			//backbone & textbox
+			var backbone = "{% static 'simulationApp/images/backbone.png' %}";
+			var textbox = "{% static 'simulationApp/images/textBox.png' %}";
 		</script>
+
 		<script src="{% static 'simulationApp/p5.js' %}"></script>
 		<script src="{% static 'simulationApp/contour.js' %}"></script>
 		<script src="{% static 'simulationApp/vertex.js' %}"></script>
 		<script src="{% static 'simulationApp/grid.js' %}"></script>
 		<script src="{% static 'simulationApp/component.js' %}"></script>
 		<script src="{% static 'simulationApp/sketch.js' %}"></script>
-
+		{% endblock content %}
 	</body>
 </html>

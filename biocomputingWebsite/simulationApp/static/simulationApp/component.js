@@ -37,7 +37,7 @@ class Component {
   }
 
   update() {
-    
+
     this.show();
 
     if (Component.active.includes(this.id)) {
@@ -47,11 +47,11 @@ class Component {
   }
 
   show() {
-    
+
     if (this.move) {
       this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
       this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
-      
+
     }
     this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);
 
@@ -71,18 +71,18 @@ class Component {
 
   startMoving() {
     if (this.sketch.keyIsDown(17)) {
-      
+
       Component.addToActiveComponents(this.id);
     } else {
       Component.active = [this.id];
     }
-    
+
     this.calculateOffset();
     this.move = true;
     this.grid.cursorMove();
-    
+
   }
-  
+
   stopMoving() {
     this.move = false;
     this.resetOffset();
@@ -93,15 +93,14 @@ class Component {
     this.offsetX = -this.sketch.mouseX + this.x + this.w/2;
     this.offsetY = -this.sketch.mouseY + this.y + this.h/2;
   }
-  
+
   // when mouse release, we need to reajust the x and y of the component with the offset
   resetOffset() {
     this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
     this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
-    
+
     // set the offset at 0 after ajusting x and y
     this.offsetX = 0;
     this.offsetY = 0;
   }
 }
-  

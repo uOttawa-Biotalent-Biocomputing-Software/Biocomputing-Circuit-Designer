@@ -1,31 +1,31 @@
+{% extends "base.html" %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"></link>
   </head>
 
   <body>
-    <div id="navigator">
-      <nav>
-        <label class="logo">BTC2020</label>
-        <ul>
-          <li><a class="active" href="{% url 'home' %}" id="b">Home</a></li>
-          <li><a href="{% url 'about' %}" id="b">About</a></li>
-        </ul>
-      </nav>
-    </div>
 
 
-    <h1>BioTalent 2020</h1>
-    <h2>Biocomputing Team</h2>
+    {% block activehome %}<li class="nav-item active">{% endblock activehome %}
 
-    <div id="home_container">
-      <a href="{% url 'sim' %}" id="a" class="btn1">CREATE GENE CIRCUIT</a>
-      <a href="{% url 'renderSBGN' %}" id="a" class="btn2">RENDER SBGN TO PNG FILE</a>
-    </div>
+
+    {% block content %}
+      <div class="banner-area">
+        <video class="bg-area" autoplay loop muted>
+          <source src="{% static 'bluesky.mp4' type='video/mp4' %}">  
+        </video>
+
+        <div class="banner-text">
+          <h1>BIOTALENT <span>2020</span></h1>
+          <h2>Biocomputing Team</h2>
+          <a href="{% url 'sim' %}" class="btn btn-circuit">CREATE CIRCUIT</a>
+          <a href="{% url 'renderSBGN' %}" class="btn btn-sbgn">RENDER SBGN</a>
+        </div>
+      </div>
+
+    {% endblock content %}
 
   </body>
 </html>
