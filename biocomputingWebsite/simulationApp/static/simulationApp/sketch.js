@@ -1,11 +1,11 @@
 const s = ( sketch ) => {
-  
-  
+
+
   sketch.getDimensions = () => {
-    sketch.wanted_height = document.body.clientHeight;
-    sketch.wanted_width = document.body.clientWidth;
+    sketch.wanted_height = document.getElementById("myContainer").offsetHeight;
+    sketch.wanted_width = document.getElementById("myContainer").offsetWidth;
   }
-  
+
   sketch.grid = new Grid(sketch);
   sketch.backgroundPressed = false;
   sketch.wanted_height = 0;
@@ -21,7 +21,7 @@ const s = ( sketch ) => {
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
-    
+
     sketch.allComponents.push(new Component(im, 50, 200, 0, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 500, 700, 1, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, sketch.grid));
@@ -32,7 +32,7 @@ const s = ( sketch ) => {
 
   // p5.js continuously call this method
   sketch.draw = () => {
-    sketch.background(120);
+    sketch.background(255, 255, 255); // background color
     Component.beginUpdate();
     for (let comp of sketch.allComponents) {
       comp.update();
@@ -44,7 +44,7 @@ const s = ( sketch ) => {
     
 
   }
-  
+
   // handle resize events
   sketch.resize = () => {
     sketch.getDimensions();
@@ -123,10 +123,10 @@ const s = ( sketch ) => {
   }
 
   // when user scroll to resize the grid
-  sketch.mouseWheel = (event) => { 
+  sketch.mouseWheel = (event) => {
     // call the resize method in each component
     sketch.grid.resize(-event.delta/1000)
-} 
+}
 
 
 }

@@ -1,31 +1,44 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"></link>
-  </head>
 
-  <body>
-    <div id="navigator">
-      <nav>
-        <label class="logo">BTC2020</label>
-        <ul>
-          <li><a class="active" href="{% url 'home' %}" id="b">Home</a></li>
-          <li><a href="{% url 'about' %}" id="b">About</a></li>
-        </ul>
-      </nav>
+{% block imports %}
+  <link rel="stylesheet" type="text/css" href="{% static 'simulationApp/css/styleParticles.css' %}"></link>
+
+{% endblock imports %}
+
+{% block activehome %}
+  <li class="nav-item active">
+{% endblock activehome %}
+
+{% block nav %}
+{% endblock nav %}
+
+{% block content %}
+  <div class="banner-area">
+
+    <!-- particles.js Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Home Page Text -->
+    <div class="banner-container">
+      <div class="banner-text-container" >
+        <div class="banner-text">
+          <h1>BIOTALENT <span>2020</span></h1>
+          <h2>Biocomputing Team</h2>
+        </div>
+        <a href="{% url 'sim' %}" class="btn btn-circuit">CREATE CIRCUIT</a>
+        <a href="{% url 'renderSBGN' %}" class="btn btn-sbgn">RENDER SBGN</a>
+      </div>
     </div>
+  </div>
+
+  <!-- scripts -->
+  <script src="{% static 'simulationApp/js/particles.js' %}"></script>
+  <script src="{% static 'simulationApp/js/app.js' %}"></script>
 
 
-    <h1>BioTalent 2020</h1>
-    <h2>Biocomputing Team</h2>
+    <!-- <video class="bg-area" autoplay loop muted>
+      <source src="{% static 'bluesky.mp4' type='video/mp4' %}">  
+    </video> -->
 
-    <div id="home_container">
-      <a href="{% url 'sim' %}" id="a" class="btn1">CREATE GENE CIRCUIT</a>
-      <a href="{% url 'renderSBGN' %}" id="a" class="btn2">RENDER SBGN TO PNG FILE</a>
-    </div>
-
-  </body>
-</html>
+{% endblock content %}
