@@ -2,8 +2,8 @@ const s = ( sketch ) => {
 
 
   sketch.getDimensions = () => {
-    sketch.wanted_height = document.body.clientHeight;
-    sketch.wanted_width = document.body.clientWidth;
+    sketch.wanted_height = document.getElementById("myContainer").offsetHeight;
+    sketch.wanted_width = document.getElementById("myContainer").offsetWidth;
   }
 
   sketch.grid = new Grid(sketch);
@@ -32,7 +32,7 @@ const s = ( sketch ) => {
 
   // p5.js continuously call this method
   sketch.draw = () => {
-    sketch.background(120);
+    sketch.background(255, 255, 255); // background color
     Component.beginUpdate();
     for (let comp of sketch.allComponents) {
       comp.update();

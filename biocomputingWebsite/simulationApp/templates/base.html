@@ -15,10 +15,10 @@
 
   {% block bodysetting %}<body>{% endblock bodysetting %}
 
-    
+    {% block nav %}
     <nav class="navbar navbar-expand-xl navbar-light fixed-top">
         <div class="container">   
-            <a class="navbar-brand" href="{% url 'home' %}" style="color:antiquewhite">BTC2020</a>
+            <a class="navbar-brand" href="{% url 'home' %}" style="color:white">BTC2020</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="color:antiquewhite">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -26,16 +26,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
                 {% block activehome %}<li class="nav-item">{% endblock activehome %}
-                  <a class="nav-link" href="{% url 'home' %}" style="color:antiquewhite">HOME</a>
+                  <a class="nav-link" href="{% url 'home' %}" style="color:white">HOME</a>
                 </li>
                 {% block activenav %}<li class="nav-item">{% endblock activenav %}
-                  <a class="nav-link" href="{% url 'about' %}" style="color:antiquewhite">ABOUT</a>
+                  <a class="nav-link" href="{% url 'about' %}" style="color:white">ABOUT</a>
                 </li>
                 
               </ul>
               
         </div>
     </nav>
+    {% endblock nav %}
 
     {% block content %}
     {% endblock content %}
