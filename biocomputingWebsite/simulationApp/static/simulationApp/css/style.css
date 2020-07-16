@@ -44,6 +44,7 @@
   border: 5px solid white; 
   padding: 2rem;
   border-radius: 1em;
+  background-color: rgba(57, 131, 150, 0.88);
 }
 
 .banner-text h1{
@@ -55,7 +56,7 @@
 }
 
 .banner-text h1 span{
-  color:#f5b400;
+  color:#cccccc;
 }
 
 .banner-text h2{
