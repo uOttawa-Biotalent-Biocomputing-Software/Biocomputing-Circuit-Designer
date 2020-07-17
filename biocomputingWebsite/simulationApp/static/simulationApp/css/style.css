@@ -49,8 +49,7 @@
 @media only screen and (max-width: 850px) {
   .banner-text{
     border: 0px solid transparent;
-    padding: 2rem;
-    background-color: rgba(57, 131, 150, 0.88);
+    padding: 1rem;
   }
 }
 
@@ -80,7 +79,7 @@
   margin: 2em;
   padding: 10px 50px;
   text-decoration: none;
-  border: 3px solid white;
+  border: calc(0.2vw + 1px) solid white;
   letter-spacing: 2px;
   border-radius: 2em;
 }
@@ -94,6 +93,10 @@
 
 .btn-home-container a {
   flex-grow: 1;
+  font-size: calc(5px + 1vw);
+  margin-top: calc(4vh);
+  margin-bottom: 0px;
+  background-color: rgba(57, 131, 150, 0.88)
 }
 
 .btn:hover{
