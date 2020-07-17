@@ -54,6 +54,9 @@ class Edge {
             }
         }
 
+        if (selectedNode == undefined) {
+            return false;
+        }
         this.to = selectedNode;
         if(this.from.component == this.to.component) {
             return false;
