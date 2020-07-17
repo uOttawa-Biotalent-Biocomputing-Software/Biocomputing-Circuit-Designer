@@ -86,6 +86,17 @@
   border-radius: 2em;
 }
 
+.btn-home-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+.btn-home-container a {
+  flex-grow: 1;
+}
+
 .btn:hover{
   background: #accfe2;
   transition: 0.5s;
