@@ -32,7 +32,7 @@ const s = ( sketch ) => {
 
   // p5.js continuously call this method
   sketch.draw = () => {
-    sketch.background(255, 255, 255); // background color
+    sketch.background(183, 206, 212); // background color
     Component.beginUpdate();
     for (let comp of sketch.allComponents) {
       comp.update();
