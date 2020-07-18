@@ -14,6 +14,8 @@
 {% endblock nav %}
 
 {% block content %}
+  <div id="background-gradient1"></div>
+  <div id="background-gradient2"></div>
   <div class="banner-area">
 
     <!-- particles.js Background -->
@@ -21,14 +23,16 @@
     
     <!-- Home Page Text -->
     <div class="banner-container">
-      <div class="banner-text-container" >
-        <div class="banner-text">
-          <h1>BIOTALENT <span>2020</span></h1>
-          <h2>Biocomputing Team</h2>
-        </div>
+      
+      <div class="banner-text">
+        <h1>BIOTALENT <span>2020</span></h1>
+        <h2>Biocomputing Team</h2>
+      </div>
+      <div class="btn-home-container">
         <a href="{% url 'sim' %}" class="btn btn-circuit">CREATE CIRCUIT</a>
         <a href="{% url 'renderSBGN' %}" class="btn btn-sbgn">RENDER SBGN</a>
       </div>
+    
     </div>
   </div>
 

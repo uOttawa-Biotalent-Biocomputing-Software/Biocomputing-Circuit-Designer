@@ -11,8 +11,34 @@
 .particles-js-canvas-el {
   width: 100%;
   height: 100%;
+  
 }
 
+#background-gradient1 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.25) 10%, rgba(0, 0, 0, 0) 80%);
+}
+#background-gradient2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.15) 100%);
+  
+}
+
+@media only screen and (max-width: 950px) {
+  #background-gradient1 {
+    background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.3) 20%, rgba(0, 0, 0, 0) 80%);
+  }
+  #background-gradient2 {
+    background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.05) 100%);
+  }
+
+}
 .bg-area{
   position: absolute;
   right: 0;
@@ -26,19 +52,19 @@
 
 .banner-container {
   position: absolute;
+  width: min-content;
   height: min-content;
-  width: 100%;
   text-align: center;
-  top: 40%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: rgba(71, 87, 109, 0);
+  color: #ffffff;
+  display: inline-block;
+  text-align: center;
+  z-index: 3;
 }
 
-.banner-text-container {
-  position: relative;
-  text-align: center;
-  display: inline-block;
-  color:#fff;
-  background-color: rgba(71, 87, 109, 0);
-}
 
 .banner-text{
   border: 5px solid white; 
@@ -50,13 +76,12 @@
 @media only screen and (max-width: 850px) {
   .banner-text{
     border: 0px solid transparent;
-    padding: 2rem;
-    background-color: rgba(57, 131, 150, 0.88);
+    padding: 1rem;
   }
 }
 
 .banner-text h1{
-  font-size: 80px;
+  font-size: calc(7px + 5vw);
   font-weight: 900;
   letter-spacing: 5px;
   padding-bottom: 10px;
@@ -64,11 +89,11 @@
 }
 
 .banner-text h1 span{
-  color:#cccccc;
+  color: rgb(183, 206, 212);
 }
 
 .banner-text h2{
-  font-size: 40px;
+  font-size: calc(5px + 2vw);
   font-weight: 900;
   font-family: 'Times New Roman';
 }
@@ -81,9 +106,24 @@
   margin: 2em;
   padding: 10px 50px;
   text-decoration: none;
-  border: 3px solid white;
+  border: calc(0.2vw + 1px) solid white;
   letter-spacing: 2px;
   border-radius: 2em;
+}
+
+.btn-home-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+
+.btn-home-container a {
+  flex-grow: 1;
+  font-size: calc(5px + 1vw);
+  margin-top: calc(4vh);
+  margin-bottom: 0px;
+  background-color: rgba(57, 131, 150, 0.88)
 }
 
 .btn:hover{
