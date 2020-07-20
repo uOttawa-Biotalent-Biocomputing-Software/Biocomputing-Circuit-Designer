@@ -22,7 +22,7 @@ const s = ( sketch ) => {
     sketch.pixelDensity(1);
 
 
-    sketch.allComponents.push(new Component(im, 50, 200, 0, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 0, 0, 0, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 500, 700, 1, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 600, 200, 3, sketch, sketch.grid));
