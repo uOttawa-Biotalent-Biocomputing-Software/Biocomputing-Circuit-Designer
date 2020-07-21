@@ -12,49 +12,73 @@
 	//testing
 		var im = "{% static 'simulationApp/images/test.png' %}";
 
-		//interactions
-		var control = "{% static 'simulationApp/images/interactions/control.png' %}";
-		var degradation_test = "{% static 'simulationApp/images/interactions/degradation-test.png' %}";
-		var degradation = "{% static 'simulationApp/images/interactions/degradation.png' %}";
-		var inhibition = "{% static 'simulationApp/images/interactions/inhibition.png' %}";
-		var process_ = "{% static 'simulationApp/images/interactions/process.png' %}";
-		var stimulation = "{% static 'simulationApp/images/interactions/stimulation.png' %}";
-		//molecular species
-		var complex_pp_spec = "{% static 'simulationApp/images/molecular_species/complex-pp-specification.png' %}";
-		var complex_sbgn_spec = "{% static 'simulationApp/images/molecular_species/complex-sbgn-specification.png' %}";
-		var dsNA = "{% static 'simulationApp/images/molecular_species/dsNA.png' %}";
-		var generic_sbgn = "{% static 'simulationApp/images/molecular_species/generic-sbgn.png' %}";
-		var macromolecule = "{% static 'simulationApp/images/molecular_species/macromolecule.png' %}";
-		var na_sbgn = "{% static 'simulationApp/images/molecular_species/na-sbgn.png' %}";
-		var no_glyph_assigned = "{% static 'simulationApp/images/molecular_species/no-glyph-assigned.png' %}";
-		var replacement_glyph = "{% static 'simulationApp/images/molecular_species/replacement-glyph.png' %}";
-		var small_molecule = "{% static 'simulationApp/images/molecular_species/small-molecule.png' %}";
-		var ssNA = "{% static 'simulationApp/images/molecular_species/ssNA.png' %}";
-		//sequence features
-		var aptamer = "{% static 'simulationApp/images/sequence_features/aptamer.png' %}";
-		var assem_scar = "{% static 'simulationApp/images/sequence_features/assembly-scar.png' %}";
-		var cds = "{% static 'simulationApp/images/sequence_features/cds.png' %}";
-		var cds_arrow = "{% static 'simulationApp/images/sequence_features/cds-arrow.png' %}";
-		var chromosomal = "{% static 'simulationApp/images/sequence_features/chromosomal-locus.png' %}";
-		var circ_plasmid = "{% static 'simulationApp/images/sequence_features/circular-plasmid.png' %}";
-		var dna_stab_elem = "{% static 'simulationApp/images/sequence_features/dna-stability-element.png' %}";
-		var eng_region = "{% static 'simulationApp/images/sequence_features/engineered-region.png' %}";
-		var fivePoverhang = "{% static 'simulationApp/images/sequence_features/five-prime-overhang.png' %}";
-		var fivePsticky = "{% static 'simulationApp/images/sequence_features/five-prime-sticky-restriction-site.png' %}";
-		var insulator = "{% static 'simulationApp/images/sequence_features/insulator.png' %}";
-		var location_dna = "{% static 'simulationApp/images/sequence_features/location-dna.png' %}";
-		var location_protein = "{% static 'simulationApp/images/sequence_features/location-protein.png' %}";
-		var location_ran = "{% static 'simulationApp/images/sequence_features/location-rna.png' %}";
-		var ncrna = "{% static 'simulationApp/images/sequence_features/ncrna.png' %}";
-		var no_glyph_assigned = "{% static 'simulationApp/images/sequence_features/no-glyph-assigned.png' %}";
-		var nuc_site = "{% static 'simulationApp/images/sequence_features/nuclease-site.png' %}";
-		var operator = "{% static 'simulationApp/images/sequence_features/operator.png' %}";
-		var origin_replication = "{% static 'simulationApp/images/sequence_features/origin-of-replication.png' %}";
-		var origin_transfer = "{% static 'simulationApp/images/sequence_features/origin-of-transfer.png' %}";
+	//connecting arcs
+		var cat = "{% static 'simulationApp/images/connecting_arcs/catalysis.png' %}";
+		var consumption = "{% static 'simulationApp/images/connecting_arcs/consumption.png' %}";
+		var eq_arc = "{% static 'simulationApp/images/connecting_arcs/equivalence_arc.png' %}";
+		var inhib = "{% static 'simulationApp/images/connecting_arcs/inhibition.png' %}";
+		var log_arc = "{% static 'simulationApp/images/connecting_arcs/logic_arc.png' %}";
+		var mod = "{% static 'simulationApp/images/connecting_arcs/modulation.png' %}";
+		var nec_stim = "{% static 'simulationApp/images/connecting_arcs/necessary-stimulation.png' %}";
+		var prod = "{% static 'simulationApp/images/connecting_arcs/production.png' %}";
+		var stim = "{% static 'simulationApp/images/connecting_arcs/stimulation.png' %}";
+	//entity pool nodes
+		var empty = "{% static 'simulationApp/images/entity_pool_nodes/empty-set.png' %}";
+		var macro = "{% static 'simulationApp/images/entity_pool_nodes/macromolecule.png' %}";
+		var nuc_acid = "{% static 'simulationApp/images/entity_pool_nodes/nucleic-acid-feature.png' %}";
+		var pert_agent = "{% static 'simulationApp/images/entity_pool_nodes/perturbing-agent.png' %}";
+		var simple_chem = "{% static 'simulationApp/images/entity_pool_nodes/simple-chemical.png' %}";
+		var unspec_ent = "{% static 'simulationApp/images/entity_pool_nodes/unspecified-entity.png' %}";
+		//multimers
+		//clone marker
 
-		//backbone & textbox
-		var backbone = "{% static 'simulationApp/images/backbone.png' %}";
-		var textbox = "{% static 'simulationApp/images/textBox.png' %}";
+	//logic operators
+		var and = "{% static 'simulationApp/images/logic_operators/and.png' %}";
+		var not = "{% static 'simulationApp/images/logic_operators/not.png' %}";
+		var or = "{% static 'simulationApp/images/logic_operators/or.png' %}";
+		//equivalence operator
+
+	//process nodes
+		var assoc = "{% static 'simulationApp/images/process_nodes/association.png' %}";	
+		var dissoc = "{% static 'simulationApp/images/process_nodes/dissocation.png' %}";	
+		var omit_process = "{% static 'simulationApp/images/process_nodes/omitted-process.png' %}";	
+		var pheno = "{% static 'simulationApp/images/process_nodes/phenotype.png' %}";	
+		var process = "{% static 'simulationApp/images/process_nodes/process.png' %}";	
+		var uncert_pro = "{% static 'simulationApp/images/process_nodes/uncertain-process.png' %}";	
+
+	//reference node
+		var tag = "{% static 'simulationApp/images/reference_node/tag.png' %}";
+		
+	//sbgn bricks
+		//catalysis
+		var cat_irr_11 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_1_1.png' %}";
+		var cat_irr_12 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_1_2.png' %}";
+		var cat_irr_21 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_2_1.png' %}";
+		var cat_irr_22 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_2_2.png' %}";
+		var cat_rev_11 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_rev_1_1.png' %}";
+		var cat_rev_22 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_rev_2_2.png' %}";
+		//compartmentation transport
+		var comp_act = "{% static 'simulationApp/images/sbgn_bricks/Compartmentation_Transport/PD_comp_active_transport.png' %}";
+		var comp_pass = "{% static 'simulationApp/images/sbgn_bricks/Compartmentation_Transport/PD_comp_passive_transport.png' %}";
+		//complex dissociation
+		var comp_diss = "{% static 'simulationApp/images/sbgn_bricks/Complex_Dissocation/PD_complex_dissocation.png' %}";
+		//complex formation
+		var comp_form = "{% static 'simulationApp/images/sbgn_bricks/Complex_Formation/PD_complex_formation.png' %}";
+		//oligomerization homodimerization
+		var homodimer = "{% static 'simulationApp/images/sbgn_bricks/Oligomerization_Homodimerization/PD_homodimerization.png' %}";
+		//protein phosphorylation
+		var phosp = "{% static 'simulationApp/images/sbgn_bricks/Protein_Phosphorylation/PD_phosphorylation.png' %}";
+		//regulation of transcription
+		var drt= "{% static 'simulationApp/images/sbgn_bricks/Regulation_of_Transcription/PD_direct_regulation_transcription.png' %}";
+		var trans_and= "{% static 'simulationApp/images/sbgn_bricks/Regulation_of_Transcription/PD_transcription_AND.png' %}";
+		//translation
+		var trans = "{% static 'simulationApp/images/sbgn_bricks/Translation/PD_translation.png' %}";
+
+	//annotation node
+		//annotation
+
+
+		
 	</script>
 
 	<script src="{% static 'simulationApp/p5.js' %}"></script>
