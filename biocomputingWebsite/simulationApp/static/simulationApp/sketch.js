@@ -15,6 +15,8 @@ const s = ( sketch ) => {
   sketch.allComponents = [];
   sketch.allEdges = [];
 
+  sketch.topBar = new topBar(5, sketch);
+
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
@@ -42,6 +44,7 @@ const s = ( sketch ) => {
       edge.update();
     }
     
+    sketch.topBar.update();
 
   }
 
