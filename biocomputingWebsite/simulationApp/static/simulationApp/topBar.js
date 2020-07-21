@@ -7,7 +7,7 @@ class topBar {
         this.icons = []
 
         for (let i = 0; i<3; i++) {
-            this.icons.push(new topBarElement((this.h)*(i), 2, this.h-2, this.sketch));
+            this.icons.push(new topBarElement((this.h)*(i) + 5, 5, this.h-10, this.sketch));
         }
     }
 
@@ -25,5 +25,9 @@ class topBar {
         this.sketch.fill(0, 60, 100, 255);
         this.sketch.noStroke();
         this.sketch.rect(0, 0, this.sketch.wanted_width, this.h);
+    }
+
+    mousePressed() {
+        // console.log("mouse pressed on bar");
     }
 }
