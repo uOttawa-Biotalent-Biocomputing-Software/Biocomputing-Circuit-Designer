@@ -30,7 +30,7 @@ const s = ( sketch ) => {
     sketch.allComponents.push(new Component(im, 1300, 50, 3, sketch, sketch.grid));
 
     componentCount = 4
-    sketch.sidebar = new Sidebar(componentCount, sketch, sketch.grid);
+    sketch.sidebar = new Sidebar(sketch, sketch.grid);
   }
 
   // p5.js continuously call this method
