@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sbgn xmlns="http://sbgn.org/libsbgn/0.2">
+    <map language="process description">
+        <glyph id="glyph0" class="macromolecule multimer">
+            <label text="X"/>
+            <bbox y="20.0" x="280.0" h="60.0" w="120.0"/>
+            <glyph id="glyph0a" class="state variable">
+                <state variable="Y701" value="P"/>
+                <bbox y="67.0" x="279.5" h="26.0" w="61.0"/>
+            </glyph>
+            <glyph id="glyph0b" class="state variable">
+                <state variable="S727" value="P"/>
+                <bbox y="67.0" x="339.5" h="26.0" w="61.0"/>
+            </glyph>
+            <glyph id="glyph0c" class="unit of information">
+                <label text="N:2"/>
+                <bbox y="12.0" x="294.5" h="16.0" w="31.0"/>
+            </glyph>
+        </glyph>
+        <glyph id="glyph1" class="macromolecule">
+            <label text="X"/>
+            <bbox y="20.0" x="10.0" h="60.0" w="120.0"/>
+            <glyph id="glyph1a" class="state variable">
+                <state variable="Y701" value="P"/>
+                <bbox y="67.0" x="9.5" h="26.0" w="61.0"/>
+            </glyph>
+            <glyph id="glyph1b" class="state variable">
+                <state variable="S727" value="P"/>
+                <bbox y="67.0" x="69.5" h="26.0" w="61.0"/>
+            </glyph>
+        </glyph>
+        <glyph id="glyph2" class="association">
+            <bbox y="38.0" x="188.0" h="24.0" w="24.0"/>
+            <port y="50.0" x="224.0" id="glyph2.2"/>
+            <port y="50.0" x="176.0" id="glyph2.1"/>
+        </glyph>
+        <arc target="glyph0" source="glyph2.2" id="arc0" class="production">
+            <start y="50.0" x="224.0"/>
+            <end y="50.0" x="280.0"/>
+        </arc>
+        <arc target="glyph2.1" source="glyph1" id="arc1" class="consumption">
+            <glyph id="glyph4" class="cardinality">
+                <label text="2"/>
+                <bbox y="31.0" x="136.0" h="18.5" w="22.5"/>
+            </glyph>
+            <start y="50.0" x="130.0"/>
+            <end y="50.0" x="176.0"/>
+        </arc>
+    </map>
+</sbgn>
