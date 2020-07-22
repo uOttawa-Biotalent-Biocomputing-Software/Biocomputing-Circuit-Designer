@@ -14,6 +14,10 @@ const s = ( sketch ) => {
 
   sketch.allComponents = [];
   sketch.allEdges = [];
+  // Molecular Species
+  let dsna_button, genericSBGN_button, macro_button, naSBGN_button, noGlyphAssigned_button, replacementGlyph_button, smallMolecule_button, ssNA_button, complexPPSpec_button, complexSBGNSpec_button  ;
+
+  componentCount = 4;
 
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
@@ -21,13 +25,98 @@ const s = ( sketch ) => {
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
+    sketch.allComponents.push(new Component(im, 100, 50, 0, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 500, 50, 1, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 900, 50, 2, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(im, 1300, 50, 3, sketch, sketch.grid));
 
-    sketch.allComponents.push(new Component(im, 50, 200, 0, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 500, 700, 1, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 200, 400, 2, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 600, 200, 3, sketch, sketch.grid));
-
+    dsna_button = sketch.createImg(dsNA, 'DSNA');
+    dsna_button.position(20, 50);
+    dsna_button.mousePressed(function() {
+      sketch.addComponent(1);
+    }) 
+    genericSBGN_button = sketch.createImg(generic_sbgn, 'Generic SBGN');
+    genericSBGN_button.position(20, 100);
+    genericSBGN_button.mousePressed(function() {
+      sketch.addComponent(2);
+    })
+    macro_button = sketch.createImg(macromolecule, 'Macro Molecule');
+    macro_button.position(20, 150);
+    macro_button.mousePressed(function() {
+      sketch.addComponent(3);
+    })
+    naSBGN_button = sketch.createImg(na_sbgn, 'NA SBGN');
+    naSBGN_button.position(20, 200);
+    naSBGN_button.mousePressed(function() {
+      sketch.addComponent(4);
+    })
+    noGlyphAssigned_button = sketch.createImg(no_glyph_assigned, 'No Glyph Assigned');
+    noGlyphAssigned_button.position(20, 250);
+    noGlyphAssigned_button.mousePressed(function() {
+      sketch.addComponent(5);
+    })
+    replacementGlyph_button = sketch.createImg(replacement_glyph, 'Replacement Glyph');
+    replacementGlyph_button.position(20, 300);
+    replacementGlyph_button.mousePressed(function() {
+      sketch.addComponent(6);
+    })
+    smallMolecule_button = sketch.createImg(small_molecule, 'Small Molecule');
+    smallMolecule_button.position(20, 350);
+    smallMolecule_button.mousePressed(function() {
+      sketch.addComponent(7);
+    })
+    ssNA_button = sketch.createImg(ssNA, 'SSNA');
+    ssNA_button.position(20, 400);
+    ssNA_button.mousePressed(function() {
+      sketch.addComponent(8);
+    })
+    complexPPSpec_button = sketch.createImg(complex_pp_spec, 'Complex PP Spec');
+    complexPPSpec_button.position(20, 450);
+    complexPPSpec_button.mousePressed(function() {
+      sketch.addComponent(9);
+    })
+    complexSBGNSpec_button = sketch.createImg(complex_sbgn_spec, 'Complex SBGN Spec');
+    complexSBGNSpec_button.position(20, 500);
+    complexSBGNSpec_button.mousePressed(function() {
+      sketch.addComponent(10);
+    })
     
+  }
+
+  sketch.addComponent = (type) => {
+    switch (type) {
+      case 1:
+        sketch.allComponents.push(new Component(dsNA, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 2:
+        sketch.allComponents.push(new Component(generic_sbgn, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 3:
+        sketch.allComponents.push(new Component(macromolecule, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 4:
+        sketch.allComponents.push(new Component(na_sbgn, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 5:
+        sketch.allComponents.push(new Component(no_glyph_assigned, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 6:
+        sketch.allComponents.push(new Component(replacement_glyph, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 7:
+        sketch.allComponents.push(new Component(small_molecule, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 8:
+        sketch.allComponents.push(new Component(ssNA, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 9:
+        sketch.allComponents.push(new Component(complex_pp_spec, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+      case 10:
+        sketch.allComponents.push(new Component(complex_sbgn_spec, 700, 400, componentCount, sketch, sketch.grid));
+        break;
+    }
+    componentCount++;
   }
 
   // p5.js continuously call this method
@@ -54,6 +143,7 @@ const s = ( sketch ) => {
   // mouse pressed event
   sketch.mousePressed = () => {
     sketch.backgroundPressed = true;
+    console.log('Canvas is Clicked');
 
     if (Component.mouseOnNode) {
       sketch.allEdges.push(new Edge(Component.clickedNode, sketch));
@@ -86,7 +176,6 @@ const s = ( sketch ) => {
 
       }
     }
-
   }
 
   // mouse released event
@@ -125,9 +214,8 @@ const s = ( sketch ) => {
   // when user scroll to resize the grid
   sketch.mouseWheel = (event) => {
     // call the resize method in each component
-    sketch.grid.resize(-event.delta/1000)
-}
-
+    sketch.grid.resize(-event.delta/1000) 
+  }
 
 }
 // create the canvas with the sketch

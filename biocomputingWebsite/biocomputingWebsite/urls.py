@@ -26,4 +26,6 @@ urlpatterns = [
     path("about/", simulation_views.about, name='about'),
     path("rendersbgn/", simulation_views.renderSBGN, name='renderSBGN'),
     path("renderoutput/", simulation_views.renderOutput, name='render-button'),
+
+    path("simulation/save_file", simulation_views.save_file, name='save_file'),
 ]
