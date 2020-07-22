@@ -14,8 +14,9 @@ const s = ( sketch ) => {
 
   sketch.allComponents = [];
   sketch.allEdges = [];
-  // Molecular Species
-  let dsna_button, genericSBGN_button, macro_button, naSBGN_button, noGlyphAssigned_button, replacementGlyph_button, smallMolecule_button, ssNA_button, complexPPSpec_button, complexSBGNSpec_button  ;
+  // Entity Pool Nodes
+  let empty_button, macro_button, nuc_button, pert_button, simple_chem_button, unspec_ent_button;
+  let pool_nodes_title;
 
   componentCount = 4;
 
@@ -30,90 +31,60 @@ const s = ( sketch ) => {
     sketch.allComponents.push(new Component(im, 900, 50, 2, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 1300, 50, 3, sketch, sketch.grid));
 
-    dsna_button = sketch.createImg(dsNA, 'DSNA');
-    dsna_button.position(20, 50);
-    dsna_button.mousePressed(function() {
+    // Entity Pool Nodes
+    pool_nodes_title = sketch.createElement('h4', 'Entity Pool Nodes:')
+    pool_nodes_title.position(20, 20);
+    empty_button = sketch.createImg(empty, 'DSNA')
+    empty_button.position(20, 60);
+    empty_button.mousePressed(function() {
       sketch.addComponent(1);
     }) 
-    genericSBGN_button = sketch.createImg(generic_sbgn, 'Generic SBGN');
-    genericSBGN_button.position(20, 100);
-    genericSBGN_button.mousePressed(function() {
+    macro_button = sketch.createImg(macro, 'Generic SBGN');
+    macro_button.position(100, 60);
+    macro_button.mousePressed(function() {
       sketch.addComponent(2);
     })
-    macro_button = sketch.createImg(macromolecule, 'Macro Molecule');
-    macro_button.position(20, 150);
-    macro_button.mousePressed(function() {
+    nuc_button = sketch.createImg(nuc_acid, 'Macro Molecule');
+    nuc_button.position(180, 60);
+    nuc_button.mousePressed(function() {
       sketch.addComponent(3);
     })
-    naSBGN_button = sketch.createImg(na_sbgn, 'NA SBGN');
-    naSBGN_button.position(20, 200);
-    naSBGN_button.mousePressed(function() {
+    pert_button = sketch.createImg(pert_agent, 'NA SBGN');
+    pert_button.position(20, 130);
+    pert_button.mousePressed(function() {
       sketch.addComponent(4);
     })
-    noGlyphAssigned_button = sketch.createImg(no_glyph_assigned, 'No Glyph Assigned');
-    noGlyphAssigned_button.position(20, 250);
-    noGlyphAssigned_button.mousePressed(function() {
+    simple_chem_button = sketch.createImg(simple_chem, 'No Glyph Assigned');
+    simple_chem_button.position(100, 130);
+    simple_chem_button.mousePressed(function() {
       sketch.addComponent(5);
     })
-    replacementGlyph_button = sketch.createImg(replacement_glyph, 'Replacement Glyph');
-    replacementGlyph_button.position(20, 300);
-    replacementGlyph_button.mousePressed(function() {
+    unspec_ent_button = sketch.createImg(unspec_ent, 'Replacement Glyph');
+    unspec_ent_button.position(180, 130);
+    unspec_ent_button.mousePressed(function() {
       sketch.addComponent(6);
     })
-    smallMolecule_button = sketch.createImg(small_molecule, 'Small Molecule');
-    smallMolecule_button.position(20, 350);
-    smallMolecule_button.mousePressed(function() {
-      sketch.addComponent(7);
-    })
-    ssNA_button = sketch.createImg(ssNA, 'SSNA');
-    ssNA_button.position(20, 400);
-    ssNA_button.mousePressed(function() {
-      sketch.addComponent(8);
-    })
-    complexPPSpec_button = sketch.createImg(complex_pp_spec, 'Complex PP Spec');
-    complexPPSpec_button.position(20, 450);
-    complexPPSpec_button.mousePressed(function() {
-      sketch.addComponent(9);
-    })
-    complexSBGNSpec_button = sketch.createImg(complex_sbgn_spec, 'Complex SBGN Spec');
-    complexSBGNSpec_button.position(20, 500);
-    complexSBGNSpec_button.mousePressed(function() {
-      sketch.addComponent(10);
-    })
-    
   }
 
   sketch.addComponent = (type) => {
     switch (type) {
       case 1:
-        sketch.allComponents.push(new Component(dsNA, 700, 400, componentCount, sketch, sketch.grid));
+        sketch.allComponents.push(new Component(empty, 700, 400, componentCount, sketch, sketch.grid));
         break;
       case 2:
-        sketch.allComponents.push(new Component(generic_sbgn, 700, 400, componentCount, sketch, sketch.grid));
+        sketch.allComponents.push(new Component(macro, 700, 400, componentCount, sketch, sketch.grid));
         break;
       case 3:
-        sketch.allComponents.push(new Component(macromolecule, 700, 400, componentCount, sketch, sketch.grid));
+        sketch.allComponents.push(new Component(nuc_acid, 700, 400, componentCount, sketch, sketch.grid));
         break;
       case 4:
-        sketch.allComponents.push(new Component(na_sbgn, 700, 400, componentCount, sketch, sketch.grid));
+        sketch.allComponents.push(new Component(pert_agent, 700, 400, componentCount, sketch, sketch.grid));
         break;
       case 5:
-        sketch.allComponents.push(new Component(no_glyph_assigned, 700, 400, componentCount, sketch, sketch.grid));
+        sketch.allComponents.push(new Component(simple_chem, 700, 400, componentCount, sketch, sketch.grid));
         break;
       case 6:
-        sketch.allComponents.push(new Component(replacement_glyph, 700, 400, componentCount, sketch, sketch.grid));
-        break;
-      case 7:
-        sketch.allComponents.push(new Component(small_molecule, 700, 400, componentCount, sketch, sketch.grid));
-        break;
-      case 8:
-        sketch.allComponents.push(new Component(ssNA, 700, 400, componentCount, sketch, sketch.grid));
-        break;
-      case 9:
-        sketch.allComponents.push(new Component(complex_pp_spec, 700, 400, componentCount, sketch, sketch.grid));
-        break;
-      case 10:
-        sketch.allComponents.push(new Component(complex_sbgn_spec, 700, 400, componentCount, sketch, sketch.grid));
+        sketch.allComponents.push(new Component(unspec_ent, 700, 400, componentCount, sketch, sketch.grid));
         break;
     }
     componentCount++;
