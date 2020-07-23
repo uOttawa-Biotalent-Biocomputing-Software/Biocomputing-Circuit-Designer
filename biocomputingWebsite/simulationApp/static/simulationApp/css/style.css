@@ -20,6 +20,7 @@
   height: 100%;
   z-index: 1;
   background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.25) 10%, rgba(0, 0, 0, 0) 80%);
+  pointer-events: none
 }
 #background-gradient2 {
   position: absolute;
@@ -27,6 +28,7 @@
   height: 100%;
   z-index: 2;
   background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0) 90%, rgba(0, 0, 0, 0.15) 100%);
+  pointer-events: none
   
 }
 
@@ -171,4 +173,5 @@ textarea{
 
 .fixed-top {
   background-color: #078296;
+  position: relative;
 }

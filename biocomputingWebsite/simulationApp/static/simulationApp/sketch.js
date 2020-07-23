@@ -20,6 +20,8 @@ const s = ( sketch ) => {
 
   componentCount = 4;
 
+  sketch.topBar = new topBar(5, sketch);
+
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
@@ -102,6 +104,7 @@ const s = ( sketch ) => {
       edge.update();
     }
     
+    sketch.topBar.update();
 
   }
 
@@ -113,6 +116,13 @@ const s = ( sketch ) => {
 
   // mouse pressed event
   sketch.mousePressed = () => {
+    if(sketch.mouseY < 0) {return;}
+
+    if (sketch.topBar.mouseOnBar) {
+      sketch.topBar.mousePressed();
+      return;
+    }
+
     sketch.backgroundPressed = true;
     console.log('Canvas is Clicked');
 
