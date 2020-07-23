@@ -45,5 +45,18 @@ class Sidebar {
         Sidebar.reference_nodes_title = sketch.createElement('h4', 'Reference Nodes:')
         Sidebar.reference_nodes_title.position(20, 490);
         this.referenceNode.push(new SB_Component(tag, 'Tag', 20, 530, sketch, grid));
+
+        // Connecting Arcs
+        Sidebar.process_nodes_title = sketch.createElement('h4', 'Connecting Arcs:')
+        Sidebar.process_nodes_title.position(20, 590);
+        this.processNodes.push(new SB_Component(cat, 'Catalysis'            , 20, 630, sketch, grid));
+        this.processNodes.push(new SB_Component(consumption, 'Consumption'            , 100, 630, sketch, grid));
+        this.processNodes.push(new SB_Component(eq_arc, 'Equinvalence Arc'            , 180, 630, sketch, grid));
+        this.processNodes.push(new SB_Component(inhib, 'Inhibition'            , 20, 700, sketch, grid));
+        this.processNodes.push(new SB_Component(log_arc, 'Logic Arc'            , 100, 700, sketch, grid));
+        this.processNodes.push(new SB_Component(mod, 'Modulation'            , 180, 700, sketch, grid));
+        this.processNodes.push(new SB_Component(nec_stim, 'Necessary Stimulation'            , 20, 770, sketch, grid));
+        this.processNodes.push(new SB_Component(prod, 'Production'            , 100, 770, sketch, grid));
+        this.processNodes.push(new SB_Component(stim, 'Stimulation'            , 180, 770, sketch, grid));
     }
 }
