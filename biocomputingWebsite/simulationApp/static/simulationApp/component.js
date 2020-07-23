@@ -47,6 +47,8 @@ class Component {
     // Component.mouseOnNode = false;
     this.updatePosition();
     this.show();
+    this.sketch.stroke(0, 0, 0);
+
     this.rectangleContour.update();
     
 

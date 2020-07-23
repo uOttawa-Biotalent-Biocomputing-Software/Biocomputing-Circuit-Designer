@@ -61,6 +61,8 @@ const s = ( sketch ) => {
 
   componentCount = 4;
 
+  sketch.topBar = new topBar(5, sketch);
+
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
@@ -72,58 +74,7 @@ const s = ( sketch ) => {
     sketch.allComponents.push(new Component(im, 900, 50, 2, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 1300, 50, 3, sketch, sketch.grid));
 
-    /*
-    //dropdown TESTING
-
-    pool_nodes_drop = false;
-    pool_nodes_title = sketch.createElement('h4', 'Entity Pool Nodes');
-    pool_nodes_title.position(20, 20);
-    
-    
-    pool_nodes_btn = sketch.createImg(drop);
-    pool_nodes_btn.resize(20,20);
-    pool_nodes_btn.position(220,20);
   
-    if(pool_nodes_btn.mousePressed() && pool_nodes_drop == false){
-      pool_nodes_drop = true;
-    }
-    else if(pool_nodes_btn.mousePressed() && pool_nodes_drop == true){
-      pool_nodes_drop = false;
-    }
-    
-    if(pool_nodes_drop == true){
-      empty_button = sketch.createImg(empty, 'DSNA')
-      empty_button.position(20, 60);
-      empty_button.mousePressed(function() {
-        sketch.addComponent(1);
-      }) 
-      macro_button = sketch.createImg(macro, 'Generic SBGN');
-      macro_button.position(100, 60);
-      macro_button.mousePressed(function() {
-        sketch.addComponent(2);
-      })
-      nuc_button = sketch.createImg(nuc_acid, 'Macro Molecule');
-      nuc_button.position(180, 60);
-      nuc_button.mousePressed(function() {
-        sketch.addComponent(3);
-      })
-      pert_button = sketch.createImg(pert_agent, 'NA SBGN');
-      pert_button.position(20, 130);
-      pert_button.mousePressed(function() {
-        sketch.addComponent(4);
-      })
-      simple_chem_button = sketch.createImg(simple_chem, 'No Glyph Assigned');
-      simple_chem_button.position(100, 130);
-      simple_chem_button.mousePressed(function() {
-        sketch.addComponent(5);
-      })
-      unspec_ent_button = sketch.createImg(unspec_ent, 'Replacement Glyph');
-      unspec_ent_button.position(180, 130);
-      unspec_ent_button.mousePressed(function() {
-        sketch.addComponent(6);
-      })
-    }
-*/    
 
     // Entity Pool Nodes
     pool_nodes_title = sketch.createElement('h4', 'Entity Pool Nodes:')
@@ -377,11 +328,8 @@ const s = ( sketch ) => {
       edge.update();
     }
     
-    /*if (empty_bool){
-      textSize(40);
-      text("Empty");
-    }
-    */
+
+  sketch.topBar.update();
 
   }
 
@@ -393,6 +341,13 @@ const s = ( sketch ) => {
 
   // mouse pressed event
   sketch.mousePressed = () => {
+    if(sketch.mouseY < 0) {return;}
+
+    if (sketch.topBar.mouseOnBar) {
+      sketch.topBar.mousePressed();
+      return;
+    }
+
     sketch.backgroundPressed = true;
     console.log('Canvas is Clicked');
 
