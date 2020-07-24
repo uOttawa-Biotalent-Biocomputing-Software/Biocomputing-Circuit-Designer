@@ -59,6 +59,8 @@ const s = ( sketch ) => {
 
   // mouse pressed event
   sketch.mousePressed = () => {
+    if(sketch.mouseX < 0){return;}
+
     if(sketch.mouseY < 0) {return;}
 
     if (sketch.topBar.mouseOnBar) {
