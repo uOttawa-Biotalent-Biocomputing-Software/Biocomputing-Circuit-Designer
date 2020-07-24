@@ -5,39 +5,38 @@
 
 {% block content %}
 	<div class="sketchbox">
-		<div class="components"></div>
+		<div class="components" id='components'></div>
 
 		<div id="myContainer"></div>
 	</div>
 
+	<!--testing out accordian for sidebar & scroll-->
+	<div class="wrapper">
+		<button class="accordion" type="component_title">Entity Pool Nodes</button>
+		<div class="panel">
+			<p>testing testing</p>
+		</div>
+	</div>	
 	<script>
-	//testing
-		var im = "{% static 'simulationApp/images/test.png' %}";
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+		for(i=0; i< acc.length; i++){
+			acc[i].onclick = function(){
+				this.classList.toggle("active");
+				
+				var panel = this.nextElementSibling;
 
-	//connecting arcs
-		var cat = "{% static 'simulationApp/images/connecting_arcs/catalysis.png' %}";
-		var consumption = "{% static 'simulationApp/images/connecting_arcs/consumption.png' %}";
-		var eq_arc = "{% static 'simulationApp/images/connecting_arcs/equivalence_arc.png' %}";
-		var inhib = "{% static 'simulationApp/images/connecting_arcs/inhibition.png' %}";
-		var log_arc = "{% static 'simulationApp/images/connecting_arcs/logic_arc.png' %}";
-		var mod = "{% static 'simulationApp/images/connecting_arcs/modulation.png' %}";
-		var nec_stim = "{% static 'simulationApp/images/connecting_arcs/necessary-stimulation.png' %}";
-		var prod = "{% static 'simulationApp/images/connecting_arcs/production.png' %}";
-		var stim = "{% static 'simulationApp/images/connecting_arcs/stimulation.png' %}";
-	//entity pool nodes
-		var empty = "{% static 'simulationApp/images/entity_pool_nodes/empty-set.png' %}";
-		var macro = "{% static 'simulationApp/images/entity_pool_nodes/macromolecule.png' %}";
-		var nuc_acid = "{% static 'simulationApp/images/entity_pool_nodes/nucleic-acid-feature.png' %}";
-		var pert_agent = "{% static 'simulationApp/images/entity_pool_nodes/perturbing-agent.png' %}";
-		var simple_chem = "{% static 'simulationApp/images/entity_pool_nodes/simple-chemical.png' %}";
-		var unspec_ent = "{% static 'simulationApp/images/entity_pool_nodes/unspecified-entity.png' %}";
-		//multimers
-		//clone marker
+				if (panel.style.maxHeight){
+					panel.style.maxHeight = null;
+				}
+				else{
+					panel.style.maxHeight = panel.scrollHeight + "px";
+				}
+			}
+		}
+	</script>
 
-	//logic operators
-		var and = "{% static 'simulationApp/images/logic_operators/and.png' %}";
-		var not = "{% static 'simulationApp/images/logic_operators/not.png' %}";
-		var or = "{% static 'simulationApp/images/logic_operators/or.png' %}";
+	<script>
 		//equivalence operator
 
 	//process nodes

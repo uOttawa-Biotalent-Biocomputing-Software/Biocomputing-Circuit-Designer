@@ -81,7 +81,6 @@ class Component {
 
   startMoving() {
     if (this.sketch.keyIsDown(17)) {
-
       Component.addToActiveComponents(this.id);
     } else {
       Component.active = [this.id];

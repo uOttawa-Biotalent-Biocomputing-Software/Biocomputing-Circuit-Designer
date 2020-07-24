@@ -10,7 +10,7 @@ class SB_Component {
         let self = this;
 
         this.button = sketch.createImg(image, name)
-        this.button.position(width, height);
+        this.button.parent(document.getElementById("components"));
         this.button.mousePressed(function() {
             self.addComponent();
         }) 
@@ -21,4 +21,16 @@ class SB_Component {
         this.sketch.componentCount++;
     }
 
+    isMouseOver() {
+        let realX = this.grid.getRealCoordinateX(this.x);
+        let realY = this.grid.getRealCoordinateY(this.y);
+        let realPaddingX = this.calculatePadding();
+        let realPaddingY = this.calculatePadding();
+
+        if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h+realPaddingY) {
+            console.log(true);
+            return true;
+        }
+        return false;
+    }
 }
