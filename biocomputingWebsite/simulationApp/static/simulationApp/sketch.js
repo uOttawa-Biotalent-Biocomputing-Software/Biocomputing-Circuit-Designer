@@ -138,10 +138,17 @@ const s = ( sketch ) => {
   }
 
   // when user scroll to resize the grid
+
   sketch.mouseWheel = (event) => {
     // call the resize method in each component
-    sketch.grid.resize(-event.delta/1000) 
+    if(sketch.mouseX<0){return;};
+    if(sketch.mouseY<0){return;};
+    if (sketch.topBar.mouseOnBar){return};
+    sketch.grid.resize(-event.delta/1000)
+    
+    //sketch.grid.resize(-event.delta/1000) 
   }
+  
 
 }
 // create the canvas with the sketch

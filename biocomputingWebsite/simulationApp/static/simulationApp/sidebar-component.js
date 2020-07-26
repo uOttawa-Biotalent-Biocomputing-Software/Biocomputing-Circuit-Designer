@@ -9,7 +9,7 @@ class SB_Component {
         this.grid = grid;
         let self = this;
 
-        this.button = sketch.createImg(image, name)
+        this.button = sketch.createImg(image, name);
         this.button.parent(document.getElementById('components'));
         this.button.position(width, height);
         this.button.mousePressed(function() {
