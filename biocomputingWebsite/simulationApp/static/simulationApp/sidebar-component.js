@@ -11,10 +11,10 @@ class SB_Component {
 
         this.button = sketch.createImg(image, name)
         this.button.parent(document.getElementById('components'));
-        this.button.position(width, height);
         this.button.mousePressed(function() {
             self.addComponent();
         }) 
+        this.button.id("side-bar-component")
     }
 
     addComponent() {
