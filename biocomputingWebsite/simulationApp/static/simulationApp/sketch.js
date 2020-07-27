@@ -28,11 +28,14 @@ const s = ( sketch ) => {
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
-    sketch.allComponents.push(new Component(im, 100, 50, 0, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 500, 50, 1, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 900, 50, 2, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 1300, 50, 3, sketch, sketch.grid));
-    //sketch.sidebar = new Sidebar(sketch, sketch.grid);
+
+    sketch.allComponents.push(new Component(imTest, 100, 50, 0, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(imTest, 500, 50, 1, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(imTest, 900, 50, 2, sketch, sketch.grid));
+    sketch.allComponents.push(new Component(imTest, 1300, 50, 3, sketch, sketch.grid));
+
+    componentCount = 4
+    sketch.sidebar = new Sidebar(sketch, sketch.grid);
   }
 
   // p5.js continuously call this method
@@ -83,7 +86,7 @@ const s = ( sketch ) => {
     }
 
     sketch.backgroundPressed = true;
-    console.log('Canvas is Clicked');
+    // console.log('Canvas is Clicked');
 
     if (Component.mouseOnNode) {
       sketch.allEdges.push(new Edge(Component.clickedNode, sketch));

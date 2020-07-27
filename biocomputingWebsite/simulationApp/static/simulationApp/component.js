@@ -23,10 +23,11 @@ class Component {
   static mouseOnNode = false;
   static clickedNode;
 
-  constructor(path, initialX, initialY, id, sketch, grid) {
-    this.img = sketch.loadImage(path);;
-    this.w = 300;
-    this.h = 100;
+  constructor(img, initialX, initialY, id, sketch, grid) {
+    this.p5img = sketch.loadImage(img["imPath"]);
+    this.img = img;
+    this.w = img.w;
+    this.h = img.h;
     this.x = initialX;
     this.y = initialY;
     this.offsetX = 0;
@@ -63,7 +64,7 @@ class Component {
   }
 
   show() {
-    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);  
+    this.sketch.image(this.p5img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);  
 
   }
 

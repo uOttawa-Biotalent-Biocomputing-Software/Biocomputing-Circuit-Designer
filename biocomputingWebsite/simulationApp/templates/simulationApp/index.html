@@ -90,8 +90,81 @@
 	</div>
 
 	<script>
+
+		function componentImg(imPath, w, h) {
+			this.imPath = imPath;
+			this.w = w;
+			this.h = h;
+		}
 	//testing
-		var im = "{% static 'simulationApp/images/test.png' %}";
+		var imTest = new componentImg("{% static 'simulationApp/images/test.png' %}", 300, 500);
+
+	//connecting arcs
+		var cat_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/catalysis.png' %}", 50, 50);
+		var consumption_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/consumption.png' %}", 50, 50);
+		var eq_arc_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/equivalence_arc.png' %}", 50, 50);
+		var inhib_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/inhibition.png' %}", 50, 50);
+		var log_arc_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/logic_arc.png' %}", 50, 50);
+		var mod_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/modulation.png' %}", 50, 50);
+		var nec_stim_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/necessary-stimulation.png' %}", 50, 50);
+		var prod_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/production.png' %}", 50, 50);
+		var stim_img = new componentImg("{% static 'simulationApp/images/connecting_arcs/stimulation.png' %}", 50, 50);
+	//entity pool nodes
+		var empty_img = new componentImg("{% static 'simulationApp/images/entity_pool_nodes/empty-set.png' %}", 50, 50);
+		var macro_img = new componentImg("{% static 'simulationApp/images/entity_pool_nodes/macromolecule.png' %}", 50, 50);
+		var nuc_acid_img = new componentImg("{% static 'simulationApp/images/entity_pool_nodes/nucleic-acid-feature.png' %}", 50, 50);
+		var pert_agent_img = new componentImg("{% static 'simulationApp/images/entity_pool_nodes/perturbing-agent.png' %}", 50, 50);
+		var simple_chem_img = new componentImg("{% static 'simulationApp/images/entity_pool_nodes/simple-chemical.png' %}", 50, 50);
+		var unspec_ent_img = new componentImg("{% static 'simulationApp/images/entity_pool_nodes/unspecified-entity.png' %}", 50, 50);
+		//multimers
+		//clone marker
+
+	//logic operators
+		var and_img = new componentImg("{% static 'simulationApp/images/logic_operators/and.png' %}",);
+		var not_img = new componentImg("{% static 'simulationApp/images/logic_operators/not.png' %}",);
+		var or_img = new componentImg("{% static 'simulationApp/images/logic_operators/or.png' %}",);
+		//equivalence operator
+
+	//process nodes
+		var assoc1_img = new componentImg("{% static 'simulationApp/images/process_nodes/association.png' %}", 50, 50);
+		var dissoc1_img = new componentImg("{% static 'simulationApp/images/process_nodes/dissociation.png' %}", 50, 50);
+		var omit_process1_img = new componentImg("{% static 'simulationApp/images/process_nodes/omitted-process.png' %}", 50, 50);
+		var pheno1_img = new componentImg("{% static 'simulationApp/images/process_nodes/phenotype.png' %}", 50, 50);
+		var process1_img = new componentImg("{% static 'simulationApp/images/process_nodes/process.png' %}", 50, 50);
+		var uncert_pro1_img = new componentImg("{% static 'simulationApp/images/process_nodes/uncertain-process.png' %}", 50, 50);
+
+	//reference node
+		var tag_img = new componentImg("{% static 'simulationApp/images/reference_node/tag.png' %}", 50, 50);
+		
+	//sbgn bricks
+		//catalysis
+		var cat_irr_11_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_1_1.png' %}", 50, 50);
+		var cat_irr_12_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_1_2.png' %}", 50, 50);
+		var cat_irr_21_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_2_1.png' %}", 50, 50);
+		var cat_irr_22_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_2_2.png' %}", 50, 50);
+		var cat_rev_11_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_rev_1_1.png' %}", 50, 50);
+		var cat_rev_22_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_rev_2_2.png' %}", 50, 50);
+		//compartmentation transport
+		var comp_act_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Compartmentation_Transport/PD_comp_active_transport.png' %}", 50, 50);
+		var comp_pass_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Compartmentation_Transport/PD_comp_passive_transport.png' %}", 50, 50);
+		//complex dissociation
+		var comp_diss_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Complex_Dissocation/PD_complex_dissocation.png' %}", 50, 50);
+		//complex formation
+		var comp_form_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Complex_Formation/PD_complex_formation.png' %}", 50, 50);
+		//oligomerization homodimerization
+		var homodimer_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Oligomerization_Homodimerization/PD_homodimerization.png' %}", 50, 50);
+		//protein phosphorylation
+		var phosp_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Protein_Phosphorylation/PD_phosphorylation.png' %}", 50, 50);
+		//regulation of transcription
+		var drt_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Regulation_of_Transcription/PD_direct_regulation_transcription.png' %}", 50, 50);
+		var trans_and_img= new componentImg("{% static 'simulationApp/images/sbgn_bricks/Regulation_of_Transcription/PD_transcription_AND.png' %}", 50, 50);
+		//translation
+		var trans_img = new componentImg("{% static 'simulationApp/images/sbgn_bricks/Translation/PD_translation.png' %}", 50, 50);
+
+	//annotation node
+		//annotation
+
+
 		
 	</script>
 

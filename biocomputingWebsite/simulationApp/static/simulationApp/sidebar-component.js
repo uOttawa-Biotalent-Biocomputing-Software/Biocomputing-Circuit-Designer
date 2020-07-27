@@ -6,10 +6,9 @@ class SB_Component {
         this.width = width;
         this.height = height;
         this.sketch = sketch;
-        this.grid = grid;
         let self = this;
-
-        this.button = sketch.createImg(image, name)
+        this.grid = grid;
+        this.button = sketch.createImg(image["imPath"], name)
         this.button.parent(document.getElementById('components'));
         this.button.mousePressed(function() {
             self.addComponent();
