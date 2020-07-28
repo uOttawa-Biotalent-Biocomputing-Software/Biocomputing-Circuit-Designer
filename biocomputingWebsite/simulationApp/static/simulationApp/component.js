@@ -1,5 +1,10 @@
 class Component {
   static active = [];
+  static nextId = 0;
+
+  static getNextId() {
+    return Component.nextId++;
+  }
 
   static isInActive(component) {
     return Component.active.includes(component);

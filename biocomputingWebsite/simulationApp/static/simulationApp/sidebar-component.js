@@ -17,8 +17,7 @@ class SB_Component {
     }
 
     addComponent() {
-        this.sketch.allComponents.push(new Component(this.image, 700, 400, this.sketch.componentCount, this.sketch, this.grid));
-        this.sketch.componentCount++;
+        this.sketch.allComponents.push(new Component(this.image, 700, 400, Component.getNextId(), this.sketch, this.grid));
     }
 
 } 

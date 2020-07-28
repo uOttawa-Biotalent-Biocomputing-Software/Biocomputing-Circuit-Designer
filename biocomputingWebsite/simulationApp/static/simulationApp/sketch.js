@@ -18,7 +18,6 @@ const s = ( sketch ) => {
   sketch.allEdges = [];
   //sketch.sidebar = [];
 
-  componentCount = 4;
 
   sketch.topBar = new topBar(5, sketch);
 
@@ -28,13 +27,11 @@ const s = ( sketch ) => {
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
+    sketch.allComponents.push(new Component(imTest, 100, 50, Component.getNextId(), sketch, sketch.grid));
+    sketch.allComponents.push(new Component(imTest, 500, 50, Component.getNextId(), sketch, sketch.grid));
+    sketch.allComponents.push(new Component(imTest, 900, 50, Component.getNextId(), sketch, sketch.grid));
+    sketch.allComponents.push(new Component(imTest, 1300, 50, Component.getNextId(), sketch, sketch.grid));
 
-    sketch.allComponents.push(new Component(imTest, 100, 50, 0, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(imTest, 500, 50, 1, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(imTest, 900, 50, 2, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(imTest, 1300, 50, 3, sketch, sketch.grid));
-
-    componentCount = 4
     sketch.sidebar = new Sidebar(sketch, sketch.grid);
   }
 
