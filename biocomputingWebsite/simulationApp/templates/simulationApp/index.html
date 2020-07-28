@@ -5,7 +5,7 @@
 
 {% block content %}
 	<div class="sketchbox">
-		<div class="components"></div>
+		<div class="components" id="components"></div>
 
 		<div id="myContainer"></div>
 	</div>
@@ -42,7 +42,7 @@
 
 	//process nodes
 		var assoc = "{% static 'simulationApp/images/process_nodes/association.png' %}";	
-		var dissoc = "{% static 'simulationApp/images/process_nodes/dissocation.png' %}";	
+		var dissoc = "{% static 'simulationApp/images/process_nodes/dissociation.png' %}";	
 		var omit_process = "{% static 'simulationApp/images/process_nodes/omitted-process.png' %}";	
 		var pheno = "{% static 'simulationApp/images/process_nodes/phenotype.png' %}";	
 		var process = "{% static 'simulationApp/images/process_nodes/process.png' %}";	
@@ -88,6 +88,8 @@
 	<script src="{% static 'simulationApp/vertex.js' %}"></script>
 	<script src="{% static 'simulationApp/grid.js' %}"></script>
 	<script src="{% static 'simulationApp/topBarElement.js' %}"></script>
+	<script src="{% static 'simulationApp/sidebar.js' %}"></script>
+	<script src="{% static 'simulationApp/sidebar-component.js' %}"></script>
 	<script src="{% static 'simulationApp/topBar.js' %}"></script>
 	<script src="{% static 'simulationApp/component.js' %}"></script>
 	<script src="{% static 'simulationApp/sketch.js' %}"></script>

@@ -173,12 +173,19 @@ textarea{
 
 .components {
   float: left;
-  width: 15%;
+  width: 250px;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#components img {
+  position: relative;
+
 }
 
 #myContainer {
-  width: 85%; 
+  width: calc(100% - 250px); 
   height: 100%; 
   background-color: white;
 
@@ -189,3 +196,26 @@ textarea{
   background-color: #078296;
   position: relative;
 }
+
+
+/*Testing out accordion for side bar*/
+/*
+.wrapper{
+  margin: 250px;
+}
+button.accordion{
+  border: 0px;
+  padding: 18px;
+  width: 70%;
+  text-align: left;
+  font-size: 20px;
+  transition: .3s;
+}
+button:focus{
+  outline: none;
+}
+div.panel{
+  padding: 0 18px;
+  max-height: 0;
+  overf
+}*/
