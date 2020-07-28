@@ -1,10 +1,8 @@
 class SB_Component {
 
-    constructor (image, name, width, height, sketch, grid) {
+    constructor (image, sketch, grid) {
         this.image = image;
         this.name = name;
-        this.width = width;
-        this.height = height;
         this.sketch = sketch;
         let self = this;
         this.grid = grid;
