@@ -6,7 +6,7 @@ class Sidebar {
     static process_nodes_title;
     static reference_nodes_title;
     static arcs_title;
-    
+
     constructor (sketch, grid) {
         this.sketch = sketch;
         this.grid = grid;
@@ -61,4 +61,4 @@ class Sidebar {
         this.connectingArcs.push(new SB_Component(prod, 'Production'                  , 100, 770, sketch, grid));
         this.connectingArcs.push(new SB_Component(stim, 'Stimulation'                 , 180, 770, sketch, grid));
     }
-}
+} 

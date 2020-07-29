@@ -5,81 +5,91 @@
 
 {% block content %}
 	<div class="sketchbox">
-		<div class="components" id="components"></div>
+		<div class="components" id="components">
+				<button class="accordion">Entity Pool Nodes</button>
+				<div class="panel" id="epn">
+					<div class="grid-item"><img src="{% static 'simulationApp/images/entity_pool_nodes/empty-set.png' %}" title="Empty Set" id="epn1" onmousedown="idClicked = 'epn1'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/entity_pool_nodes/macromolecule.png' %}" title="Macromolecule" id="epn2" onmousedown="idClicked = 'epn2'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/entity_pool_nodes/nucleic-acid-feature.png' %}" title="Nucleic Acid Feature" id="epn3" onmousedown="idClicked = 'epn3'"></div>  
+					<div class="grid-item"><img src="{% static 'simulationApp/images/entity_pool_nodes/perturbing-agent.png' %}" title="Perturbing Agent" id="epn4" onmousedown="idClicked = 'epn4'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/entity_pool_nodes/simple-chemical.png' %}" title="Simple Chemical" id="epn5" onmousedown="idClicked = 'epn5'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/entity_pool_nodes/unspecified-entity.png' %}" title="Unspecfied Entity" id="epn6" onmousedown="idClicked = 'epn6'"></div>  
+				</div>
 
-		<div id="myContainer"></div>
+				<button class="accordion">Logic Operators</button>
+				<div class="panel" id="lo">
+					<div class="grid-item"><img src="{% static 'simulationApp/images/logic_operators/and.png' %}" title="And" id="lo1" onmousedown="idClicked = 'lo1'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/logic_operators/not.png' %}" title="Not" id="lo2" onmousedown="idClicked = 'lo2'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/logic_operators/or.png' %}" title="Or" id="lo3" onmousedown="idClicked = 'lo3'"></div>  
+				</div>
+
+				<button class="accordion">Process Nodes</button>
+				<div class="panel" id="pn">
+					<div class="grid-item"><img src="{% static 'simulationApp/images/process_nodes/association.png' %}" title="Association" id="pn1" onmousedown="idClicked = 'pn1'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/process_nodes/dissociation.png' %}" title="Dissociation" id="pn2" onmousedown="idClicked = 'pn2'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/process_nodes/omitted-process.png' %}" title="Omitted Process" id="pn3" onmousedown="idClicked = 'pn3'"></div>  
+					<div class="grid-item"><img src="{% static 'simulationApp/images/process_nodes/phenotype.png' %}" title="Phenotype" id="pn4" onmousedown="idClicked = 'pn4'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/process_nodes/process.png' %}" title="Process" id="pn5" onmousedown="idClicked = 'pn5'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/process_nodes/uncertain-process.png' %}" title="Uncertain Process" id="pn6" onmousedown="idClicked = 'pn6'"></div>  
+				</div>
+
+				<button class="accordion">Reference Nodes</button>
+				<div class="panel" id="rn">
+					<div class="grid-item"><img src="{% static 'simulationApp/images/reference_node/tag.png' %}" title="Tag" id="rn1" onmousedown="idClicked = 'rn1'"></div>
+				</div>
+
+				<button class="accordion">Connecting Arcs</button>
+				<div class="panel" id="ca">
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/catalysis.png' %}" title="Catalysis" id="ca1" onmousedown="idClicked = 'ca1'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/consumption.png' %}" title="Consumption" id="ca2" onmousedown="idClicked = 'ca2'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/equivalence_arc.png' %}" title="Equivalence Arc" id="ca3" onmousedown="idClicked = 'ca3'"></div>  
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/inhibition.png' %}" title="Inhibition" id="ca4" onmousedown="idClicked = 'ca4'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/logic_arc.png' %}" title="Logic Arc" id="ca5" onmousedown="idClicked = 'ca5'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/modulation.png' %}" title="Modulation" id="ca6" onmousedown="idClicked = 'ca6'"></div>  
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/necessary-stimulation.png' %}" title="Necessary Stimulation" id="ca7" onmousedown="idClicked = 'ca7'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/production.png' %}" title="Production" id="ca8" onmousedown="idClicked = 'ca8'"></div>
+					<div class="grid-item"><img src="{% static 'simulationApp/images/connecting_arcs/stimulation.png' %}" title="Stimulation" id="ca9" onmousedown="idClicked = 'ca9'"></div>  
+				</div>
+
+				<button class="accordion">SBGN Bricks</button>
+				<div class="panel" id="sb"></div>
+
+				<script>
+					//Folding of the component menus
+					var acc = document.getElementsByClassName("accordion");
+					var i, j;
+
+					for (i = 0; i < acc.length; i++) {
+						acc[i].addEventListener("click", function() {
+
+							for(j = 0; j < acc.length; j++){
+								if(j!=i){
+									acc[j].classList.toggle("active", false);
+									var panelJ = acc[j].nextElementSibling;
+									panelJ.style.display = "none";
+								}
+							}
+
+							this.classList.toggle("active", true);
+
+							var panel = this.nextElementSibling;
+							if (panel.style.display === "block") {
+								panel.style.display = "none";
+								this.classList.toggle("active", false);
+							} else {
+								panel.style.display = "grid";
+							}
+						});
+					}			
+				</script>
+		</div>
+
+		<div id="myContainer" class="droptarget"></div>
 	</div>
 
 	<script>
 	//testing
 		var im = "{% static 'simulationApp/images/test.png' %}";
-
-	//connecting arcs
-		var cat = "{% static 'simulationApp/images/connecting_arcs/catalysis.png' %}";
-		var consumption = "{% static 'simulationApp/images/connecting_arcs/consumption.png' %}";
-		var eq_arc = "{% static 'simulationApp/images/connecting_arcs/equivalence_arc.png' %}";
-		var inhib = "{% static 'simulationApp/images/connecting_arcs/inhibition.png' %}";
-		var log_arc = "{% static 'simulationApp/images/connecting_arcs/logic_arc.png' %}";
-		var mod = "{% static 'simulationApp/images/connecting_arcs/modulation.png' %}";
-		var nec_stim = "{% static 'simulationApp/images/connecting_arcs/necessary-stimulation.png' %}";
-		var prod = "{% static 'simulationApp/images/connecting_arcs/production.png' %}";
-		var stim = "{% static 'simulationApp/images/connecting_arcs/stimulation.png' %}";
-	//entity pool nodes
-		var empty = "{% static 'simulationApp/images/entity_pool_nodes/empty-set.png' %}";
-		var macro = "{% static 'simulationApp/images/entity_pool_nodes/macromolecule.png' %}";
-		var nuc_acid = "{% static 'simulationApp/images/entity_pool_nodes/nucleic-acid-feature.png' %}";
-		var pert_agent = "{% static 'simulationApp/images/entity_pool_nodes/perturbing-agent.png' %}";
-		var simple_chem = "{% static 'simulationApp/images/entity_pool_nodes/simple-chemical.png' %}";
-		var unspec_ent = "{% static 'simulationApp/images/entity_pool_nodes/unspecified-entity.png' %}";
-		//multimers
-		//clone marker
-
-	//logic operators
-		var and = "{% static 'simulationApp/images/logic_operators/and.png' %}";
-		var not = "{% static 'simulationApp/images/logic_operators/not.png' %}";
-		var or = "{% static 'simulationApp/images/logic_operators/or.png' %}";
-		//equivalence operator
-
-	//process nodes
-		var assoc = "{% static 'simulationApp/images/process_nodes/association.png' %}";	
-		var dissoc = "{% static 'simulationApp/images/process_nodes/dissociation.png' %}";	
-		var omit_process = "{% static 'simulationApp/images/process_nodes/omitted-process.png' %}";	
-		var pheno = "{% static 'simulationApp/images/process_nodes/phenotype.png' %}";	
-		var process = "{% static 'simulationApp/images/process_nodes/process.png' %}";	
-		var uncert_pro = "{% static 'simulationApp/images/process_nodes/uncertain-process.png' %}";	
-
-	//reference node
-		var tag = "{% static 'simulationApp/images/reference_node/tag.png' %}";
-		
-	//sbgn bricks
-		//catalysis
-		var cat_irr_11 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_1_1.png' %}";
-		var cat_irr_12 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_1_2.png' %}";
-		var cat_irr_21 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_2_1.png' %}";
-		var cat_irr_22 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_irr_2_2.png' %}";
-		var cat_rev_11 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_rev_1_1.png' %}";
-		var cat_rev_22 = "{% static 'simulationApp/images/sbgn_bricks/Catalysis/PD_catalysis_rev_2_2.png' %}";
-		//compartmentation transport
-		var comp_act = "{% static 'simulationApp/images/sbgn_bricks/Compartmentation_Transport/PD_comp_active_transport.png' %}";
-		var comp_pass = "{% static 'simulationApp/images/sbgn_bricks/Compartmentation_Transport/PD_comp_passive_transport.png' %}";
-		//complex dissociation
-		var comp_diss = "{% static 'simulationApp/images/sbgn_bricks/Complex_Dissocation/PD_complex_dissocation.png' %}";
-		//complex formation
-		var comp_form = "{% static 'simulationApp/images/sbgn_bricks/Complex_Formation/PD_complex_formation.png' %}";
-		//oligomerization homodimerization
-		var homodimer = "{% static 'simulationApp/images/sbgn_bricks/Oligomerization_Homodimerization/PD_homodimerization.png' %}";
-		//protein phosphorylation
-		var phosp = "{% static 'simulationApp/images/sbgn_bricks/Protein_Phosphorylation/PD_phosphorylation.png' %}";
-		//regulation of transcription
-		var drt= "{% static 'simulationApp/images/sbgn_bricks/Regulation_of_Transcription/PD_direct_regulation_transcription.png' %}";
-		var trans_and= "{% static 'simulationApp/images/sbgn_bricks/Regulation_of_Transcription/PD_transcription_AND.png' %}";
-		//translation
-		var trans = "{% static 'simulationApp/images/sbgn_bricks/Translation/PD_translation.png' %}";
-
-	//annotation node
-		//annotation
-
-
 		
 	</script>
 

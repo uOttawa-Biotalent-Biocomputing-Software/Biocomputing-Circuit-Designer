@@ -173,10 +173,11 @@ textarea{
 
 .components {
   float: left;
-  width: 250px;
+  width: 260px;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  /*overflow-y: scroll;*/
 }
 
 #components img {
@@ -185,7 +186,7 @@ textarea{
 }
 
 #myContainer {
-  width: calc(100% - 250px); 
+  width: calc(100% - 260px); 
   height: 100%; 
   background-color: white;
 
@@ -197,25 +198,34 @@ textarea{
   position: relative;
 }
 
-
-/*Testing out accordion for side bar*/
-/*
-.wrapper{
-  margin: 250px;
-}
-button.accordion{
-  border: 0px;
+/*Component menu*/
+.accordion{
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
   padding: 18px;
-  width: 70%;
+  width: 100%;
+  border: none;
   text-align: left;
-  font-size: 20px;
-  transition: .3s;
-}
-button:focus{
   outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  
 }
-div.panel{
-  padding: 0 18px;
-  max-height: 0;
-  overf
-}*/
+.active, .accordion:hover{
+  background-color: #ccc;
+}
+
+.panel {
+  margin-left: 5px;
+  background-color: white;
+  overflow: hidden;
+  width: 100%;
+  display: none;
+  grid-template-columns: 83px 83px 83px;
+}
+
+.grid-item{
+  margin: auto;
+  cursor: pointer;
+}

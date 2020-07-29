@@ -22,4 +22,4 @@ class SB_Component {
         this.sketch.componentCount++;
     }
 
-}
+} 
