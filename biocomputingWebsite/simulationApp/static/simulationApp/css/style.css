@@ -162,6 +162,7 @@ textarea{
   height: 100%;
   display: flex;
   flex-wrap: wrap;
+  /*overflow-y: scroll;*/
 }
 
 #components img {
@@ -182,3 +183,34 @@ textarea{
   position: relative;
 }
 
+/*Component menu*/
+.accordion{
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+  
+}
+.active, .accordion:hover{
+  background-color: #ccc;
+}
+
+.panel {
+  margin-left: 5px;
+  background-color: white;
+  overflow: hidden;
+  width: 100%;
+  display: none;
+  grid-template-columns: 83px 83px 83px;
+}
+
+.grid-item{
+  margin: auto;
+  cursor: pointer;
+}

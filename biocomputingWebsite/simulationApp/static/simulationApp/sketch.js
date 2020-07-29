@@ -1,3 +1,5 @@
+let idClicked="empty";
+
 const s = ( sketch ) => {
 
 
@@ -14,7 +16,7 @@ const s = ( sketch ) => {
 
   sketch.allComponents = [];
   sketch.allEdges = [];
-  sketch.sidebar = [];
+  //sketch.sidebar = [];
 
   componentCount = 4;
 
@@ -30,9 +32,7 @@ const s = ( sketch ) => {
     sketch.allComponents.push(new Component(im, 500, 50, 1, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 900, 50, 2, sketch, sketch.grid));
     sketch.allComponents.push(new Component(im, 1300, 50, 3, sketch, sketch.grid));
-
-    componentCount = 4
-    sketch.sidebar = new Sidebar(sketch, sketch.grid);
+    //sketch.sidebar = new Sidebar(sketch, sketch.grid);
   }
 
   // p5.js continuously call this method
@@ -57,11 +57,25 @@ const s = ( sketch ) => {
     sketch.resizeCanvas(sketch.wanted_width, sketch.wanted_height, true);
   }
 
+  let drag = null;
   // mouse pressed event
   sketch.mousePressed = () => {
-    if(sketch.mouseX < 0){return;}
-
     if(sketch.mouseY < 0) {return;}
+    
+    //if mousePressed on sidebar
+    if(sketch.mouseX < 0) {
+      if(idClicked!="empty"){
+        drag = document.getElementById(idClicked).src;
+        idClicked = 'empty';
+      }else{
+        drag = null;
+      }
+      return;
+    }
+    else{
+      drag = null;
+    }
+
 
     if (sketch.topBar.mouseOnBar) {
       sketch.topBar.mousePressed();
@@ -107,6 +121,27 @@ const s = ( sketch ) => {
   // mouse released event
   sketch.mouseReleased = () => {
 
+    //Drag and drop elements to canvas from sidebar
+    if(drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
+
+      let x;
+      let y;
+      let w = 300;
+      let h = 100;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      x = sketch.mouseX - w/2 + offsetX;
+      y = sketch.mouseY - h/2 + offsetY;
+
+      offsetX = -sketch.mouseX + x + w/2;
+      offsetY = -sketch.mouseY + y + h/2;
+
+      sketch.allComponents.push(new Component(drag, x, y, componentCount, sketch, sketch.grid));
+      componentCount++;
+    }
+
+
     if (Edge.isDrawingNewEdge) {
       Edge.isDrawingNewEdge = false;
       // console.log(sketch.allEdges[sketch.allEdges.length -1]);
@@ -138,17 +173,13 @@ const s = ( sketch ) => {
   }
 
   // when user scroll to resize the grid
-
   sketch.mouseWheel = (event) => {
     // call the resize method in each component
     if(sketch.mouseX<0){return;};
     if(sketch.mouseY<0){return;};
-    if (sketch.topBar.mouseOnBar){return};
-    sketch.grid.resize(-event.delta/1000)
-    
-    //sketch.grid.resize(-event.delta/1000) 
+    if (sketch.topBar.mouseOnBar){return;};
+    sketch.grid.resize(-event.delta/1000) 
   }
-  
 
 }
 // create the canvas with the sketch
