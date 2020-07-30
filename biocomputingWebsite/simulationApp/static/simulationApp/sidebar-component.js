@@ -6,12 +6,12 @@ class SB_Component {
         this.sketch = sketch;
         let self = this;
         this.grid = grid;
-        this.button = sketch.createImg(image["imPath"], name)
-        this.button.parent(document.getElementById('components'));
-        this.button.mousePressed(function() {
-            self.addComponent();
-        }) 
-        this.button.id("side-bar-component")
+        // this.button = sketch.createImg(image["imPath"], name)
+        // this.button.parent(document.getElementById('components'));
+        // this.button.mousePressed(function() {
+        //     self.addComponent();
+        // }) 
+        // this.button.id("side-bar-component")
     }
 
     addComponent() {

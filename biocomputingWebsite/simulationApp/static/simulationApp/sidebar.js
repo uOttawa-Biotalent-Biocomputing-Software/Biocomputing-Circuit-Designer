@@ -27,15 +27,15 @@ class Sidebar {
         // this.entityPoolNodesGroup = new sideBarGroup('Entity Pool Nodes', this.entityPoolNodes);
 
         //Logic Operators
-        Sidebar.logic_title = sketch.createElement('h4', 'Logic Operators:')
-        Sidebar.logic_title.position(20, 200);
+        // Sidebar.logic_title = sketch.createElement('h4', 'Logic Operators:')
+        // Sidebar.logic_title.position(20, 200);
         this.logicOperators.push(new SB_Component(and_img, sketch, grid));
         this.logicOperators.push(new SB_Component(not_img, sketch, grid));
         this.logicOperators.push(new SB_Component(or_img, sketch, grid));
 
         // Process Nodes
-        Sidebar.process_nodes_title = sketch.createElement('h4', 'Process Nodes:')
-        Sidebar.process_nodes_title.position(20, 310);
+        // Sidebar.process_nodes_title = sketch.createElement('h4', 'Process Nodes:')
+        // Sidebar.process_nodes_title.position(20, 310);
         this.processNodes.push(new SB_Component(assoc1_img, sketch, grid));
         this.processNodes.push(new SB_Component(dissoc1_img, sketch, grid));
         this.processNodes.push(new SB_Component(omit_process1_img, sketch, grid));
@@ -44,13 +44,13 @@ class Sidebar {
         this.processNodes.push(new SB_Component(uncert_pro1_img, sketch, grid));
 
         // Reference Nodes
-        Sidebar.reference_nodes_title = sketch.createElement('h4', 'Reference Nodes:')
-        Sidebar.reference_nodes_title.position(20, 490);
+        // Sidebar.reference_nodes_title = sketch.createElement('h4', 'Reference Nodes:')
+        // Sidebar.reference_nodes_title.position(20, 490);
         this.referenceNode.push(new SB_Component(tag_img, sketch, grid));
 
         // Connecting Arcs
-        Sidebar.arcs_title = sketch.createElement('h4', 'Connecting Arcs:')
-        Sidebar.arcs_title.position(20, 590);
+        // Sidebar.arcs_title = sketch.createElement('h4', 'Connecting Arcs:')
+        // Sidebar.arcs_title.position(20, 590);
         this.connectingArcs.push(new SB_Component(cat_img, sketch, grid));
         this.connectingArcs.push(new SB_Component(consumption_img, sketch, grid));
         this.connectingArcs.push(new SB_Component(eq_arc_img, sketch, grid));
