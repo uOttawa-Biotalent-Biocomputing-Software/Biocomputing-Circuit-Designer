@@ -137,8 +137,8 @@ const s = ( sketch ) => {
       offsetX = -sketch.mouseX + x + w/2;
       offsetY = -sketch.mouseY + y + h/2;
 
-      sketch.allComponents.push(new Component(drag, x, y, componentCount, sketch, sketch.grid));
-      componentCount++;
+      // need to changed the new componentImg in future!!
+      sketch.allComponents.push(new Component(new componentImg(drag, 'aaa', 100, 100), x, y, Component.getNextId(), sketch, sketch.grid));
     }
 
 
