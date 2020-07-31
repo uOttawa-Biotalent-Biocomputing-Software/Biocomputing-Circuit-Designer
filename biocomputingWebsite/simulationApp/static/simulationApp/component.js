@@ -24,16 +24,16 @@ class Component {
   static clickedNode;
 
   constructor(path, initialX, initialY, id, sketch, grid) {
+    this.sketch = sketch;
+    this.grid = grid;
     this.img = sketch.loadImage(path);;
-    this.w = 300;
-    this.h = 100;
+    this.w = 120 * this.grid.scalingFactor;
+    this.h = 96 * this.grid.scalingFactor;
     this.x = initialX;
     this.y = initialY;
     this.offsetX = 0;
     this.offsetY = 0;
     this.id = id;
-    this.sketch = sketch;
-    this.grid = grid;
     this.padding = 0.01;
     this.rectangleContour = new RectangleContour(this);
   }
