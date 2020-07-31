@@ -126,8 +126,8 @@ const s = ( sketch ) => {
 
       let x;
       let y;
-      let w = 300;
-      let h = 100;
+      let w = 120 * sketch.grid.scalingFactor;
+      let h = 96 * sketch.grid.scalingFactor;
       let offsetX = 0;
       let offsetY = 0;
 
