@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Component A",
+        "id":"component-a",
+        "typeId ": "type-1",
+        "img": "catalysis.png",
+        "width": 50,
+        "height": 50
+    },
+    {
+        "name": "Component B",
+        "id": "component-b",
+        "typeId": "type-2",
+        "img": "catalysis.png",
+        "width": 50,
+        "height": 50
+    }
+]
