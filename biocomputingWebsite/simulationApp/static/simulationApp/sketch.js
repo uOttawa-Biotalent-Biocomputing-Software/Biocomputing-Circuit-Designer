@@ -19,6 +19,7 @@ const s = ( sketch ) => {
   //sketch.sidebar = [];
 
   componentCount = 4;
+  edgeType = 'ca4'
 
   sketch.topBar = new topBar(5, sketch);
 
@@ -64,7 +65,14 @@ const s = ( sketch ) => {
     
     //if mousePressed on sidebar
     if(sketch.mouseX < 0) {
-      if(idClicked!="empty"){
+      if (idClicked.substring(0, 2) == 'ca') {
+        for (i = 1; i <= 9; i++) {
+          document.getElementById('ca' + i.toString()).style.border = '2px solid transparent';
+        }
+        document.getElementById(idClicked).style.border = '2px solid #F00';
+        edgeType = idClicked;
+      }
+      else if(idClicked!="empty"){
         drag = document.getElementById(idClicked).src;
         idClicked = 'empty';
       }else{
@@ -86,7 +94,7 @@ const s = ( sketch ) => {
     console.log('Canvas is Clicked');
 
     if (Component.mouseOnNode) {
-      sketch.allEdges.push(new Edge(Component.clickedNode, sketch));
+      sketch.allEdges.push(new Edge(Component.clickedNode, sketch, edgeType));
       Component.resetActiveComponents();
       Edge.isDrawingNewEdge = true;
 
