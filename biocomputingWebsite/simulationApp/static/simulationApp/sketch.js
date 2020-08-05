@@ -19,7 +19,7 @@ const s = ( sketch ) => {
   //sketch.sidebar = [];
 
   componentCount = 4;
-  edgeType = 'ca4'
+  edgeType = 'ca1' //Default
 
   sketch.topBar = new topBar(5, sketch);
 

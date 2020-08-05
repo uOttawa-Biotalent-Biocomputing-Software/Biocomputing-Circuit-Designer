@@ -44,14 +44,14 @@ class Edge {
             this.v2.x = this.sketch.mouseX;
             this.v2.y = this.sketch.mouseY;
 
-            this.v3.x = this.sketch.mouseX + 12;
+            this.v3.x = this.sketch.mouseX - 32;
             this.v3.y = this.sketch.mouseY;
         } else if(this.state == 1) {
             this.v2.x = this.to.realX;
-            this.v2.y = this.to.realY;
+            this.v2.y = this.to.realY;    
 
-            this.v3.x = this.to.realX + 32;
-            this.v3.y = this.to.realY;        
+            this.v3.x = this.to.realX - 32;
+            this.v3.y = this.to.realY;
         }
 
     }
@@ -67,8 +67,10 @@ class Edge {
     }
 
     showEdge() {
+        this.sketch.strokeWeight(5);
         if (this.edgeType == 'ca1') {
             this.sketch.line(this.v1.x, this.v1.y, this.v2.x - 12, this.v2.y);
+            this.sketch.fill(0, 0, 0, 100);
             this.sketch.circle(this.v2.x, this.v2.y, 24);
         }
         else if (this.edgeType == 'ca2' || this.edgeType == 'ca3' ||this.edgeType == 'ca5') {
@@ -76,7 +78,7 @@ class Edge {
         }
         else if (this.edgeType == 'ca4') {
             this.sketch.line(this.v1.x, this.v1.y, this.v2.x, this.v2.y);
-            this.sketch.line(this.v3.x, this.v2.y, this.v4.x, this.v4.y);
+            this.sketch.line(this.v3.x, this.v3.y, this.v4.x + 32, this.v4.y);
         }
     }
 
