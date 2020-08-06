@@ -24,10 +24,13 @@ class topBar {
         if (this.icons[0].mouseOnButton || this.icons[1].mouseOnButton || this.icons[2].mouseOnButton){
             this.mouseOnButton = true;
             if(this.sketch.mouseX < 5 + (this.h-10)){
+                //back button
                 this.buttonID = 1;
             }else if(this.sketch.mouseX < (this.h+5) + (this.h-10)){
+                //forward button
                 this.buttonID = 2;
             }else{
+                //connecting arcs button
                 this.buttonID = 3;
             }
         }else{
