@@ -45,20 +45,20 @@ class Component {
 
   update() {
     // Component.mouseOnNode = false;
+    this.w = 120 * this.grid.scalingFactor;
+    this.h = 96 * this.grid.scalingFactor;
+    
     this.updatePosition();
     this.show();
     this.sketch.stroke(0, 0, 0);
-
-    this.rectangleContour.update();
     
-
+    this.rectangleContour.update();
   }
 
   updatePosition() {
     if (this.move) {
       this.x = this.sketch.mouseX - this.w/2 + this.offsetX;
       this.y = this.sketch.mouseY - this.h/2 + this.offsetY;
-
     }
   }
 

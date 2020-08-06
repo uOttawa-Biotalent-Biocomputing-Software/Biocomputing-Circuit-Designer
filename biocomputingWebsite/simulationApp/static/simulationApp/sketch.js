@@ -1,4 +1,5 @@
 let idClicked="empty";
+let case3 = false;
 
 const s = ( sketch ) => {
 
@@ -15,12 +16,28 @@ const s = ( sketch ) => {
   sketch.getDimensions();
 
   sketch.allComponents = [];
+  sketch.allComponentsBack = [];
   sketch.allEdges = [];
   //sketch.sidebar = [];
 
   componentCount = 4;
 
+  //top bar
   sketch.topBar = new topBar(5, sketch);
+  //connecting arc drop down menu
+  sketch.connectArc = sketch.createSelect();
+  sketch.connectArc.position(350,43);
+  sketch.connectArc.option('Catalysis');
+  sketch.connectArc.option('Consumption');
+  sketch.connectArc.option('Equivalence Arc');
+  sketch.connectArc.option('Inhibition');
+  sketch.connectArc.option('Logic Arc');
+  sketch.connectArc.option('Modulation');
+  sketch.connectArc.option('Necessary Stimulation');
+  sketch.connectArc.option('Production');
+  sketch.connectArc.option('Stimulation');
+  sketch.connectArc.hide();
+  sketch.lineProperty = 1;
 
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
@@ -48,7 +65,6 @@ const s = ( sketch ) => {
     }
     
     sketch.topBar.update();
-
   }
 
   // handle resize events
@@ -76,45 +92,115 @@ const s = ( sketch ) => {
       drag = null;
     }
 
-
-    if (sketch.topBar.mouseOnBar) {
-      sketch.topBar.mousePressed();
-      return;
+    //topbar
+    if (sketch.topBar.mouseOnBar){
+      if(sketch.topBar.mouseOnButton){
+        console.log(sketch.topBar.buttonID);
+        switch (sketch.topBar.buttonID){
+          case 1:
+            //back button
+            if(sketch.allComponents.length>4){
+              sketch.allComponentsBack.push(sketch.allComponents.pop());
+            }
+            break;
+          case 2:
+            //forward button
+            if(sketch.allComponentsBack.length > 0){
+              sketch.forwardComp = sketch.allComponentsBack.pop();
+              sketch.allComponents.push(sketch.forwardComp);
+            }
+            break;
+          case 3:
+            //connecting arcs button
+            if(case3 == true){
+              sketch.connectArc.hide();
+              console.log("hide select");
+              case3 = false;
+            }
+            else{
+              sketch.connectArc.show();
+              sketch.connectArc.changed(sketch.connectArcSelect);
+              console.log("appear select");
+              case3 = true;
+            }
+            break;
+          default:
+            break;
+        }
+      }
     }
+    else{
 
-    sketch.backgroundPressed = true;
-    console.log('Canvas is Clicked');
+      sketch.backgroundPressed = true;
+      console.log('Canvas is Clicked');
 
-    if (Component.mouseOnNode) {
-      sketch.allEdges.push(new Edge(Component.clickedNode, sketch));
-      Component.resetActiveComponents();
-      Edge.isDrawingNewEdge = true;
-
-    } else if (!Component.mouseOnNode) {
-      // loop over each component in the canvas and drag it if the mouse is over it
-      for (let comp of sketch.allComponents) {
-        if (comp.isMouseOver()) {
-          sketch.backgroundPressed = false;
-          comp.startMoving();
-        }
-      }
-
-      for (comp of sketch.allComponents) {
-        if (Component.isInActive(comp.id)) {
-          comp.startMoving();
-        }
-      }
-
-      if (sketch.backgroundPressed) {
+      if (Component.mouseOnNode) {
+        sketch.allEdges.push(new Edge(Component.clickedNode, sketch, sketch.lineProperty));
         Component.resetActiveComponents();
-        sketch.grid.startMoving();
+        Edge.isDrawingNewEdge = true;
+
+      } else if (!Component.mouseOnNode) {
+        // loop over each component in the canvas and drag it if the mouse is over it
         for (let comp of sketch.allComponents) {
-          if (comp.move) {
-            comp.stopMoving();
+          if (comp.isMouseOver()) {
+            sketch.backgroundPressed = false;
+            comp.startMoving();
           }
         }
 
+        for (comp of sketch.allComponents) {
+          if (Component.isInActive(comp.id)) {
+            comp.startMoving();
+          }
+        }
+
+        if (sketch.backgroundPressed) {
+          Component.resetActiveComponents();
+          sketch.grid.startMoving();
+          for (let comp of sketch.allComponents) {
+            if (comp.move) {
+              comp.stopMoving();
+            }
+          }
+
+        }
       }
+    }
+  }
+
+  //connect arc option select event
+  sketch.connectArcSelect = () => {
+    let selected = sketch.connectArc.value();
+    switch(selected){
+      case 'Catalysis':
+        sketch.lineProperty = 1;
+        break;
+      case 'Consumption':
+        sketch.lineProperty = 2;
+        break;
+      case 'Equivalence Arc':
+        sketch.lineProperty = 3;
+        break;
+      case 'Inhibition':
+        sketch.lineProperty = 4;
+        break;
+      case 'Logic Arc':
+        sketch.lineProperty = 5;
+        break;
+      case 'Modulation':
+        sketch.lineProperty = 6;
+        break;
+      case 'Necessary Stimulation':
+        sketch.lineProperty = 7;
+        break;
+      case 'Production':
+        sketch.lineProperty = 8;
+        break;
+      case 'Stimulation':
+        sketch.lineProperty = 9;
+        break;
+      default:
+        break;
     }
   }
 
@@ -123,19 +209,10 @@ const s = ( sketch ) => {
 
     //Drag and drop elements to canvas from sidebar
     if(drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
-
-      let x;
-      let y;
       let w = 120 * sketch.grid.scalingFactor;
       let h = 96 * sketch.grid.scalingFactor;
-      let offsetX = 0;
-      let offsetY = 0;
-
-      x = sketch.mouseX - w/2 + offsetX;
-      y = sketch.mouseY - h/2 + offsetY;
-
-      offsetX = -sketch.mouseX + x + w/2;
-      offsetY = -sketch.mouseY + y + h/2;
+      let x = sketch.grid.getGridCoordinateX(sketch.mouseX-w/2);
+      let y = sketch.grid.getGridCoordinateY(sketch.mouseY-h/2);
 
       sketch.allComponents.push(new Component(drag, x, y, componentCount, sketch, sketch.grid));
       componentCount++;
@@ -178,7 +255,7 @@ const s = ( sketch ) => {
     if(sketch.mouseX<0){return;};
     if(sketch.mouseY<0){return;};
     if (sketch.topBar.mouseOnBar){return;};
-    sketch.grid.resize(-event.delta/1000) 
+    sketch.grid.resize(-event.delta/1000); 
   }
 
 }
