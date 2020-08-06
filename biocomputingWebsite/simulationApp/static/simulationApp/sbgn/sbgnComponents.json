@@ -1,18 +1,21 @@
-[
-    {
-        "name": "Component A",
-        "id":"component-a",
-        "typeId ": "type-1",
-        "img": "catalysis.png",
-        "width": 50,
-        "height": 50
-    },
-    {
-        "name": "Component B",
-        "id": "component-b",
-        "typeId": "type-2",
-        "img": "catalysis.png",
-        "width": 50,
-        "height": 50
-    }
-]
+{
+    "Components" : [
+        {
+            "name": "Connecting Arc",
+            "id":"ca",
+            "typeId": "connecting-arcs",
+            "img": "catalysis.png",
+            "width": 50,
+            "height": 50
+        },
+        {
+            "name": "Empty Set",
+            "id": "empty-set",
+            "typeId": "epn",
+            "img": "empty-set.png",
+            "width": 100,
+            "height": 100
+        }
+        
+    ]
+}

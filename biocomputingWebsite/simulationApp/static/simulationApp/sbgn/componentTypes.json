@@ -1,10 +1,16 @@
-[
-    {
-        "name":"Type 1",
-        "id":"type-1"
-    },
-    {
-        "name":"Type 2",
-        "id":"type-2"
-    }
-]
+{
+    "Components Types" : [
+        {
+            "name":"Entity Pool Nodes",
+            "id":"epn",
+            "location":"side",
+            "folder":"entity_pool_nodes/"
+        },
+        {
+            "name":"Connecting Arcs",
+            "id":"connecting-arcs",
+            "location":"side",
+            "folder":"connecting_arcs/"
+        }
+    ]
+}

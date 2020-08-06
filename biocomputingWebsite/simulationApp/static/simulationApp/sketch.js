@@ -16,8 +16,6 @@ const s = ( sketch ) => {
 
   sketch.allComponents = [];
   sketch.allEdges = [];
-  //sketch.sidebar = [];
-
 
   sketch.topBar = new topBar(5, sketch);
 
@@ -32,7 +30,8 @@ const s = ( sketch ) => {
     sketch.allComponents.push(new Component(imTest, 900, 50, Component.getNextId(), sketch, sketch.grid));
     sketch.allComponents.push(new Component(imTest, 1300, 50, Component.getNextId(), sketch, sketch.grid));
 
-    sketch.sidebar = new Sidebar(sketch, sketch.grid);
+    sketch.menu = new LoadMenues(sketch, sketch.grid)
+    
   }
 
   // p5.js continuously call this method
