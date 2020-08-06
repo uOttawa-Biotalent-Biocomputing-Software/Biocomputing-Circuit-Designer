@@ -7,14 +7,16 @@ class RectangleContour {
     this.size2 = 20;
 
     this.nodesLocation = [
-      [
+      //Top Left corner 
+      /*[
         function (component) {
           return component.x - component.calculatePadding() / 2;
         },
         function (component) {
           return component.y - component.calculatePadding() / 2;
         },
-      ],
+      ],*/
+      //Mid Top
       [
         function (component) {
           return component.x + component.w / 2;
@@ -23,22 +25,25 @@ class RectangleContour {
           return component.y - component.calculatePadding() / 2;
         },
       ],
-      [
+      //Top Right corner
+      /*[
         function (component) {
           return component.x + component.w + component.calculatePadding() / 2;
         },
         function (component) {
           return component.y - component.calculatePadding() / 2;
         },
-      ],
-      [
+      ],*/
+      //Bottom Right corner
+      /*[
         function (component) {
           return component.x + component.w + component.calculatePadding() / 2;
         },
         function (component) {
           return component.y + component.h + component.calculatePadding() / 2;
         },
-      ],
+      ],*/
+      //Mid Bottom
       [
         function (component) {
           return component.x + component.w / 2;
@@ -46,14 +51,32 @@ class RectangleContour {
         function (component) {
           return component.y + component.h + component.calculatePadding() / 2;
         },
-        2,
       ],
-      [
+      //Bottom Left corner
+      /*[
         function (component) {
           return component.x - component.calculatePadding() / 2;
         },
         function (component) {
           return component.y + component.h + component.calculatePadding() / 2;
+        },
+      ],*/
+      //Mid Left
+      [
+        function (component) {
+          return component.x - component.calculatePadding() / 2;
+        },
+        function (component) {
+          return component.y + component.h / 2;
+        },
+      ],
+      //Mid Right
+      [
+        function (component) {
+          return component.x + component.w + component.calculatePadding() / 2;
+        },
+        function (component) {
+          return component.y + component.h / 2;
         },
       ],
     ];
