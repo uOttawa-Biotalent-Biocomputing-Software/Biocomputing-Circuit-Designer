@@ -28,11 +28,12 @@ class Component {
   static mouseOnNode = false;
   static clickedNode;
 
-  constructor(img, initialX, initialY, id, sketch, grid) {
-    this.p5img = sketch.loadImage(img["imPath"]);
-    this.img = img;
-    this.w = img.w;
-    this.h = img.h;
+  constructor(comp, type, initialX, initialY, id, sketch, grid) {
+    this.component = comp;
+    this.type = type;
+    this.p5img = sketch.loadImage(baseUrl+ "simulationApp/images/" + this.type.folder + this.component.img, this.component.name);
+    this.w = this.component.width;
+    this.h = this.component.height;
     this.x = initialX;
     this.y = initialY;
     this.offsetX = 0;

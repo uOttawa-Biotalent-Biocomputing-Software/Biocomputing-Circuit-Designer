@@ -25,10 +25,10 @@ const s = ( sketch ) => {
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
-    sketch.allComponents.push(new Component(imTest, 100, 50, Component.getNextId(), sketch, sketch.grid));
-    sketch.allComponents.push(new Component(imTest, 500, 50, Component.getNextId(), sketch, sketch.grid));
-    sketch.allComponents.push(new Component(imTest, 900, 50, Component.getNextId(), sketch, sketch.grid));
-    sketch.allComponents.push(new Component(imTest, 1300, 50, Component.getNextId(), sketch, sketch.grid));
+    // sketch.allComponents.push(new Component(imTest, 100, 50, Component.getNextId(), sketch, sketch.grid));
+    // sketch.allComponents.push(new Component(imTest, 500, 50, Component.getNextId(), sketch, sketch.grid));
+    // sketch.allComponents.push(new Component(imTest, 900, 50, Component.getNextId(), sketch, sketch.grid));
+    // sketch.allComponents.push(new Component(imTest, 1300, 50, Component.getNextId(), sketch, sketch.grid));
 
     sketch.menu = new LoadMenues(sketch, sketch.grid)
     
@@ -56,25 +56,25 @@ const s = ( sketch ) => {
     sketch.resizeCanvas(sketch.wanted_width, sketch.wanted_height, true);
   }
 
-  let drag = null;
+  sketch.drag = null;
   // mouse pressed event
   sketch.mousePressed = () => {
     if(sketch.mouseY < 0) {return;}
     
     //if mousePressed on sidebar
     if(sketch.mouseX < 0) {
-      if(idClicked!="empty"){
-        drag = document.getElementById(idClicked).src;
-        idClicked = 'empty';
-      }else{
-        drag = null;
-      }
       return;
+      // if(idClicked!="empty"){
+      //   drag = document.getElementById(idClicked).src;
+      //   idClicked = 'empty';
+      // }else{
+      //   drag = null;
+      // }
+      // return;
     }
     else{
-      drag = null;
+      sketch.drag = null;
     }
-
 
     if (sketch.topBar.mouseOnBar) {
       sketch.topBar.mousePressed();
@@ -121,7 +121,7 @@ const s = ( sketch ) => {
   sketch.mouseReleased = () => {
 
     //Drag and drop elements to canvas from sidebar
-    if(drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
+    if(sketch.drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
 
       let x;
       let y;
@@ -137,7 +137,8 @@ const s = ( sketch ) => {
       offsetY = -sketch.mouseY + y + h/2;
 
       // need to changed the new componentImg in future!!
-      sketch.allComponents.push(new Component(new componentImg(drag, 'aaa', 100, 100), x, y, Component.getNextId(), sketch, sketch.grid));
+      sketch.allComponents.push(new Component(sketch.drag[0], sketch.drag[1], x, y, Component.getNextId(), sketch, sketch.grid));
+      sketch.drag = null;
     }
 
 

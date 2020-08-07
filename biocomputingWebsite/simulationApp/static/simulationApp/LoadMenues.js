@@ -65,10 +65,11 @@ class ExampleComponent{
             this.img.parent(document.getElementById(this.component.id));
             this.img.id = "img-" + this.component.id;
             this.img.title = this.component.name;
-            // this.img.mouseDragged(() => {
-            //     idClicked = this.component;
-            //     console.log(idClicked);
-            // })
+            this.img.mousePressed(() => {
+                this.sketch.drag = [this.component, this.type];
+
+                console.log(idClicked);
+            })
 
         }
 
