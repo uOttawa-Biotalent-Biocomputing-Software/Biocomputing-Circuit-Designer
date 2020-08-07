@@ -1,0 +1,16 @@
+{
+    "Components Types" : [
+        {
+            "name":"Entity Pool Nodes",
+            "id":"epn",
+            "location":"side",
+            "folder":"entity_pool_nodes/"
+        },
+        {
+            "name":"Connecting Arcs",
+            "id":"connecting-arcs",
+            "location":"side",
+            "folder":"connecting_arcs/"
+        }
+    ]
+}

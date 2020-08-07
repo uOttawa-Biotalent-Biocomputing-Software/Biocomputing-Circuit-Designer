@@ -17,7 +17,7 @@ class RectangleContour {
       ],
       [
         function (component) {
-          return component.x + component.w / 2;
+          return component.x + component.w * component.grid.scalingFactor / 2;
         },
         function (component) {
           return component.y - component.calculatePadding() / 2;
@@ -25,7 +25,7 @@ class RectangleContour {
       ],
       [
         function (component) {
-          return component.x + component.w + component.calculatePadding() / 2;
+          return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
         },
         function (component) {
           return component.y - component.calculatePadding() / 2;
@@ -33,18 +33,18 @@ class RectangleContour {
       ],
       [
         function (component) {
-          return component.x + component.w + component.calculatePadding() / 2;
+          return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
         },
         function (component) {
-          return component.y + component.h + component.calculatePadding() / 2;
+          return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
         },
       ],
       [
         function (component) {
-          return component.x + component.w / 2;
+          return component.x + component.w * component.grid.scalingFactor / 2;
         },
         function (component) {
-          return component.y + component.h + component.calculatePadding() / 2;
+          return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
         },
         2,
       ],
@@ -53,7 +53,7 @@ class RectangleContour {
           return component.x - component.calculatePadding() / 2;
         },
         function (component) {
-          return component.y + component.h + component.calculatePadding() / 2;
+          return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
         },
       ],
     ];
@@ -92,8 +92,8 @@ class RectangleContour {
     this.sketch.rect(
       this.grid.getRealCoordinateX(this.component.x) - paddingX / 2,
       this.grid.getRealCoordinateY(this.component.y) - paddingY / 2,
-      this.component.w + paddingX,
-      this.component.h + paddingY,
+      this.component.w * this.grid.scalingFactor + paddingX,
+      this.component.h * this.grid.scalingFactor + paddingY,
       this.grid.scalingFactor * 0
     );
 
