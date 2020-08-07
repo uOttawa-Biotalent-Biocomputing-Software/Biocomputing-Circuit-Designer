@@ -24,11 +24,6 @@ const s = ( sketch ) => {
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
-    // sketch.allComponents.push(new Component(imTest, 100, 50, Component.getNextId(), sketch, sketch.grid));
-    // sketch.allComponents.push(new Component(imTest, 500, 50, Component.getNextId(), sketch, sketch.grid));
-    // sketch.allComponents.push(new Component(imTest, 900, 50, Component.getNextId(), sketch, sketch.grid));
-    // sketch.allComponents.push(new Component(imTest, 1300, 50, Component.getNextId(), sketch, sketch.grid));
-
     sketch.menu = new LoadMenues(sketch, sketch.grid)
     
   }
