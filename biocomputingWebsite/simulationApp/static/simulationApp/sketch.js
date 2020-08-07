@@ -1,4 +1,3 @@
-let idClicked="empty";
 
 const s = ( sketch ) => {
 
@@ -64,13 +63,6 @@ const s = ( sketch ) => {
     //if mousePressed on sidebar
     if(sketch.mouseX < 0) {
       return;
-      // if(idClicked!="empty"){
-      //   drag = document.getElementById(idClicked).src;
-      //   idClicked = 'empty';
-      // }else{
-      //   drag = null;
-      // }
-      // return;
     }
     else{
       sketch.drag = null;

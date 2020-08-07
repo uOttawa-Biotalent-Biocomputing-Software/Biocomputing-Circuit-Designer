@@ -67,8 +67,6 @@ class ExampleComponent{
             this.img.title = this.component.name;
             this.img.mousePressed(() => {
                 this.sketch.drag = [this.component, this.type];
-
-                console.log(idClicked);
             })
 
         }

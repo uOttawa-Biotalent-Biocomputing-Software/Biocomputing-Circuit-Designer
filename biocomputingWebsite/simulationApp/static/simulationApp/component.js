@@ -31,7 +31,7 @@ class Component {
   constructor(comp, type, initialX, initialY, id, sketch, grid) {
     this.component = comp;
     this.type = type;
-    this.p5img = sketch.loadImage(baseUrl+ "simulationApp/images/" + this.type.folder + this.component.img, this.component.name);
+    this.p5img = sketch.loadImage(baseUrl+ "simulationApp/images/" + this.type.folder + this.component.img);
     this.w = this.component.width;
     this.h = this.component.height;
     this.x = initialX;
