@@ -1,5 +1,10 @@
 class Component {
   static active = [];
+  static nextId = 0;
+
+  static getNextId() {
+    return Component.nextId++;
+  }
 
   static isInActive(component) {
     return Component.active.includes(component);
@@ -23,12 +28,12 @@ class Component {
   static mouseOnNode = false;
   static clickedNode;
 
-  constructor(path, initialX, initialY, id, sketch, grid) {
-    this.sketch = sketch;
-    this.grid = grid;
-    this.img = sketch.loadImage(path);;
-    this.w = 120 * this.grid.scalingFactor;
-    this.h = 96 * this.grid.scalingFactor;
+  constructor(comp, type, initialX, initialY, id, sketch, grid) {
+    this.component = comp;
+    this.type = type;
+    this.p5img = sketch.loadImage(baseUrl+ "simulationApp/images/" + this.type.folder + this.component.img);
+    this.w = this.component.width*this.grid.scalingFactor; //120*this.grid.scalingFactor
+    this.h = this.component.height*this.grid.scalingFactor; //96*this.grid.scalingFactor
     this.x = initialX;
     this.y = initialY;
     this.offsetX = 0;
@@ -63,7 +68,7 @@ class Component {
   }
 
   show() {
-    this.sketch.image(this.img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);  
+    this.sketch.image(this.p5img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w*this.grid.scalingFactor, this.h*this.grid.scalingFactor);  
 
   }
 
@@ -73,7 +78,7 @@ class Component {
     let realY = this.grid.getRealCoordinateY(this.y);
     let realPaddingX = this.calculatePadding();
     let realPaddingY = this.calculatePadding();
-    if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h+realPaddingY) {
+    if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+(this.w * this.grid.scalingFactor)+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+(this.h*this.grid.scalingFactor)+realPaddingY) {
       return true;
     }
     return false;

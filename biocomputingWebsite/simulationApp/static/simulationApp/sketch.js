@@ -18,9 +18,6 @@ const s = ( sketch ) => {
   sketch.allComponents = [];
   sketch.allComponentsBack = [];
   sketch.allEdges = [];
-  //sketch.sidebar = [];
-
-  componentCount = 4;
 
   //top bar
   sketch.topBar = new topBar(5, sketch);
@@ -45,11 +42,8 @@ const s = ( sketch ) => {
     // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
-    sketch.allComponents.push(new Component(im, 100, 50, 0, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 500, 50, 1, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 900, 50, 2, sketch, sketch.grid));
-    sketch.allComponents.push(new Component(im, 1300, 50, 3, sketch, sketch.grid));
-    //sketch.sidebar = new Sidebar(sketch, sketch.grid);
+    sketch.menu = new LoadMenues(sketch, sketch.grid)
+    
   }
 
   // p5.js continuously call this method
@@ -73,23 +67,17 @@ const s = ( sketch ) => {
     sketch.resizeCanvas(sketch.wanted_width, sketch.wanted_height, true);
   }
 
-  let drag = null;
+  sketch.drag = null;
   // mouse pressed event
   sketch.mousePressed = () => {
     if(sketch.mouseY < 0) {return;}
     
     //if mousePressed on sidebar
     if(sketch.mouseX < 0) {
-      if(idClicked!="empty"){
-        drag = document.getElementById(idClicked).src;
-        idClicked = 'empty';
-      }else{
-        drag = null;
-      }
       return;
     }
     else{
-      drag = null;
+      sketch.drag = null;
     }
 
     //topbar
@@ -99,7 +87,7 @@ const s = ( sketch ) => {
         switch (sketch.topBar.buttonID){
           case 1:
             //back button
-            if(sketch.allComponents.length>4){
+            if(sketch.allComponents.length>0){
               sketch.allComponentsBack.push(sketch.allComponents.pop());
             }
             break;
@@ -132,7 +120,7 @@ const s = ( sketch ) => {
     else{
 
       sketch.backgroundPressed = true;
-      console.log('Canvas is Clicked');
+      // console.log('Canvas is Clicked');
 
       if (Component.mouseOnNode) {
         sketch.allEdges.push(new Edge(Component.clickedNode, sketch, sketch.lineProperty));
@@ -162,7 +150,6 @@ const s = ( sketch ) => {
               comp.stopMoving();
             }
           }
-
         }
       }
     }
@@ -208,14 +195,20 @@ const s = ( sketch ) => {
   sketch.mouseReleased = () => {
 
     //Drag and drop elements to canvas from sidebar
-    if(drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
-      let w = 120 * sketch.grid.scalingFactor;
-      let h = 96 * sketch.grid.scalingFactor;
-      let x = sketch.grid.getGridCoordinateX(sketch.mouseX-w/2);
-      let y = sketch.grid.getGridCoordinateY(sketch.mouseY-h/2);
+//    if(drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
+//      let w = 120 * sketch.grid.scalingFactor;
+//      let h = 96 * sketch.grid.scalingFactor;
+//      let x = sketch.grid.getGridCoordinateX(sketch.mouseX-w/2);
+//      let y = sketch.grid.getGridCoordinateY(sketch.mouseY-h/2);
 
-      sketch.allComponents.push(new Component(drag, x, y, componentCount, sketch, sketch.grid));
-      componentCount++;
+    if(sketch.drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
+
+      x = sketch.grid.getGridCoordinateX(sketch.mouseX) - (sketch.drag[0].width*sketch.grid.scalingFactor)/2;
+      y = sketch.grid.getGridCoordinateY(sketch.mouseY) - (sketch.drag[0].height*sketch.grid.scalingFactor)/2;
+
+      // need to changed the new componentImg in future!!
+      sketch.allComponents.push(new Component(sketch.drag[0], sketch.drag[1], x, y, Component.getNextId(), sketch, sketch.grid));
+      sketch.drag = null;
     }
 
 
@@ -242,23 +235,24 @@ const s = ( sketch ) => {
     if(sketch.backgroundPressed) {
       sketch.grid.stopMoving();
     }
-  }
-  for (comp of sketch.allComponents) {
-    if (Component.isInActive(comp.id)) {
-      comp.stopMoving();
+  
+    for (comp of sketch.allComponents) {
+      if (Component.isInActive(comp.id)) {
+        comp.stopMoving();
+      }
     }
   }
 
-  // when user scroll to resize the grid
-  sketch.mouseWheel = (event) => {
+    // when user scroll to resize the grid
+    sketch.mouseWheel = (event) => {
     // call the resize method in each component
     if(sketch.mouseX<0){return;};
     if(sketch.mouseY<0){return;};
     if (sketch.topBar.mouseOnBar){return;};
     sketch.grid.resize(-event.delta/1000); 
   }
-
 }
+
 // create the canvas with the sketch
 var myp5 = new p5(s, document.getElementById("myContainer"));
 
