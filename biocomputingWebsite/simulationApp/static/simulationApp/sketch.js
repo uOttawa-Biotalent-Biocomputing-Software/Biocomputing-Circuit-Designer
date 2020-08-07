@@ -110,8 +110,8 @@ const s = ( sketch ) => {
     //Drag and drop elements to canvas from sidebar
     if(sketch.drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
 
-      x = sketch.grid.getGridCoordinateX(sketch.mouseX);
-      y = sketch.grid.getGridCoordinateY(sketch.mouseY);
+      x = sketch.grid.getGridCoordinateX(sketch.mouseX) - (sketch.drag[0].width*sketch.grid.scalingFactor)/2;
+      y = sketch.grid.getGridCoordinateY(sketch.mouseY) - (sketch.drag[0].height*sketch.grid.scalingFactor)/2;
 
       // need to changed the new componentImg in future!!
       sketch.allComponents.push(new Component(sketch.drag[0], sketch.drag[1], x, y, Component.getNextId(), sketch, sketch.grid));
