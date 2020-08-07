@@ -29,7 +29,7 @@
   width: 100%;
   height: var(--top-bar-height);
   flex-grow: 1;
-
+  display: flex;
 }
 
 
@@ -42,7 +42,7 @@
 
 #myContainer {
   width: 100%; 
-  height: 100%; 
+  height: calc(100% - var(--top-bar-height)); 
   background-color: white;
   position: relative;
 }
@@ -50,4 +50,13 @@
 #defaultCanvas0 {
   width: 100%;
   height: 100%;
+}
+
+.top-bar-element {
+  width: min-content;
+  height: min-content;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  padding: 1rem;
+  border: 1px solid black;
 }

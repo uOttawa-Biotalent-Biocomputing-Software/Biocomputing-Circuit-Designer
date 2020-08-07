@@ -5,6 +5,8 @@ const s = ( sketch ) => {
   sketch.getDimensions = () => {
     sketch.wanted_height = document.getElementById("myContainer").scrollHeight;
     sketch.wanted_width = document.getElementById("myContainer").scrollWidth;
+    console.log(sketch.wanted_height);
+    console.log(sketch.wanted_width)
     // console.log(document.getElementById("myContainer").offsetWidth)
   }
 
@@ -45,12 +47,7 @@ const s = ( sketch ) => {
   // handle resize events
   sketch.resize = () => {
     sketch.getDimensions();
-    // sketch.resizeCanvas(sketch.wanted_width, sketch.wanted_height, true);
-    // document.getElementById("myContainer").style.width = (document.getElementsByClassName("sketchbox")[0].offsetHeight) - (document.getElementsByClassName("top-bar")[0].offsetHeight);
-    document.getElementById("myContainer").style.width = "100%";
-    document.getElementById("myContainer").style.height = "100%";
-    document.getElementById("defaultCanvas0").style.width = "100%";
-    document.getElementById("defaultCanvas0").style.height = "100%";
+    sketch.resizeCanvas(sketch.wanted_width, sketch.wanted_height, true);
 
   }
 

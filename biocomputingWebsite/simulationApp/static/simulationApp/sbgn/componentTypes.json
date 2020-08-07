@@ -9,7 +9,7 @@
         {
             "name":"Connecting Arcs",
             "id":"connecting-arcs",
-            "location":"side",
+            "location":"top",
             "folder":"connecting_arcs/"
         }
     ]
