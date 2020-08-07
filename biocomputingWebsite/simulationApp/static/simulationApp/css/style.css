@@ -163,35 +163,6 @@ textarea{
   transform: translateX(-50%) translateY(-50%);
 }
 
-/*Index page*/
-
-.sketchbox {
-  position: relative;
-  height: 100%;
-  width: 100%;
-}
-/*
-.components {
-  float: left;
-  width: 260px;
-  height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-#components img {
-  position: relative;
-
-}
-*/
-#myContainer {
-  width: calc(100% - 260px); 
-  height: 100%; 
-  background-color: white;
-
-  float: right;
-}
-
 .fixed-top {
   background-color: #078296;
   position: relative;

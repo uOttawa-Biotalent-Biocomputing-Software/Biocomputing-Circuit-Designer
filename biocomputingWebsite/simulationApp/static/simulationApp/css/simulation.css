@@ -1,0 +1,53 @@
+/*Index page*/
+:root {
+  --top-bar-height: 10vh;
+  --side-bar-width: 10vw
+}
+
+.index-left {
+  position: relative;
+  width: var(--side-bar-width);
+  flex-grow: 1;
+}
+
+.index-right {
+  flex-grow: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.components {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.top-bar {
+  width: 100%;
+  height: var(--top-bar-height);
+  flex-grow: 1;
+
+}
+
+
+.sketchbox {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+#myContainer {
+  width: 100%; 
+  height: 100%; 
+  background-color: white;
+  position: relative;
+}
+
+#defaultCanvas0 {
+  width: 100%;
+  height: 100%;
+}

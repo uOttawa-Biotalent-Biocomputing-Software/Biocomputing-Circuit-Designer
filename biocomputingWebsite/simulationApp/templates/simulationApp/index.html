@@ -4,14 +4,20 @@
 {% block bodysetting %}<body id="body" style="height: 93.6vh; margin: 0px;" onresize="resize()">{% endblock bodysetting %}
 
 {% block content %}
-	<link rel="stylesheet" type="text/css" href="{% static 'simulationApp/css/sideBarStyle.css' %}"></link>
+	<link rel="stylesheet" type="text/css" href="{% static 'simulationApp/css/simulation.css' %}"></link>
 
 	<div class="sketchbox">
-		<div class="components" id="components">
-		
+		<div class="index-left">
+			<div class="components" id="components">
+			</div>
 		</div>
 
-		<div id="myContainer" class="droptarget"></div>
+		<div class="index-right">
+
+			<div class="top-bar"><h1>aa</h1><br><h1>aa</h1></div>
+	
+			<div id="myContainer" class="droptarget"></div>
+		</div>
 	</div>
 	
 	<script src="{% static 'simulationApp/p5.js' %}"></script>
