@@ -70,7 +70,7 @@ class Component {
   }
 
   show() {
-    this.sketch.image(this.p5img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w, this.h);  
+    this.sketch.image(this.p5img, this.grid.getRealCoordinateX(this.x), this.grid.getRealCoordinateY(this.y), this.w*this.grid.scalingFactor, this.h*this.grid.scalingFactor);  
 
   }
 
@@ -80,7 +80,7 @@ class Component {
     let realY = this.grid.getRealCoordinateY(this.y);
     let realPaddingX = this.calculatePadding();
     let realPaddingY = this.calculatePadding();
-    if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+this.w+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+this.h+realPaddingY) {
+    if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+(this.w * this.grid.scalingFactor)+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+(this.h*this.grid.scalingFactor)+realPaddingY) {
       return true;
     }
     return false;
