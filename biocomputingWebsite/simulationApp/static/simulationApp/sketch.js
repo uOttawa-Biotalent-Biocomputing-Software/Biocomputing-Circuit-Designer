@@ -46,6 +46,7 @@ const s = ( sketch ) => {
   }
 
   sketch.drag = null;
+  sketch.select = null;
   // mouse pressed event
   sketch.mousePressed = () => {
     if(sketch.mouseY < 0) {return;}
@@ -57,7 +58,6 @@ const s = ( sketch ) => {
     else{
       sketch.drag = null;
     }
-
 
     sketch.backgroundPressed = true;
     // console.log('Canvas is Clicked');
@@ -109,6 +109,15 @@ const s = ( sketch ) => {
       sketch.drag = null;
     }
 
+    // Changing Arc Selection
+    if (sketch.select != null) {
+      var allArcs = document.getElementById("top-bar").querySelectorAll(".top-bar-element");
+      for (arc of allArcs) {
+        arc.style.border = "1px solid black";
+      }
+      document.getElementById(sketch.select[0].id).style.border = '2px solid #F00';
+    }
+
 
     if (Edge.isDrawingNewEdge) {
       Edge.isDrawingNewEdge = false;
@@ -147,6 +156,8 @@ const s = ( sketch ) => {
   }
 
 }
+
+
 // create the canvas with the sketch
 var myp5 = new p5(s, document.getElementById("myContainer"));
 

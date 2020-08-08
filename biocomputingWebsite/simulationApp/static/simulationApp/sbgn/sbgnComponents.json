@@ -7,8 +7,7 @@
             "img": "catalysis.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Consumption",
@@ -17,7 +16,7 @@
             "img": "consumption.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Equivalence Arc",
@@ -26,8 +25,7 @@
             "img": "equivalence_arc.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Inhibition",
@@ -36,8 +34,7 @@
             "img": "inhibition.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Logic Arc",
@@ -46,8 +43,7 @@
             "img": "logic_arc.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Modulation",
@@ -56,8 +52,7 @@
             "img": "modulation.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Necessary Stimulation",
@@ -66,8 +61,7 @@
             "img": "necessary-stimulation.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Production",
@@ -76,8 +70,7 @@
             "img": "production.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Stimulation",
@@ -86,8 +79,7 @@
             "img": "stimulation.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
 
 
