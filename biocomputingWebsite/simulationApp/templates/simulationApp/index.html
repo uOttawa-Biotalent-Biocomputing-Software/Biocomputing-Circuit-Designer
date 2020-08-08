@@ -31,6 +31,7 @@
 
 	
 	<script>
+		// Loading JSON Files to JS
 		loadJson = function(url, callback, failCallback) {
 			var xmlhttp;
 
@@ -97,32 +98,22 @@
 				} catch(e) {
 					setTimeout(load, 25);
 				}
-			} 
-
+			}
 			load();
-				//Folding of the component menus
+			
+			//Folding of the component menus
 			var acc = document.getElementsByClassName("accordion");
-			var i, j;
-
+			var i;
 			for (i = 0; i < acc.length; i++) {
 				acc[i].addEventListener("click", function() {
-
-					for(j = 0; j < acc.length; j++){
-						if(j!=i){
-							acc[j].classList.toggle("active", false);
-							var panelJ = acc[j].nextElementSibling;
-							panelJ.style.display = "none";
-						}
-					}
-
-					this.classList.toggle("active", true);
-
+					this.classList.toggle("active");
 					var panel = this.nextElementSibling;
-					if (panel.style.display === "block") {
-						panel.style.display = "none";
+
+					if (panel.style.maxHeight) {
+						panel.style.maxHeight = null;
 						this.classList.toggle("active", false);
 					} else {
-						panel.style.display = "grid";
+						panel.style.maxHeight = panel.scrollHeight + "px";
 					}
 				});
 			}

@@ -61,7 +61,6 @@ class Edge {
     }
 
     showEdge() {
-        this.sketch.strokeWeight(4);
         if (this.edgeType == 'ca') {
             this.sketch.line(this.v1.x, this.v1.y, this.v2.x - 12, this.v2.y);
             this.sketch.fill(0, 0, 0, 0);
