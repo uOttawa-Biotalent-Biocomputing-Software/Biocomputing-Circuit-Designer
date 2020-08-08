@@ -8,9 +8,7 @@ class LoadMenues {
         
     }
 
-    loadMenues(components, types) {
-
-
+    SortComponentTypes(components, types) {
         for(let type of types["Components Types"]) {
             let comps = [];
             for(let c of components["Components"]) {
@@ -45,17 +43,12 @@ class ComponentType {
         
         this.eComponents = [];
         for (let comp of components) {
-            this.eComponents.push(new ExampleComponent(this.type, comp, this.sketch, this.grid));
+            this.eComponents.push(new SBGN_Component(this.type, comp, this.sketch, this.grid));
         }
     }
 }
 
-// class topBarButtons {
-//     // create the html components
-//     constructor(f)
-// }
-
-class ExampleComponent{
+class SBGN_Component {
     constructor (type, component, sketch, grid) {
         this.sketch = sketch;
         this.grid = grid;
@@ -69,24 +62,23 @@ class ExampleComponent{
             this.div.class("grid-item");
             this.div.id(this.component.id);
             this.parent = document.getElementById(this.component.id)
-            
-            
-        } else if(type.location == "top") {
+        } 
+        else if(type.location == "top") {
             this.div = this.sketch.createDiv();
             this.div.parent(document.getElementsByClassName("top-bar")[0]);
             this.div.class("top-bar-element");
             this.div.id(this.component.id);
-
             this.parent = document.getElementById(this.component.id);
             
         }
+
+        // Adding Image + Properties from JSON Components File
         this.img = this.sketch.createImg(baseUrl+ "simulationApp/images/" + this.type.folder + this.component.img, this.component.name);
         this.img.parent(this.parent);
         this.img.id = "img-" + this.component.id;
         this.img.title = this.component.name;
         this.img.mousePressed(eval(this.component.function));
+        this.img.size(this.component.width, this.component.height);
 
     }
-
-    
 }

@@ -5,8 +5,8 @@
             "id":"ca",
             "typeId": "connecting-arcs",
             "img": "catalysis.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
 
         },
@@ -15,8 +15,8 @@
             "id":"co",
             "typeId": "connecting-arcs",
             "img": "consumption.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -24,8 +24,8 @@
             "id":"ea",
             "typeId": "connecting-arcs",
             "img": "equivalence_arc.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
 
         },
@@ -34,8 +34,8 @@
             "id":"in",
             "typeId": "connecting-arcs",
             "img": "inhibition.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
 
         },
@@ -44,8 +44,8 @@
             "id":"la",
             "typeId": "connecting-arcs",
             "img": "logic_arc.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
 
         },
@@ -54,8 +54,8 @@
             "id":"mo",
             "typeId": "connecting-arcs",
             "img": "modulation.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
 
         },
@@ -64,8 +64,8 @@
             "id":"necessary-stimulation",
             "typeId": "connecting-arcs",
             "img": "necessary-stimulation.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
 
         },
@@ -74,8 +74,8 @@
             "id":"production",
             "typeId": "connecting-arcs",
             "img": "production.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
 
         },
@@ -84,8 +84,8 @@
             "id":"stimulation",
             "typeId": "connecting-arcs",
             "img": "stimulation.png",
-            "width": 50,
-            "height": 50,
+            "width": 30,
+            "height": 24,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
 
         },

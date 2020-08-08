@@ -1,13 +1,8 @@
-
 const s = ( sketch ) => {
-
 
   sketch.getDimensions = () => {
     sketch.wanted_height = document.getElementById("myContainer").scrollHeight;
     sketch.wanted_width = document.getElementById("myContainer").scrollWidth;
-    console.log(sketch.wanted_height);
-    console.log(sketch.wanted_width)
-    // console.log(document.getElementById("myContainer").offsetWidth)
   }
 
   sketch.grid = new Grid(sketch);
@@ -22,7 +17,6 @@ const s = ( sketch ) => {
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
-    // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
     sketch.menu = new LoadMenues(sketch, sketch.grid)
@@ -118,8 +112,6 @@ const s = ( sketch ) => {
 
     if (Edge.isDrawingNewEdge) {
       Edge.isDrawingNewEdge = false;
-      // console.log(sketch.allEdges[sketch.allEdges.length -1]);
-      // console.log(sketch.allEdges);
 
       let valid = sketch.allEdges[sketch.allEdges.length -1].isOnANode();
       if (valid) {
