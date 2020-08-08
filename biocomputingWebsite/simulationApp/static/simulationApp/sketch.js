@@ -14,12 +14,14 @@ const s = ( sketch ) => {
   sketch.allComponents = [];
   sketch.allEdges = [];
 
+  sketch.edgeType = 'ca'; // Default
+
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
     sketch.pixelDensity(1);
 
-    sketch.menu = new LoadMenues(sketch, sketch.grid)
+    sketch.menu = new LoadMenues(sketch, sketch.grid);
     
     sketch.resize();
   }
@@ -63,7 +65,7 @@ const s = ( sketch ) => {
     // console.log('Canvas is Clicked');
 
     if (Component.mouseOnNode) {
-      sketch.allEdges.push(new Edge(Component.clickedNode, sketch));
+      sketch.allEdges.push(new Edge(Component.clickedNode, sketch, sketch.edgeType));
       Component.resetActiveComponents();
       Edge.isDrawingNewEdge = true;
 
@@ -116,6 +118,7 @@ const s = ( sketch ) => {
         arc.style.border = "1px solid black";
       }
       document.getElementById(sketch.select[0].id).style.border = '2px solid #F00';
+      sketch.edgeType = sketch.select[0].id;
     }
 
 

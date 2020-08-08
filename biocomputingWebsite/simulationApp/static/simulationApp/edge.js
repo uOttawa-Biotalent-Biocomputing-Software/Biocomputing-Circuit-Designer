@@ -2,15 +2,19 @@ class Edge {
 
     static isDrawingNewEdge = false;
 
-    constructor(from, sketch) {
+    constructor(from, sketch, type) {
         this.from = from;
         this.to;
         
-        this.realx1;
-        this.realy1;
+        // Line 1
+        this.v1 = sketch.createVector(0,0);
+        this.v2 = sketch.createVector(0,0);
 
-        this.realx2;
-        this.realy2;
+        // Line 2
+        this.v3 = sketch.createVector(50, 50);
+        this.v4 = sketch.createVector(100, 100);
+
+        this.edgeType = type;
 
         this.state = 0;
         
@@ -21,25 +25,66 @@ class Edge {
 
     update() {
         this.calculateCoordinates();
+        this.perp();
         this.showEdge();
         
     }
 
     calculateCoordinates() {
-        this.realx1 = this.from.realX;
-        this.realy1 = this.from.realY;
+        this.v1.x = this.from.realX;
+        this.v1.y = this.from.realY;
 
         if(this.state == 0) {
-            this.realx2 = this.sketch.mouseX;
-            this.realy2 = this.sketch.mouseY;
-        } else if(this.state == 1) {
-            this.realx2 = this.to.realX
-            this.realy2 = this.to.realY;
+            this.v2.x = this.sketch.mouseX;
+            this.v2.y = this.sketch.mouseY;
+
+            this.v3.x = this.sketch.mouseX;
+            this.v3.y = this.sketch.mouseY;
+        } 
+        else if(this.state == 1) {
+            this.v2.x = this.to.realX;
+            this.v2.y = this.to.realY;
+
+            this.v3.x = this.to.realX;
+            this.v3.y = this.to.realY;    
         }
     }
 
+    // Perpendicular Line Function
+    perp() {
+        // First convert the line to a normalised unit vector
+        let b=(this.v2.copy().sub(this.v1)).setMag(1)
+        
+        // Translate the target point and get the dot product
+        let lambda=(this.v3.copy().sub(this.v1)).dot(b)
+        this.v4=b.copy().mult(lambda).add(this.v1)  
+    }
+
     showEdge() {
-        this.sketch.line(this.realx1, this.realy1, this.realx2, this.realy2);
+        this.sketch.strokeWeight(4);
+        if (this.edgeType == 'ca') {
+            this.sketch.line(this.v1.x, this.v1.y, this.v2.x - 12, this.v2.y);
+            this.sketch.fill(0, 0, 0, 0);
+            this.sketch.circle(this.v2.x, this.v2.y, 24);
+        }
+        else if (this.edgeType == 'co' || this.edgeType == 'ea' ||this.edgeType == 'la') {
+            this.sketch.line(this.v1.x, this.v1.y, this.v2.x, this.v2.y);
+        }
+        else if (this.edgeType == 'in') {
+            this.sketch.line(this.v1.x, this.v1.y, this.v2.x, this.v2.y);
+            this.sketch.line(this.v3.x + 32, this.v3.y, this.v4.x - 32, this.v4.y);
+        }
+        else if (this.edgeType == 'mo') {
+            this.sketch.line(this.v1.x, this.v1.y, this.v2.x - 32, this.v2.y);
+            // Diamond Shape
+            this.sketch.beginShape();
+                this.sketch.fill(0, 0, 0, 0);
+                this.sketch.vertex(this.v2.x - 32, this.v2.y);
+                this.sketch.vertex(this.v2.x - 16, this.v2.y + 16);
+                this.sketch.vertex(this.v2.x, this.v2.y);
+                this.sketch.vertex(this.v2.x - 16, this.v2.y - 16);
+            this.sketch.endShape(this.sketch.CLOSE);
+        }
     }
 
     isOnANode() {
