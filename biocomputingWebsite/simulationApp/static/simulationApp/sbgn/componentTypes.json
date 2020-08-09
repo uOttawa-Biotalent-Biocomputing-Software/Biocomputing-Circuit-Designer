@@ -6,6 +6,28 @@
             "location":"side",
             "folder":"entity_pool_nodes/"
         },
+
+        {
+            "name":"Logic Operators",
+            "id":"lo",
+            "location":"side",
+            "folder":"entity_pool_nodes/"
+        },
+
+        {
+            "name":"Process Nodes",
+            "id":"pn",
+            "location":"side",
+            "folder":"entity_pool_nodes/"
+        },
+
+        {
+            "name":"Reference Node",
+            "id":"rn",
+            "location":"side",
+            "folder":"entity_pool_nodes/"
+        },
+
         {
             "name":"Connecting Arcs",
             "id":"connecting-arcs",
