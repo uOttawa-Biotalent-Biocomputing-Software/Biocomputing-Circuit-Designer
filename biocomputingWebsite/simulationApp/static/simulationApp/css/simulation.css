@@ -1,13 +1,21 @@
 /*Index page*/
 :root {
   --top-bar-height: 7vh;
-  --side-bar-width: 14vw;
+  --side-bar-width: 16vw;
+}
+
+body {
+  overflow: hidden;
 }
 
 .index-left {
   position: relative;
   width: var(--side-bar-width);
   flex-grow: 1;
+}
+.scrollable {
+  overflow-y: scroll;
+  height: 100%;
 }
 
 .index-right {
@@ -61,14 +69,15 @@
 }
 
 .panel {
-  margin-left: 5px;
   background-color: white;
   overflow: hidden;
   width: 100%;
   max-height: 0;
-  display: grid;
+  display: flex;
   transition: max-height 0.2s ease-out;
   grid-template-columns: 83px 83px 83px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .grid-item{

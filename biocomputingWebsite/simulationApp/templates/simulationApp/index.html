@@ -8,7 +8,9 @@
 
 	<div class="sketchbox">
 		<div class="index-left">
-			<div class="components" id="components">
+			<div class="scrollable">
+				<div class="components" id="components">
+			</div>
 			</div>
 		</div>
 
@@ -113,7 +115,7 @@
 						panel.style.maxHeight = null;
 						this.classList.toggle("active", false);
 					} else {
-						panel.style.maxHeight = panel.scrollHeight + "px";
+						panel.style.maxHeight = "min-content";
 					}
 				});
 			}
