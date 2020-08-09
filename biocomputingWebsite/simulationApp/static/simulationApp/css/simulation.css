@@ -14,7 +14,7 @@ body {
   flex-grow: 1;
 }
 .scrollable {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
 }
 
