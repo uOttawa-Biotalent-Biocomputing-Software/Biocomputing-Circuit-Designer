@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.clickjacking import xframe_options_exempt
+
 
 from .models import Project
 
 # Create your views here.
 
+@xframe_options_exempt
 def simulation(request):
     return render(request, 'simulationApp/index.html')
 
