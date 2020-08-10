@@ -218,9 +218,9 @@
         },
         {
             "name": "Uncertain Process",
-            "id": "Uncertain Process",
+            "id": "uncertain-process",
             "typeId": "pn",
-            "img": ".png",
+            "img": "uncertain-process.png",
             "width": 120,
             "height": 96,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"

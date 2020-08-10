@@ -68,7 +68,7 @@ class ExampleComponent{
             this.div.parent(document.getElementById(this.type.id));
             this.div.class("grid-item");
             this.div.id(this.component.id);
-            this.parent = document.getElementById(this.component.id)
+            this.parent = document.getElementById(this.component.id);
             
             
         } else if(type.location == "top") {
@@ -85,7 +85,6 @@ class ExampleComponent{
         this.img.id = "img-" + this.component.id;
         this.img.title = this.component.name;
         this.img.mousePressed(eval(this.component.function));
-
     }
 
     

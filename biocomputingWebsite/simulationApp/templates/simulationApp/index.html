@@ -100,13 +100,15 @@
 			} 
 
 			load();
-				//Folding of the component menus
+			
+			//Folding of the component menus
 			var acc = document.getElementsByClassName("accordion");
 			var i, j;
 
 			for (i = 0; i < acc.length; i++) {
 				acc[i].addEventListener("click", function() {
 
+					console.log("accordion working");
 					for(j = 0; j < acc.length; j++){
 						if(j!=i){
 							acc[j].classList.toggle("active", false);

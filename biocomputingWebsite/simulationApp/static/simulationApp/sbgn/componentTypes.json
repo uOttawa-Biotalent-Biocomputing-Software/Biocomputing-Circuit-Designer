@@ -11,21 +11,21 @@
             "name":"Logic Operators",
             "id":"lo",
             "location":"side",
-            "folder":"entity_pool_nodes/"
+            "folder":"logic_operators/"
         },
 
         {
             "name":"Process Nodes",
             "id":"pn",
             "location":"side",
-            "folder":"entity_pool_nodes/"
+            "folder":"process_nodes/"
         },
 
         {
             "name":"Reference Node",
             "id":"rn",
             "location":"side",
-            "folder":"entity_pool_nodes/"
+            "folder":"reference_node/"
         },
 
         {
