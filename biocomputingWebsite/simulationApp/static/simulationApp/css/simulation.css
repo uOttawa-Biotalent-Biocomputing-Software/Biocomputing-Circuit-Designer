@@ -89,9 +89,11 @@ body {
 /* Topbar */
 .top-bar {
   width: 100%;
-  height: var(--top-bar-height);
+  /* height: var(--top-bar-height); */
   flex-grow: 1;
   display: flex;
+  flex-wrap: wrap;
+
 }
 
 
@@ -117,8 +119,7 @@ body {
 .top-bar-element {
   width: min-content;
   height: min-content;
-  margin-top: 0.5rem;
-  margin-left: 1rem;
+  margin: 0.5rem;
   padding: 0.5rem;
   border: 1px solid black;
 }
