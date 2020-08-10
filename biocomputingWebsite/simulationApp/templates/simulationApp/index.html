@@ -97,28 +97,30 @@
 				
 				try {
 					myp5.menu.SortComponentTypes(allComponents, allTypes);
+					//Folding of the component menus
+					var acc = document.getElementsByClassName("accordion");
+					var i;
+					for (i = 0; i < acc.length; i++) {
+						acc[i].addEventListener("click", function() {
+							this.classList.toggle("active");
+							var panel = this.nextElementSibling;
+
+							if (panel.style.maxHeight) {
+								panel.style.maxHeight = null;
+								this.classList.toggle("active", false);
+							} else {
+								panel.style.maxHeight = "min-content";
+							}
+						});
+					}
 				} catch(e) {
+					console.log("try again")
 					setTimeout(load, 25);
 				}
 			}
 			load();
 			
-			//Folding of the component menus
-			var acc = document.getElementsByClassName("accordion");
-			var i;
-			for (i = 0; i < acc.length; i++) {
-				acc[i].addEventListener("click", function() {
-					this.classList.toggle("active");
-					var panel = this.nextElementSibling;
-
-					if (panel.style.maxHeight) {
-						panel.style.maxHeight = null;
-						this.classList.toggle("active", false);
-					} else {
-						panel.style.maxHeight = "min-content";
-					}
-				});
-			}
+			
 		}
 
 		failCallbackMulti = function(url) {
