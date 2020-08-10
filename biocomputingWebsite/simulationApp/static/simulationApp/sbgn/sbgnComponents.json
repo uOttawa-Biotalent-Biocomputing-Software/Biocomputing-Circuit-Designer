@@ -1,21 +1,246 @@
 {
     "Components" : [
         {
-            "name": "Connecting Arc",
+            "name": "Catalysis",
             "id":"ca",
             "typeId": "connecting-arcs",
             "img": "catalysis.png",
-            "width": 50,
-            "height": 50
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
+        {
+            "name": "Consumption",
+            "id":"co",
+            "typeId": "connecting-arcs",
+            "img": "consumption.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
+        {
+            "name": "Equivalence Arc",
+            "id":"ea",
+            "typeId": "connecting-arcs",
+            "img": "equivalence_arc.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
+        {
+            "name": "Inhibition",
+            "id":"in",
+            "typeId": "connecting-arcs",
+            "img": "inhibition.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
+        {
+            "name": "Logic Arc",
+            "id":"la",
+            "typeId": "connecting-arcs",
+            "img": "logic_arc.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
+        {
+            "name": "Modulation",
+            "id":"mo",
+            "typeId": "connecting-arcs",
+            "img": "modulation.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
+        {
+            "name": "Necessary Stimulation",
+            "id":"necessary-stimulation",
+            "typeId": "connecting-arcs",
+            "img": "necessary-stimulation.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
+        {
+            "name": "Production",
+            "id":"production",
+            "typeId": "connecting-arcs",
+            "img": "production.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
+        {
+            "name": "Stimulation",
+            "id":"stimulation",
+            "typeId": "connecting-arcs",
+            "img": "stimulation.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
+
+
+
+
         {
             "name": "Empty Set",
             "id": "empty-set",
             "typeId": "epn",
             "img": "empty-set.png",
-            "width": 100,
-            "height": 100
-        }
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Macromolecule",
+            "id": "macromolecule",
+            "typeId": "epn",
+            "img": "macromolecule.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Nucleic Acid Feature",
+            "id": "nucleic-acid",
+            "typeId": "epn",
+            "img": "nucleic-acid-feature.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Perturbing Agent",
+            "id": "perturbing-agent",
+            "typeId": "epn",
+            "img": "perturbing-agent.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Simple Chemical",
+            "id": "simple-chemical",
+            "typeId": "epn",
+            "img": "simple-chemical.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Unspecified Entity",
+            "id": "unspecified-entity",
+            "typeId": "epn",
+            "img": "unspecified-entity.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+
+
+
+
+        {
+            "name": "And",
+            "id": "and",
+            "typeId": "lo",
+            "img": "and.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Not",
+            "id": "not",
+            "typeId": "lo",
+            "img": "not.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Or",
+            "id": "or",
+            "typeId": "lo",
+            "img": "or.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+
+
+
+
+        {
+            "name": "Association",
+            "id": "association",
+            "typeId": "pn",
+            "img": "association.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Dissociation",
+            "id": "dissociation",
+            "typeId": "pn",
+            "img": "dissociation.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Omitted Process",
+            "id": "omitted-process",
+            "typeId": "pn",
+            "img": "omitted-process.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Phenotype",
+            "id": "phenotype",
+            "typeId": "pn",
+            "img": "phenotype.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Process",
+            "id": "process",
+            "typeId": "pn",
+            "img": "process.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Uncertian Process",
+            "id": "uncertain-process",
+            "typeId": "pn",
+            "img": "uncertain-process.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+
+
+
         
+        {
+            "name": "Tag",
+            "id": "tag",
+            "typeId": "rn",
+            "img": "tag.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        }
+
     ]
 }

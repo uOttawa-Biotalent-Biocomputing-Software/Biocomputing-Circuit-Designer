@@ -4,30 +4,36 @@
 {% block bodysetting %}<body id="body" style="height: 93.6vh; margin: 0px;" onresize="resize()">{% endblock bodysetting %}
 
 {% block content %}
-	<link rel="stylesheet" type="text/css" href="{% static 'simulationApp/css/sideBarStyle.css' %}"></link>
+	<link rel="stylesheet" type="text/css" href="{% static 'simulationApp/css/simulation.css' %}"></link>
 
 	<div class="sketchbox">
-		<div class="components" id="components">
-		
+		<div class="index-left">
+			<div class="scrollable">
+				<div class="components" id="components">
+			</div>
+			</div>
 		</div>
 
-		<div id="myContainer" class="droptarget"></div>
+		<div class="index-right">
+
+			<div id="top-bar" class="top-bar"></div>
+	
+			<div id="myContainer" class="droptarget"></div>
+		</div>
 	</div>
 	
 	<script src="{% static 'simulationApp/p5.js' %}"></script>
 	<script src="{% static 'simulationApp/contour.js' %}"></script>
 	<script src="{% static 'simulationApp/vertex.js' %}"></script>
 	<script src="{% static 'simulationApp/grid.js' %}"></script>
-	<script src="{% static 'simulationApp/topBarElement.js' %}"></script>
 	<script src="{% static 'simulationApp/LoadMenues.js' %}"></script>
-	<script src="{% static 'simulationApp/sidebar-component.js' %}"></script>
-	<script src="{% static 'simulationApp/topBar.js' %}"></script>
 	<script src="{% static 'simulationApp/component.js' %}"></script>
 	<script src="{% static 'simulationApp/sketch.js' %}"></script>
 	<script src="{% static 'simulationApp/edge.js' %}"></script>
 
 	
 	<script>
+		// Loading JSON Files to JS
 		loadJson = function(url, callback, failCallback) {
 			var xmlhttp;
 
@@ -90,39 +96,31 @@
 			function load() {
 				
 				try {
-					myp5.menu.loadSidebar(allComponents, allTypes);
+					myp5.menu.SortComponentTypes(allComponents, allTypes);
+					//Folding of the component menus
+					var acc = document.getElementsByClassName("accordion");
+					var i;
+					for (i = 0; i < acc.length; i++) {
+						acc[i].addEventListener("click", function() {
+							this.classList.toggle("active");
+							var panel = this.nextElementSibling;
+
+							if (panel.style.maxHeight) {
+								panel.style.maxHeight = null;
+								this.classList.toggle("active", false);
+							} else {
+								panel.style.maxHeight = "min-content";
+							}
+						});
+					}
 				} catch(e) {
+					console.log("try again")
 					setTimeout(load, 25);
 				}
-			} 
-
-			load();
-				//Folding of the component menus
-			var acc = document.getElementsByClassName("accordion");
-			var i, j;
-
-			for (i = 0; i < acc.length; i++) {
-				acc[i].addEventListener("click", function() {
-
-					for(j = 0; j < acc.length; j++){
-						if(j!=i){
-							acc[j].classList.toggle("active", false);
-							var panelJ = acc[j].nextElementSibling;
-							panelJ.style.display = "none";
-						}
-					}
-
-					this.classList.toggle("active", true);
-
-					var panel = this.nextElementSibling;
-					if (panel.style.display === "block") {
-						panel.style.display = "none";
-						this.classList.toggle("active", false);
-					} else {
-						panel.style.display = "grid";
-					}
-				});
 			}
+			load();
+			
+			
 		}
 
 		failCallbackMulti = function(url) {
@@ -139,8 +137,6 @@
 			this.h = h;
 			
 		}
-
-		
 	</script>
 
 
