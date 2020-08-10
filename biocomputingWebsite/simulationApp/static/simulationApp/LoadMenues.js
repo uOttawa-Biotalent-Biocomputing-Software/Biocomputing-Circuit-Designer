@@ -77,7 +77,7 @@ class SBGN_Component {
         this.img.parent(this.parent);
         this.img.id = "img-" + this.component.id;
         this.img.title = this.component.name;
-        this.img.mousePressed(eval(this.component.function));
+        this.div.mousePressed(eval(this.component.function));
         this.img.size(this.component.width, this.component.height);
 
     }
