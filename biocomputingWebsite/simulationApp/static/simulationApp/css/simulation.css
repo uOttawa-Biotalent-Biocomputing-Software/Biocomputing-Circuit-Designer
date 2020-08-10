@@ -1,7 +1,7 @@
 /*Index page*/
 :root {
   --top-bar-height: 7vh;
-  --side-bar-width: 16vw;
+  --side-bar-width: 12vw;
 }
 
 body {
@@ -81,8 +81,9 @@ body {
 }
 
 .grid-item{
-  margin: 16px;
+  margin: 0.2em;
   cursor: pointer;
+  flex-basis: 25%;
 }
 
 
@@ -90,7 +91,7 @@ body {
 .top-bar {
   width: 100%;
   /* height: var(--top-bar-height); */
-  flex-grow: 1;
+  /* flex-grow: 1; */
   display: flex;
   flex-wrap: wrap;
 
