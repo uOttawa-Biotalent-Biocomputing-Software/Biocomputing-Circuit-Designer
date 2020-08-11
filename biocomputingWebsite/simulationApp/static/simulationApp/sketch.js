@@ -142,11 +142,6 @@ const s = ( sketch ) => {
     
     //Top bar buttons for back/forward/delete
     if (sketch.click != null){
-      /*var interactBtn = document.getElementById("top-bar").querySelectorAll(".top-bar-interact");
-      for (btn of interactBtn){
-        btn.style.border = "1.5px solid blue";
-      }
-      document.getElementById(sketch.click[0].id).style.border = '2px solid red';*/
 
       if(sketch.click[0].id=='back'){
         //back button 
