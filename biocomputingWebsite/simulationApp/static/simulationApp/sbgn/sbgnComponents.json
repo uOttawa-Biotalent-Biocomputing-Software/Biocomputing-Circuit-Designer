@@ -5,83 +5,111 @@
             "id":"ca",
             "typeId": "connecting-arcs",
             "img": "catalysis.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Consumption",
             "id":"co",
             "typeId": "connecting-arcs",
             "img": "consumption.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Equivalence Arc",
             "id":"ea",
             "typeId": "connecting-arcs",
             "img": "equivalence_arc.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
-        },   
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
+        },
         {
             "name": "Inhibition",
             "id":"in",
             "typeId": "connecting-arcs",
             "img": "inhibition.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Logic Arc",
             "id":"la",
             "typeId": "connecting-arcs",
             "img": "logic_arc.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Modulation",
             "id":"mo",
             "typeId": "connecting-arcs",
             "img": "modulation.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Necessary Stimulation",
             "id":"necessary-stimulation",
             "typeId": "connecting-arcs",
             "img": "necessary-stimulation.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Production",
             "id":"production",
             "typeId": "connecting-arcs",
             "img": "production.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
         {
             "name": "Stimulation",
             "id":"stimulation",
             "typeId": "connecting-arcs",
             "img": "stimulation.png",
-            "width": 60,
-            "height": 48,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.select = [this.component, this.type];}"
         },
 
+
+        {
+            "name": "Back",
+            "id":"back",
+            "typeId": "interactive-buttons",
+            "img": "back.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.click = [this.component, this.type];}"
+        },
+        {
+            "name": "Forward",
+            "id":"forward",
+            "typeId": "interactive-buttons",
+            "img": "forward.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.click = [this.component, this.type];}"
+        },
+        {
+            "name": "Delete",
+            "id":"delete",
+            "typeId": "interactive-buttons",
+            "img": "delete.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.click = [this.component, this.type];}"
+        },
 
 
         {
@@ -89,26 +117,26 @@
             "id": "empty-set",
             "typeId": "epn",
             "img": "empty-set.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
             "name": "Macromolecule",
-            "id": "marcomolecule",
+            "id": "macromolecule",
             "typeId": "epn",
             "img": "macromolecule.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
             "name": "Nucleic Acid Feature",
-            "id": "nucleic-acid-feature",
+            "id": "nucleic-acid",
             "typeId": "epn",
             "img": "nucleic-acid-feature.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -116,17 +144,18 @@
             "id": "perturbing-agent",
             "typeId": "epn",
             "img": "perturbing-agent.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
+
         {
             "name": "Simple Chemical",
             "id": "simple-chemical",
             "typeId": "epn",
             "img": "simple-chemical.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -134,11 +163,10 @@
             "id": "unspecified-entity",
             "typeId": "epn",
             "img": "unspecified-entity.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
-
 
 
         {
@@ -146,8 +174,8 @@
             "id": "and",
             "typeId": "lo",
             "img": "and.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -155,8 +183,8 @@
             "id": "not",
             "typeId": "lo",
             "img": "not.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -164,11 +192,10 @@
             "id": "or",
             "typeId": "lo",
             "img": "or.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
-
 
 
         {
@@ -176,8 +203,8 @@
             "id": "association",
             "typeId": "pn",
             "img": "association.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -185,8 +212,8 @@
             "id": "dissociation",
             "typeId": "pn",
             "img": "dissociation.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -194,8 +221,8 @@
             "id": "omitted-process",
             "typeId": "pn",
             "img": "omitted-process.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -203,8 +230,8 @@
             "id": "phenotype",
             "typeId": "pn",
             "img": "phenotype.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
@@ -212,29 +239,30 @@
             "id": "process",
             "typeId": "pn",
             "img": "process.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
         {
-            "name": "Uncertain Process",
+            "name": "Uncertian Process",
             "id": "uncertain-process",
             "typeId": "pn",
             "img": "uncertain-process.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
 
 
 
+        
         {
             "name": "Tag",
             "id": "tag",
             "typeId": "rn",
             "img": "tag.png",
-            "width": 120,
-            "height": 96,
+            "width": 60,
+            "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         }
     ]

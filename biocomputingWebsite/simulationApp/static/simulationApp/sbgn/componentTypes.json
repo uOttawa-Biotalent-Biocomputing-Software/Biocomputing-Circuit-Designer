@@ -13,26 +13,32 @@
             "location":"side",
             "folder":"logic_operators/"
         },
-
         {
             "name":"Process Nodes",
             "id":"pn",
             "location":"side",
             "folder":"process_nodes/"
         },
-
         {
-            "name":"Reference Node",
+            "name":"Reference Nodes",
             "id":"rn",
             "location":"side",
             "folder":"reference_node/"
         },
-
+        
+        
+        
         {
             "name":"Connecting Arcs",
             "id":"connecting-arcs",
             "location":"top",
             "folder":"connecting_arcs/"
+        },
+        {
+            "name":"Interactive Buttons",
+            "id":"interactive-buttons",
+            "location":"top",
+            "folder":"page_buttons/"
         }
     ]
 }

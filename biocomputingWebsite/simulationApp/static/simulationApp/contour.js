@@ -4,7 +4,7 @@ class RectangleContour {
     this.sketch = this.component.sketch;
     this.grid = this.component.grid;
     this.size1 = 10;
-    this.size2 = 20;
+    this.size2 = 15;
 
     this.nodesLocation = [
       [

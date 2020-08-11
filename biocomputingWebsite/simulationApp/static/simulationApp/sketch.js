@@ -1,13 +1,8 @@
-
 const s = ( sketch ) => {
-
 
   sketch.getDimensions = () => {
     sketch.wanted_height = document.getElementById("myContainer").scrollHeight;
     sketch.wanted_width = document.getElementById("myContainer").scrollWidth;
-    console.log(sketch.wanted_height);
-    console.log(sketch.wanted_width)
-    // console.log(document.getElementById("myContainer").offsetWidth)
   }
 
   sketch.grid = new Grid(sketch);
@@ -18,14 +13,18 @@ const s = ( sketch ) => {
 
   sketch.allComponents = [];
   sketch.allEdges = [];
+  sketch.saveComponents = [];
+
+  sketch.edgeType = 'ca'; // Default
+  sketch.selectedComp = -1;
+  sketch.backRecent = 'none';
 
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
-    // cnv.parent("myContainer");
     sketch.pixelDensity(1);
 
-    sketch.menu = new LoadMenues(sketch, sketch.grid)
+    sketch.menu = new LoadMenues(sketch, sketch.grid);
     
     sketch.resize();
   }
@@ -52,6 +51,8 @@ const s = ( sketch ) => {
   }
 
   sketch.drag = null;
+  sketch.select = null;
+  sketch.click = null;
   // mouse pressed event
   sketch.mousePressed = () => {
     if(sketch.mouseY < 0) {return;}
@@ -64,12 +65,10 @@ const s = ( sketch ) => {
       sketch.drag = null;
     }
 
-
     sketch.backgroundPressed = true;
-    // console.log('Canvas is Clicked');
 
     if (Component.mouseOnNode) {
-      sketch.allEdges.push(new Edge(Component.clickedNode, sketch));
+      sketch.allEdges.push(new Edge(Component.clickedNode, sketch, sketch.edgeType));
       Component.resetActiveComponents();
       Edge.isDrawingNewEdge = true;
 
@@ -78,6 +77,7 @@ const s = ( sketch ) => {
       for (let comp of sketch.allComponents) {
         if (comp.isMouseOver()) {
           sketch.backgroundPressed = false;
+          sketch.selectedComp = sketch.allComponents.indexOf(comp);
           comp.startMoving();
         }
       }
@@ -89,6 +89,7 @@ const s = ( sketch ) => {
       }
 
       if (sketch.backgroundPressed) {
+        sketch.selectedComp = -1;
         Component.resetActiveComponents();
         sketch.grid.startMoving();
         for (let comp of sketch.allComponents) {
@@ -96,7 +97,6 @@ const s = ( sketch ) => {
             comp.stopMoving();
           }
         }
-
       }
     }
   }
@@ -112,14 +112,22 @@ const s = ( sketch ) => {
 
       // need to changed the new componentImg in future!!
       sketch.allComponents.push(new Component(sketch.drag[0], sketch.drag[1], x, y, Component.getNextId(), sketch, sketch.grid));
+      sketch.backRecent = 'create';
       sketch.drag = null;
     }
 
+    // Changing Arc Selection
+    if (sketch.select != null) {
+      var allArcs = document.getElementById("top-bar").querySelectorAll(".top-bar-element");
+      for (arc of allArcs) {
+        arc.style.border = "1px solid black";
+      }
+      document.getElementById(sketch.select[0].id).style.border = '2px solid #F00';
+      sketch.edgeType = sketch.select[0].id;
+    }
 
     if (Edge.isDrawingNewEdge) {
       Edge.isDrawingNewEdge = false;
-      // console.log(sketch.allEdges[sketch.allEdges.length -1]);
-      // console.log(sketch.allEdges);
 
       let valid = sketch.allEdges[sketch.allEdges.length -1].isOnANode();
       if (valid) {
@@ -129,6 +137,46 @@ const s = ( sketch ) => {
       }
     }
     
+    //Top bar buttons for back/forward/delete
+    if (sketch.click != null){
+      /*var interactBtn = document.getElementById("top-bar").querySelectorAll(".top-bar-interact");
+      for (btn of interactBtn){
+        btn.style.border = "1.5px solid blue";
+      }
+      document.getElementById(sketch.click[0].id).style.border = '2px solid red';*/
+
+      if(sketch.click[0].id=='back'){
+        //back button 
+        if(sketch.allComponents.length==0 && sketch.saveComponents.length==0){
+          sketch.backRecent = 'none';
+        }
+        switch (sketch.backRecent){
+          case 'none':
+            break;
+          case 'delete':
+            //sketch.allComponents.push(sketch.saveComponents.pop());
+            break;
+          case 'create':
+            //sketch.saveComponents.push(sketch.allComponents.pop());
+            break;
+          default:
+            break;
+        }
+
+      }else if(sketch.click[0].id=='forward'){
+        //forward button
+
+
+      }else if(sketch.click[0].id=='delete'){
+        //delete component button
+        if (sketch.selectedComp!=-1){
+          sketch.saveComponents.push(sketch.allComponents.splice(sketch.selectedComp, 1));
+          sketch.selectedComp = -1;
+          sketch.backRecent = 'delete';
+        }
+      }
+      sketch.click = null;
+    }
 
     // drop each component if it was previously dragged
     for (let comp of sketch.allComponents) {
@@ -153,8 +201,9 @@ const s = ( sketch ) => {
     if(sketch.mouseY<0){return;};
     sketch.grid.resize(-event.delta/1000) 
   }
-
 }
+
+
 // create the canvas with the sketch
 var myp5 = new p5(s, document.getElementById("myContainer"));
 
