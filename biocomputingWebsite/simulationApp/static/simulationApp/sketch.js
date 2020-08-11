@@ -13,11 +13,14 @@ const s = ( sketch ) => {
 
   sketch.allComponents = [];
   sketch.allEdges = [];
-  sketch.saveComponents = [];
 
   sketch.edgeType = 'ca'; // Default
+  
   sketch.selectedComp = -1;
-  sketch.backRecent = 'none';
+  sketch.saveComponents = [];
+  sketch.backRecent = [];
+  sketch.deletedComp = [];
+  sketch.backEvent = '';
 
   // p5.js execute this method once at the loading of the page
   sketch.setup = () => {
@@ -112,7 +115,7 @@ const s = ( sketch ) => {
 
       // need to changed the new componentImg in future!!
       sketch.allComponents.push(new Component(sketch.drag[0], sketch.drag[1], x, y, Component.getNextId(), sketch, sketch.grid));
-      sketch.backRecent = 'create';
+      sketch.backRecent.push('added');
       sketch.drag = null;
     }
 
@@ -147,21 +150,24 @@ const s = ( sketch ) => {
 
       if(sketch.click[0].id=='back'){
         //back button 
-        if(sketch.allComponents.length==0 && sketch.saveComponents.length==0){
-          sketch.backRecent = 'none';
+        if(sketch.backRecent.length > 0){
+          console.log(sketch.backRecent);
+          sketch.backEvent = sketch.backRecent.pop();
+          switch(sketch.backEvent){
+            case 'delete':
+              var toDelete = sketch.saveComponents.pop();
+              //sketch.allComponents.unshift(toDelete);
+              sketch.allComponents.splice(sketch.deletedComp.pop(),0,toDelete);
+              break;
+            case 'added':
+              sketch.saveComponents.push(sketch.allComponents.pop());
+              break;
+            default:
+              break;
+          }
+          console.log(sketch.backRecent);
         }
-        switch (sketch.backRecent){
-          case 'none':
-            break;
-          case 'delete':
-            //sketch.allComponents.push(sketch.saveComponents.pop());
-            break;
-          case 'create':
-            //sketch.saveComponents.push(sketch.allComponents.pop());
-            break;
-          default:
-            break;
-        }
+        
 
       }else if(sketch.click[0].id=='forward'){
         //forward button
@@ -170,9 +176,11 @@ const s = ( sketch ) => {
       }else if(sketch.click[0].id=='delete'){
         //delete component button
         if (sketch.selectedComp!=-1){
-          sketch.saveComponents.push(sketch.allComponents.splice(sketch.selectedComp, 1));
+          sketch.saveComponents.push(sketch.allComponents[sketch.selectedComp]);
+          sketch.allComponents.splice(sketch.selectedComp, 1);
+          sketch.backRecent.push('delete');
+          sketch.deletedComp.push(sketch.selectedComp);
           sketch.selectedComp = -1;
-          sketch.backRecent = 'delete';
         }
       }
       sketch.click = null;
