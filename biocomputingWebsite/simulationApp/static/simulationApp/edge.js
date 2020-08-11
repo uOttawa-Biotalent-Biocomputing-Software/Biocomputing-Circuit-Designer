@@ -20,6 +20,16 @@ class Edge {
         
         this.sketch = sketch;
         this.grid = sketch.grid;
+        this.create();
+    }
+    
+    create() {
+        this.sketch.allEdges.push(this);
+
+    }
+
+    delete() {
+        this.sketch.allEdges.pop(this);
     }
     
 

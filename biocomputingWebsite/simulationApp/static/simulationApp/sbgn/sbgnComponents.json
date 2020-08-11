@@ -90,7 +90,7 @@
             "img": "back.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.click = [this.component, this.type];}"
+            "function": "() => {Action.undo()}"
         },
         {
             "name": "Forward",
@@ -99,7 +99,7 @@
             "img": "forward.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.click = [this.component, this.type];}"
+            "function": "() => {Action.redo()}"
         },
         {
             "name": "Delete",

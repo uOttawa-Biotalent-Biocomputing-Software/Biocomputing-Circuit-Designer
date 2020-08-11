@@ -43,6 +43,16 @@ class Component {
     this.grid = grid;
     this.padding = 0.01;
     this.rectangleContour = new RectangleContour(this);
+    this.create();
+  }
+
+  create() {
+    this.sketch.allComponents.push(this);
+  }
+
+  delete() {
+      this.sketch.allComponents.pop(this);
+      //delete any attached edges
   }
 
   // show component on the canvas
