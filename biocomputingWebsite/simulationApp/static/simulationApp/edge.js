@@ -6,13 +6,10 @@ class Edge {
         this.from = from;
         this.to;
         
-        // Line 1
+        //Line
         this.v1 = sketch.createVector(0,0);
         this.v2 = sketch.createVector(0,0);
 
-        // Line 2
-        this.v3 = sketch.createVector(50, 50);
-        this.v4 = sketch.createVector(100, 100);
 
         this.edgeType = type;
 
@@ -22,10 +19,8 @@ class Edge {
         this.grid = sketch.grid;
     }
     
-
     update() {
         this.calculateCoordinates();
-        this.perp();
         this.showEdge();
         
     }
@@ -37,55 +32,102 @@ class Edge {
         if(this.state == 0) {
             this.v2.x = this.sketch.mouseX;
             this.v2.y = this.sketch.mouseY;
-
-            this.v3.x = this.sketch.mouseX;
-            this.v3.y = this.sketch.mouseY;
         } 
         else if(this.state == 1) {
             this.v2.x = this.to.realX;
-            this.v2.y = this.to.realY;
-
-            this.v3.x = this.to.realX;
-            this.v3.y = this.to.realY;    
+            this.v2.y = this.to.realY; 
         }
-    }
-
-    // Perpendicular Line Function
-    perp() {
-        // First convert the line to a normalised unit vector
-        let b=(this.v2.copy().sub(this.v1)).setMag(1)
-        
-        // Translate the target point and get the dot product
-        let lambda=(this.v3.copy().sub(this.v1)).dot(b)
-        this.v4=b.copy().mult(lambda).add(this.v1)  
     }
 
     showEdge() {
         if (this.edgeType == 'ca') {
-            this.sketch.line(this.v1.x, this.v1.y, this.v2.x - 12, this.v2.y);
-            this.sketch.fill(0, 0, 0, 0);
-            this.sketch.circle(this.v2.x, this.v2.y, 24);
-        }
+
+            this.initializeEdge(() => {
+                let radius = 17;
+               
+                this.sketch.fill(0, 0, 0, 0);
+                this.sketch.circle(0, (radius/2)*this.grid.scalingFactor, (radius)*this.grid.scalingFactor);
+                
+                return radius;
+            })
+        }   
         else if (this.edgeType == 'co' || this.edgeType == 'ea' ||this.edgeType == 'la') {
-            this.sketch.line(this.v1.x, this.v1.y, this.v2.x, this.v2.y);
+            this.initializeEdge(() => {return 0});
         }
         else if (this.edgeType == 'in') {
-            this.sketch.line(this.v1.x, this.v1.y, this.v2.x, this.v2.y);
-            this.sketch.line(this.v3.x + 32, this.v3.y, this.v4.x - 32, this.v4.y);
+            
+            this.initializeEdge(() => {
+                let width = 15;
+                
+                this.sketch.line((-width*this.grid.scalingFactor), 0, width*this.grid.scalingFactor, 0);
+                let distance = ((this.v2.x - this.v1.x)**2 + (this.v2.y-this.v1.y)**2)**(0.5);
+
+                return 0;
+            })
+            
         }
         else if (this.edgeType == 'mo') {
-            this.sketch.line(this.v1.x, this.v1.y, this.v2.x - 32, this.v2.y);
-            // Diamond Shape
-            this.sketch.beginShape();
+
+            this.initializeEdge(() => {
+                let width = 15;
+    
+                this.sketch.push();
+                this.sketch.rotate(this.sketch.PI/4);
+                this.sketch.rect(0, 0, width*this.grid.scalingFactor, width*this.grid.scalingFactor);
+                this.sketch.pop();
+
+                return ((width**2) + (width**2))**0.5;
+            })
+        }
+        else if (this.edgeType == 'ns') {
+            
+            this.initializeEdge(() => {
+                let distLine = 15 * this.grid.scalingFactor;
+                let triangle = 10 * this.grid.scalingFactor;
+    
                 this.sketch.fill(0, 0, 0, 0);
-                this.sketch.vertex(this.v2.x - 32, this.v2.y);
-                this.sketch.vertex(this.v2.x - 16, this.v2.y + 16);
-                this.sketch.vertex(this.v2.x, this.v2.y);
-                this.sketch.vertex(this.v2.x - 16, this.v2.y - 16);
-            this.sketch.endShape(this.sketch.CLOSE);
+                this.sketch.triangle(0, 0, triangle, triangle, -triangle, triangle);
+                this.sketch.line(-triangle, distLine, triangle, distLine);
+
+                return distLine;
+            })
+        }
+        else if (this.edgeType == 'pr') {
+            
+            this.initializeEdge(() => {
+                let triangle = 10 * this.grid.scalingFactor;
+                this.sketch.fill(0)
+                this.sketch.triangle(0, 0, triangle, triangle, -triangle, triangle);
+
+                return triangle;
+            })
+        }
+        else if (this.edgeType == 'st') {
+            
+            this.initializeEdge(() => {
+                let triangle = 10 * this.grid.scalingFactor;
+                this.sketch.fill(0, 0, 0, 0);
+                this.sketch.triangle(0, 0, triangle, triangle, -triangle, triangle);
+
+                return triangle;
+            })
         }
     }
 
+    initializeEdge(drawFunction) {
+        this.sketch.push();
+        let a = this.sketch.atan2(this.v2.y- this.v1.y, this.v2.x-this.v1.x);
+        this.sketch.translate(this.v2.x, this.v2.y);
+        this.sketch.rotate(a + this.sketch.PI/2);
+
+        let distLine = drawFunction();
+
+        let distance = ((this.v2.x - this.v1.x)**2 + (this.v2.y-this.v1.y)**2)**(0.5);
+        this.sketch.line(0, distLine, 0, distance);
+        
+        this.sketch.pop()
+    }
+    
     isOnANode() {
         let onNode = false;
         let selectedNode;
