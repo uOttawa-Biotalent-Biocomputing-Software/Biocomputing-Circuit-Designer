@@ -6,13 +6,10 @@ class Edge {
         this.from = from;
         this.to;
         
-        // Line 1
+        //Line
         this.v1 = sketch.createVector(0,0);
         this.v2 = sketch.createVector(0,0);
 
-        // // Line 2
-        // this.v3 = sketch.createVector(50, 50);
-        // this.v4 = sketch.createVector(100, 100);
 
         this.edgeType = type;
 
@@ -22,10 +19,8 @@ class Edge {
         this.grid = sketch.grid;
     }
     
-
     update() {
         this.calculateCoordinates();
-        // this.perp();
         this.showEdge();
         
     }
@@ -37,28 +32,12 @@ class Edge {
         if(this.state == 0) {
             this.v2.x = this.sketch.mouseX;
             this.v2.y = this.sketch.mouseY;
-
-            // this.v3.x = this.sketch.mouseX;
-            // this.v3.y = this.sketch.mouseY;
         } 
         else if(this.state == 1) {
             this.v2.x = this.to.realX;
-            this.v2.y = this.to.realY;
-
-            // this.v3.x = this.to.realX;
-            // this.v3.y = this.to.realY;    
+            this.v2.y = this.to.realY; 
         }
     }
-
-    // Perpendicular Line Function
-    // perp() {
-    //     // First convert the line to a normalised unit vector
-    //     let b=(this.v2.copy().sub(this.v1)).setMag(1)
-        
-    //     // Translate the target point and get the dot product
-    //     let lambda=(this.v3.copy().sub(this.v1)).dot(b)
-    //     this.v4=b.copy().mult(lambda).add(this.v1)  
-    // }
 
     showEdge() {
         if (this.edgeType == 'ca') {
@@ -68,8 +47,8 @@ class Edge {
                
                 this.sketch.fill(0, 0, 0, 0);
                 this.sketch.circle(0, (radius/2)*this.grid.scalingFactor, (radius)*this.grid.scalingFactor);
-                let distance = ((this.v2.x - this.v1.x)**2 + (this.v2.y-this.v1.y)**2)**(0.5);
-                return radius
+                
+                return radius;
             })
         }   
         else if (this.edgeType == 'co' || this.edgeType == 'ea' ||this.edgeType == 'la') {
@@ -127,15 +106,13 @@ class Edge {
             
             this.initializeEdge(() => {
                 let triangle = 10 * this.grid.scalingFactor;
-                this.sketch.fill(0, 0, 0, 0)
+                this.sketch.fill(0, 0, 0, 0);
                 this.sketch.triangle(0, 0, triangle, triangle, -triangle, triangle);
 
                 return triangle;
             })
         }
     }
-
-
 
     initializeEdge(drawFunction) {
         this.sketch.push();
@@ -150,7 +127,6 @@ class Edge {
         
         this.sketch.pop()
     }
-    
     
     isOnANode() {
         let onNode = false;
