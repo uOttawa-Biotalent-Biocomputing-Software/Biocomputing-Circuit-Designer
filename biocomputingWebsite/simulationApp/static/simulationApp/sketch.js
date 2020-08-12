@@ -97,6 +97,7 @@ const s = ( sketch ) => {
       }
 
       if (sketch.backgroundPressed) {
+        Edge.activeEdges = [];
         sketch.selectedComp = -1;
         Component.resetActiveComponents();
         sketch.grid.startMoving();
@@ -105,6 +106,8 @@ const s = ( sketch ) => {
             comp.stopMoving();
           }
         }
+      } else {
+        Edge.edgePressed = false;
       }
     }
   }

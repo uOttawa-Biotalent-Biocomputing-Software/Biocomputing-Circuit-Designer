@@ -1,10 +1,19 @@
 class Edge {
 
     static isDrawingNewEdge = false;
+    static nextId = 0;
+    static activeEdges = [];
+    static edgePressed = false;
+
+    static getNextId() {
+        return Edge.nextId++;
+    }
+
 
     constructor(from, sketch, type) {
         this.from = from;
         this.to;
+        this.id = Edge.getNextId();
         
         //Line
         this.v1 = sketch.createVector(0,0);
@@ -17,6 +26,8 @@ class Edge {
         
         this.sketch = sketch;
         this.grid = sketch.grid;
+        this.mouseOver = false;
+        this.distToMouse = 20;
         this.create();
     }
 
@@ -45,8 +56,35 @@ class Edge {
     delete() {
         this.sketch.allEdges.pop(this);
     }
+
+    isMouseOver() {
+        let v3 = this.sketch.createVector(this.sketch.mouseX, this.sketch.mouseY);
+        
+        let angle = (this.sketch.createVector(v3.x-this.v1.x, v3.y-this.v1.y)).angleBetween(this.sketch.createVector(this.v2.x-this.v1.x, this.v2.y-this.v1.y))
+        
+        let dst = ((v3.x-this.v1.x)**2 + (v3.y-this.v1.y)**2)**0.5;
+        let dst1 = (dst*this.sketch.sin(angle));
+        let dst2 = ((this.v2.x-this.v1.x)**2 + (this.v2.y-this.v1.y)**2)**0.5;
+
+
+        if(this.sketch.abs(angle) < this.sketch.PI/2 && 
+           this.sketch.abs(this.sketch.PI/2 && dst1) < this.distToMouse * this.grid.scalingFactor && 
+           dst < dst2) {
+            this.mouseOver = true;
+            Edge.edgePressed = true;
+            if(this.sketch.keyIsDown(17) && this.sketch.mouseIsPressed) {
+                Edge.activeEdges.push(this);
+            } else if(this.sketch.mouseIsPressed) {
+                Edge.activeEdges = [this];
+            }
+
+        } else {
+            this.mouseOver = false;
+        }
+    }
     
     update() {
+        this.isMouseOver();
         this.calculateCoordinates();
         this.showEdge();
         
@@ -67,13 +105,18 @@ class Edge {
     }
 
     showEdge() {
+        if(Edge.activeEdges.find(element => element === this)) {
+            this.sketch.stroke(100, 100, 100);
+        } else {
+            this.sketch.stroke(0, 0, 0)
+        }
         if (this.edgeType == 'ca') {
 
             this.initializeEdge(() => {
-                let radius = 17;
+                let radius = 17 * this.grid.scalingFactor;
                
                 this.sketch.fill(0, 0, 0, 0);
-                this.sketch.circle(0, (radius/2)*this.grid.scalingFactor, (radius)*this.grid.scalingFactor);
+                this.sketch.circle(0, (radius/2), (radius));
                 
                 return radius;
             })
@@ -96,11 +139,11 @@ class Edge {
         else if (this.edgeType == 'mo') {
 
             this.initializeEdge(() => {
-                let width = 15;
+                let width = 15 * this.grid.scalingFactor;
     
                 this.sketch.push();
                 this.sketch.rotate(this.sketch.PI/4);
-                this.sketch.rect(0, 0, width*this.grid.scalingFactor, width*this.grid.scalingFactor);
+                this.sketch.rect(0, 0, width, width);
                 this.sketch.pop();
 
                 return ((width**2) + (width**2))**0.5;

@@ -1,6 +1,8 @@
 class Component {
   static active = [];
   static nextId = 0;
+  // static moving = false;
+  static compPressed = false;
 
   static getNextId() {
     return Component.nextId++;
@@ -114,9 +116,12 @@ class Component {
     let realPaddingX = this.calculatePadding();
     let realPaddingY = this.calculatePadding();
     if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+(this.w * this.grid.scalingFactor)+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+(this.h*this.grid.scalingFactor)+realPaddingY) {
+      Component.compPressed = true;
       return true;
+    } else{
+      Component.compPressed = false;
+      return false;
     }
-    return false;
   }
 
   startMoving() {
@@ -129,8 +134,10 @@ class Component {
       }
     } else {
       Component.active = [this.id];
+      Edge.activeEdges = [];
     }
     if (!Component.mouseOnNode) {
+      Component.moving = true;
       this.calculateOffset();
       this.move = true;
       this.grid.cursorMove();
@@ -147,6 +154,7 @@ class Component {
 
     let newX = this.x;
     let newY = this.y;
+    Component.moving = false;
 
     if (this.oldY != newY && this.oldX != this.newX){
       Action.undoStack.push(new Action(this, {
