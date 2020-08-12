@@ -74,7 +74,9 @@ const s = ( sketch ) => {
     sketch.backgroundPressed = true;
 
     if (Component.mouseOnNode) {
-      Action.undoStack.push(new Action(new Edge(Component.clickedNode, sketch, sketch.edgeType), 1));
+      Action.undoStack.push(new Action(new Edge(Component.clickedNode, sketch, sketch.edgeType), {
+        "actionType": "create"
+      }));
       
 
       Component.resetActiveComponents();
@@ -119,7 +121,9 @@ const s = ( sketch ) => {
       y = sketch.grid.getGridCoordinateY(sketch.mouseY) - (sketch.drag[0].height*sketch.grid.scalingFactor)/2;
 
       // need to changed the new componentImg in future!!
-      Action.undoStack.push(new Action(new Component(sketch.drag[0], sketch.drag[1], x, y, Component.getNextId(), sketch, sketch.grid), 1));
+      Action.undoStack.push(new Action(new Component(sketch.drag[0], sketch.drag[1], x, y, Component.getNextId(), sketch, sketch.grid), {
+        "actionType": "create",
+      }));
       sketch.backRecent.push('added');
       sketch.drag = null;
     }

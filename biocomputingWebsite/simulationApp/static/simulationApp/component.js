@@ -55,6 +55,29 @@ class Component {
       //delete any attached edges
   }
 
+
+  executeOppositeAction(details) {
+    if(details.actionType == "create") {
+      this.delete();
+    } else if (details.actionType == "delete") {
+      this.create();
+    } else if (details.actionType == "move") {
+      this.y = details.oldY;
+      this.x = details.oldX;
+    }
+  }
+
+  executeAction(details) {
+    if(details.actionType == "create") {
+      this.create();
+    } else if (details.actionType == "delete") {
+      this.delete();
+    } else if (details.actionType == "move") {
+      this.x = details.newX;
+      this.y = details.newY;
+    }
+  }
+
   // show component on the canvas
   calculatePadding() {
     return this.grid.scalingFactor * this.padding * 300;
@@ -97,9 +120,13 @@ class Component {
   }
 
   startMoving() {
-    if (this.sketch.keyIsDown(17)) {
+    this.oldX = this.x;
+    this.oldY = this.y;
 
-      Component.addToActiveComponents(this.id);
+    if (this.sketch.keyIsDown(17)) {
+      if(!Component.isInActive(this.id)) {
+        Component.addToActiveComponents(this.id);
+      }
     } else {
       Component.active = [this.id];
     }
@@ -112,9 +139,24 @@ class Component {
   }
 
   stopMoving() {
+    // create an action
     this.move = false;
     this.resetOffset();
     this.grid.cursorNormal();
+    // console.log("stop moving");
+
+    let newX = this.x;
+    let newY = this.y;
+
+
+    Action.undoStack.push(new Action(this, {
+      "actionType": "move",
+      oldY: this.oldY,
+      oldX: this.oldX,
+      newX: newX,
+      newY: newY
+    }))
+
   }
   // calculate where the mouse is located relative to x and y of the component
   calculateOffset() {

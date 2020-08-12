@@ -9,7 +9,6 @@ class Action {
         if(!Action.undoStack.isEmpty()) {
 
             let action = Action.undoStack.pop();
-            console.log(action);
             
             action.undoAction();
     
@@ -23,7 +22,6 @@ class Action {
 
             //pop an event from redoStack and add to undoStack
             let action = Action.redoStack.pop();
-            console.log("Redo");
             action.redoAction()
     
     
@@ -32,9 +30,11 @@ class Action {
 
     }
 
-    constructor(element, actionType) {
+    
+
+    constructor(element, details) {
         this.element = element;
-        this.actionType = actionType; // created = 1 or deleted = 0
+        this.details = details;
 
         //keeping track of any event 
         Action.redoStack = new Stack();
@@ -42,18 +42,11 @@ class Action {
 
 
     undoAction() {
-        if(this.actionType == 1) { //if it was created
-            this.element.delete();
-        } else {//if it was deleted
-            this.element.create();
-        }
+        this.element.executeOppositeAction(this.details);
     }
 
     redoAction() {
-        if(this.actionType == 0) { //if it was deleted
-            this.element.delete();
-        } else {//if it was added
-            this.element.create();
-        }
+        this.element.executeAction(this.details);
+
     }
 }

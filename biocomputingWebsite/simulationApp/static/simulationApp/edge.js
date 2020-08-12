@@ -22,6 +22,23 @@ class Edge {
         this.grid = sketch.grid;
         this.create();
     }
+
+    executeOppositeAction(details) {
+        if(details.actionType == "create") {
+          this.delete();
+        } else if (details.action == "delete") {
+          this.create();
+        }
+        
+    }
+
+    executeAction(details) {
+        if(details.actionType == "create") {
+            this.create();
+        } else if (details.action == "delete") {
+            this.delete();
+        }
+    }
     
     create() {
         this.sketch.allEdges.push(this);
