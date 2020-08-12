@@ -56,7 +56,7 @@
         },
         {
             "name": "Necessary Stimulation",
-            "id":"necessary-stimulation",
+            "id":"ns",
             "typeId": "connecting-arcs",
             "img": "necessary-stimulation.png",
             "width": 30,
@@ -65,7 +65,7 @@
         },
         {
             "name": "Production",
-            "id":"production",
+            "id":"pr",
             "typeId": "connecting-arcs",
             "img": "production.png",
             "width": 30,
@@ -74,7 +74,7 @@
         },
         {
             "name": "Stimulation",
-            "id":"stimulation",
+            "id":"st",
             "typeId": "connecting-arcs",
             "img": "stimulation.png",
             "width": 30,
