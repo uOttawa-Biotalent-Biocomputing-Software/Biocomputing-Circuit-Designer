@@ -180,6 +180,11 @@ class Edge {
 
     changeState(s) {
         this.state = s;
+        if(s == 1) {
+            Action.undoStack.push(new Action(this, {
+                "actionType": "create"
+            }));
+        }
     }
     
 }

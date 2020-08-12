@@ -74,9 +74,7 @@ const s = ( sketch ) => {
     sketch.backgroundPressed = true;
 
     if (Component.mouseOnNode) {
-      Action.undoStack.push(new Action(new Edge(Component.clickedNode, sketch, sketch.edgeType), {
-        "actionType": "create"
-      }));
+      new Edge(Component.clickedNode, sketch, sketch.edgeType)
       
 
       Component.resetActiveComponents();

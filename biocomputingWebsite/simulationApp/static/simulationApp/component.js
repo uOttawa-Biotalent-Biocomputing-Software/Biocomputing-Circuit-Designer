@@ -148,14 +148,15 @@ class Component {
     let newX = this.x;
     let newY = this.y;
 
-
-    Action.undoStack.push(new Action(this, {
-      "actionType": "move",
-      oldY: this.oldY,
-      oldX: this.oldX,
-      newX: newX,
-      newY: newY
-    }))
+    if (this.oldY != newY && this.oldX != this.newX){
+      Action.undoStack.push(new Action(this, {
+        "actionType": "move",
+        oldY: this.oldY,
+        oldX: this.oldX,
+        newX: newX,
+        newY: newY
+      }))
+    }
 
   }
   // calculate where the mouse is located relative to x and y of the component
