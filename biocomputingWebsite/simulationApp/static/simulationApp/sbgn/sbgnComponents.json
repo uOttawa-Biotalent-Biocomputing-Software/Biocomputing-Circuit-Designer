@@ -108,7 +108,7 @@
             "img": "delete.png",
             "width": 30,
             "height": 24,
-            "function": "() => {this.sketch.click = [this.component, this.type];}"
+            "function": "() => {Action.delete()}"
         },
 
 

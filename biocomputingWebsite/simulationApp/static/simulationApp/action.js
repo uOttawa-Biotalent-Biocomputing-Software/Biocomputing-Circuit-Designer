@@ -30,7 +30,11 @@ class Action {
 
     }
 
-    
+    static delete() {
+        Action.redoStack = new Stack();
+
+        // Delete Selected Components
+    }
 
     constructor(element, details) {
         this.element = element;

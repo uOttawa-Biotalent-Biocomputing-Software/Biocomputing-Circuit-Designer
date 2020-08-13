@@ -106,9 +106,9 @@ class Edge {
 
     showEdge() {
         if(Edge.activeEdges.find(element => element === this)) {
-            this.sketch.stroke(100, 100, 100);
+            this.sketch.stroke(0, 0, 0);
         } else {
-            this.sketch.stroke(0, 0, 0)
+            this.sketch.stroke(100, 100, 100)
         }
         if (this.edgeType == 'ca') {
 
