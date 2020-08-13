@@ -70,9 +70,9 @@ class Edge {
         if(this.sketch.abs(angle) < this.sketch.PI/2 && 
            this.sketch.abs(this.sketch.PI/2 && dst1) < this.distToMouse * this.grid.scalingFactor && 
            dst < dst2) {
-            this.mouseOver = true;
-            Edge.edgePressed = true;
             if(this.sketch.keyIsDown(17) && this.sketch.mouseIsPressed) {
+                Edge.edgePressed = true;
+                this.mouseOver = true;
                 Edge.activeEdges.push(this);
             } else if(this.sketch.mouseIsPressed) {
                 Edge.activeEdges = [this];

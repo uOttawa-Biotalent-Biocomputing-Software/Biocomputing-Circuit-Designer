@@ -16,7 +16,6 @@ const s = ( sketch ) => {
 
   sketch.edgeType = 'ca'; // Default
   
-  sketch.selectedComp = -1; //index of selected component in allComponents array
   sketch.saveComponents = []; //any components to be saved for back/forward button
   sketch.backRecent = []; //any events/actions to be saved for back button
   sketch.forwardRecent = []; //any events/actions to be saved for the forward button
@@ -84,7 +83,6 @@ const s = ( sketch ) => {
       for (let comp of sketch.allComponents) {
         if (comp.isMouseOver()) {
           sketch.backgroundPressed = false;
-          sketch.selectedComp = sketch.allComponents.indexOf(comp);
           comp.startMoving();
         }
       }
@@ -96,8 +94,9 @@ const s = ( sketch ) => {
       }
 
       if (sketch.backgroundPressed) {
-        Edge.activeEdges = [];
-        sketch.selectedComp = -1;
+        console.log("Reset active edges")
+
+        // Edge.activeEdges = [];
         if (!sketch.keyIsDown(17)) {
           Component.resetActiveComponents();
         }
@@ -151,77 +150,6 @@ const s = ( sketch ) => {
       }
     }
     
-    //Top bar buttons for back/forward/delete
-    /*
-    if (sketch.click != null){
-
-      if(sketch.click[0].id=='back'){
-        //back button 
-        if(sketch.backRecent.length > 0){
-          var backToForwad = sketch.backRecent.pop();
-          sketch.forwardRecent.push(backToForwad);
-          sketch.backEvent = backToForwad;
-          switch(sketch.backEvent){
-            case 'deleted':
-              var toDelete = sketch.saveComponents.pop();
-              var addIndex = sketch.deletedComp.pop();
-              sketch.addedComp.push(addIndex);
-
-              sketch.allComponents.splice(addIndex,0,toDelete);
-              break;
-            case 'added':
-              sketch.saveComponents.push(sketch.allComponents.pop());
-              break;
-            default:
-              break;
-          }
-          //////
-          console.log(sketch.backRecent, sketch.forwardRecent);
-          console.log(sketch.saveComponents);
-        }
-        
-
-      }else if(sketch.click[0].id=='forward'){
-        //forward button
-        if(sketch.forwardRecent.length > 0){
-          var forwardToBack = sketch.forwardRecent.pop();
-          sketch.backRecent.push(forwardToBack);
-          switch(sketch.backEvent){
-            case 'deleted':
-              
-              var toAdd = sketch.allComponents.pop();
-              var deleteIndex = sketch.addedComp.pop();
-              sketch.deletedComp.push(deleteIndex);
-
-              sketch.saveComponents.splice(deleteIndex,0,toAdd);
-              
-              
-              break;
-            case 'added':
-              sketch.allComponents.push(sketch.saveComponents.pop());
-              //////
-              console.log(sketch.backRecent, sketch.forwardRecent);
-              console.log(sketch.saveComponents);
-              break;
-            default:
-              break;
-          }
-        }
-
-
-      }else if(sketch.click[0].id=='delete'){
-        //delete component button
-        if (sketch.selectedComp!=-1){
-          sketch.saveComponents.push(sketch.allComponents[sketch.selectedComp]);
-          sketch.allComponents.splice(sketch.selectedComp, 1);
-          sketch.backRecent.push('deleted');
-          sketch.deletedComp.push(sketch.selectedComp);
-          sketch.selectedComp = -1;
-        }
-      }
-      sketch.click = null;
-    }*/
-
     // drop each component if it was previously dragged
     for (let comp of sketch.allComponents) {
       if (comp.move) {
