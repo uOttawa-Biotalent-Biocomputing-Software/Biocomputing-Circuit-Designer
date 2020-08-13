@@ -76,7 +76,6 @@ const s = ( sketch ) => {
     if (Component.mouseOnNode) {
       new Edge(Component.clickedNode, sketch, sketch.edgeType)
       
-
       Component.resetActiveComponents();
       Edge.isDrawingNewEdge = true;
 
@@ -99,7 +98,9 @@ const s = ( sketch ) => {
       if (sketch.backgroundPressed) {
         Edge.activeEdges = [];
         sketch.selectedComp = -1;
-        Component.resetActiveComponents();
+        if (!sketch.keyIsDown(17)) {
+          Component.resetActiveComponents();
+        }
         sketch.grid.startMoving();
         for (let comp of sketch.allComponents) {
           if (comp.move) {
