@@ -4,7 +4,6 @@ class EventHandler {
         this.onSketch = true;
     }
 
-    
     // when mouse is pressed
     mousePressed() {
         let sketch = this.sketch;
@@ -148,5 +147,38 @@ class EventHandler {
         if(this.sketch.mouseX<0){return;};
         if(this.sketch.mouseY<0){return;};
         this.sketch.grid.resize(-event.delta/1000);
+    }
+    
+
+    delete() {
+        let i = 0;
+        let actions = []
+        while(i < this.sketch.allComponents.length) {
+            
+            if(Component.isInActive(this.sketch.allComponents[i])) {
+                actions.push(new Action(this.sketch.allComponents[i], {
+                    "actionType": "delete",
+                }))
+                this.sketch.allComponents[i].delete()
+            } else {
+                i++
+            }
+        }
+
+        i = 0;
+        while(i < this.sketch.allEdges.length) {
+            
+            if(Edge.isInActive(this.sketch.allEdges[i])) {
+                actions.push(new Action(this.sketch.allEdges[i], {
+                    "actionType": "delete",
+                }))
+                this.sketch.allEdges[i].delete()
+            } else {
+                i++
+            }
+        }
+
+        Action.undoStack.push(new ActionGroup(actions));
+        
     }
 }

@@ -49,6 +49,7 @@ class Component {
     this.grid = grid;
     this.padding = 0.01;
     this.rectangleContour = new RectangleContour(this);
+    this.connectedEdges = [];
     this.create();
   }
 
@@ -57,8 +58,13 @@ class Component {
   }
 
   delete() {
-      this.sketch.allComponents.pop(this);
-      //delete any attached edges
+    this.sketch.allComponents.splice(this.sketch.allComponents.indexOf(this), 1);
+    // for(let edge of this.connectedEdges) {
+    //   edge.delete();
+    //   Action.undoStack.push(new Action(edge, {
+    //     "actionType": "delete"
+    //   }))
+    // }
   }
 
 

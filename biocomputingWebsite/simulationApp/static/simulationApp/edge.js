@@ -9,6 +9,11 @@ class Edge {
         return Edge.nextId++;
     }
 
+    static isInActive(edge) {
+    
+        return Edge.activeEdges.find(element => element === edge)
+    }
+
 
     constructor(from, sketch, type) {
         this.from = from;
@@ -33,9 +38,9 @@ class Edge {
 
     executeOppositeAction(details) {
         if(details.actionType == "create") {
-          this.delete();
-        } else if (details.action == "delete") {
-          this.create();
+            this.delete();
+        } else if (details.actionType == "delete") {
+            this.create();
         }
         
     }
@@ -43,18 +48,19 @@ class Edge {
     executeAction(details) {
         if(details.actionType == "create") {
             this.create();
-        } else if (details.action == "delete") {
+        } else if (details.actionType == "delete") {
             this.delete();
         }
     }
     
     create() {
+        console.log("create")
         this.sketch.allEdges.push(this);
 
     }
 
     delete() {
-        this.sketch.allEdges.pop(this);
+        this.sketch.allEdges.splice(this.sketch.allEdges.indexOf(this), 1);
     }
 
     isMouseOver() {
@@ -219,6 +225,9 @@ class Edge {
     changeState(s) {
         this.state = s;
         if(s == 1) {
+            this.to.component.connectedEdges.push(this);
+            this.from.component.connectedEdges.push(this);
+
             Action.undoStack.push(new Action(this, {
                 "actionType": "create"
             }));

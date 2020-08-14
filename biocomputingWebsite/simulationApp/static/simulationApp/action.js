@@ -30,11 +30,6 @@ class Action {
 
     }
 
-    static delete() {
-        Action.redoStack = new Stack();
-
-        // Delete Selected Components
-    }
 
     constructor(element, details) {
         this.element = element;
@@ -52,5 +47,25 @@ class Action {
     redoAction() {
         this.element.executeAction(this.details);
 
+    }
+}
+
+
+class ActionGroup {
+    constructor(actions) {
+        this.actions = actions;
+    }
+
+
+    undoAction() {
+        for(let action of this.actions) {
+            action.element.executeOppositeAction(action.details);
+        }
+    }
+
+    redoAction() {
+        for (let action of this.actions) {
+            action.element.executeAction(action.details);
+        }
     }
 }
