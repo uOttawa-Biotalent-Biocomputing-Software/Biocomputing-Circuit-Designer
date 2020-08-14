@@ -5,6 +5,7 @@ class RectangleContour {
     this.grid = this.component.grid;
     this.size1 = 10;
     this.size2 = 15;
+    this.showBox = false;
 
     this.nodesLocation = [
       [
@@ -68,21 +69,36 @@ class RectangleContour {
   }
 
   update() {
-    let showBox = Component.active.includes(this.component.id) || Edge.isDrawingNewEdge;
+
+    // let showBox = Component.isInActive(this.component) || Edge.isDrawingNewEdge;
+    this.showBox = Component.isInActive(this.component)
+    // console.log(this.component.id + " box | " + this.showBox);
+
+    // console.log(showBox);
     for (let i = 0; i < this.nodesLocation.length; i++) {
       this.nodes[i].update(
         this.nodesLocation[i][0](this.component),
         this.nodesLocation[i][1](this.component)
       );
 
-      if(showBox) {
+      if(this.showBox || Edge.isDrawingNewEdge) {
         // console.log(this.nodes[i]);
         this.nodes[i].show();
       }
     }
-    if(showBox) {
+    if(this.showBox || Edge.isDrawingNewEdge) {
       this.show();
     }
+  }
+
+  isMouseOverNode() {
+    let result = false
+    for(let node of this.nodes) {
+      if(node.getIsMouseOver()){
+        result = true;
+      };
+    }
+    return result;
   }
 
   show() {

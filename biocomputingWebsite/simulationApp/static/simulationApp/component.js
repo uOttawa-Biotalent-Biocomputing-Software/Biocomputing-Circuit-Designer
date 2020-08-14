@@ -1,6 +1,7 @@
 class Component {
   static active = [];
   static nextId = 0;
+  static move = false;
   // static moving = false;
   static compPressed = false;
 
@@ -9,7 +10,9 @@ class Component {
   }
 
   static isInActive(component) {
-    return Component.active.includes(component);
+    let result = Component.active.find((comp) => {return component.id==comp}) > -1;
+
+    return result
   }
 
   static resetActiveComponents(){
@@ -17,10 +20,11 @@ class Component {
   }
 
   static addToActiveComponents(component) {
-    Component.active.push(component);
+    Component.active.push(component.id);
   }
   static setActiveComponent(component) {
-    Component.active = component;
+    Component.active = [component.id];
+    Edge.activeEdges = [];
   }
 
   static beginUpdate() {
@@ -86,14 +90,11 @@ class Component {
   }
 
   update() {
-    // Component.mouseOnNode = false;
-    this.updatePosition();
+    // this.updatePosition();
     this.show();
     this.sketch.stroke(0, 0, 0);
 
     this.rectangleContour.update();
-    
-
   }
 
   updatePosition() {
@@ -109,17 +110,19 @@ class Component {
 
   }
 
+  isMouseOverNode() {
+    return this.rectangleContour.isMouseOverNode();
+  }
   // return true if mouse is over the component
   isMouseOver() {
+    
     let realX = this.grid.getRealCoordinateX(this.x);
     let realY = this.grid.getRealCoordinateY(this.y);
     let realPaddingX = this.calculatePadding();
     let realPaddingY = this.calculatePadding();
     if(realX-realPaddingX < this.sketch.mouseX && this.sketch.mouseX < realX+(this.w * this.grid.scalingFactor)+realPaddingX && realY-realPaddingY < this.sketch.mouseY && this.sketch.mouseY < realY+(this.h*this.grid.scalingFactor)+realPaddingY) {
-      Component.compPressed = true;
       return true;
     } else{
-      Component.compPressed = false;
       return false;
     }
   }
@@ -128,14 +131,14 @@ class Component {
     this.oldX = this.x;
     this.oldY = this.y;
 
-    if (this.sketch.keyIsDown(17)) {
-      if(!Component.isInActive(this.id)) {
-        Component.addToActiveComponents(this.id);
-      }
-    } else {
-      Component.active = [this.id];
-      Edge.activeEdges = [];
-    }
+    // if (this.sketch.keyIsDown(17)) {
+    //   if(!Component.isInActive(this.id)) {
+    //     Component.addToActiveComponents(this.id);
+    //   }
+    // } else {
+    //   Component.active = [this.id];
+    //   Edge.activeEdges = [];
+    // }
     if (!Component.mouseOnNode) {
       Component.moving = true;
       this.calculateOffset();
@@ -146,24 +149,26 @@ class Component {
   }
 
   stopMoving() {
-    // create an action
-    this.move = false;
-    this.resetOffset();
-    this.grid.cursorNormal();
-    // console.log("stop moving");
-
-    let newX = this.x;
-    let newY = this.y;
-    Component.moving = false;
-
-    if (this.oldY != newY && this.oldX != this.newX){
-      Action.undoStack.push(new Action(this, {
-        "actionType": "move",
-        oldY: this.oldY,
-        oldX: this.oldX,
-        newX: newX,
-        newY: newY
-      }))
+    if(!Component.mouseOnNode) {
+      // create an action
+      this.move = false;
+      this.resetOffset();
+      this.grid.cursorNormal();
+      // console.log("stop moving");
+  
+      let newX = this.x;
+      let newY = this.y;
+      Component.moving = false;
+  
+      if (this.oldY != newY && this.oldX != this.newX){
+        Action.undoStack.push(new Action(this, {
+          "actionType": "move",
+          oldY: this.oldY,
+          oldX: this.oldX,
+          newX: newX,
+          newY: newY
+        }))
+      }
     }
 
   }
