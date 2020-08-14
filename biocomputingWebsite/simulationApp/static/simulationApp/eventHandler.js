@@ -156,10 +156,20 @@ class EventHandler {
         while(i < this.sketch.allComponents.length) {
             
             if(Component.isInActive(this.sketch.allComponents[i])) {
+                for(let edge of this.sketch.allComponents[i].connectedEdges) {
+                    if (edge != undefined) {
+                        actions.push(new Action(edge, {
+                            "actionType": "delete"
+                        }))
+                        edge.delete()
+                    }
+                }
                 actions.push(new Action(this.sketch.allComponents[i], {
                     "actionType": "delete",
                 }))
                 this.sketch.allComponents[i].delete()
+
+
             } else {
                 i++
             }
