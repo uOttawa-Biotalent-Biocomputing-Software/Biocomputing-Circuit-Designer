@@ -71,8 +71,11 @@ const s = ( sketch ) => {
   sketch.mouseDragged = () => {
     sketch.eventHandler.mouseDragged();
   }
+  
+  sketch.keyPressed = () => {
+    sketch.eventHandler.keyPressed();
+  }
 }
-
 
 // Create the canvas with the sketch
 var myp5 = new p5(s, document.getElementById("myContainer"));

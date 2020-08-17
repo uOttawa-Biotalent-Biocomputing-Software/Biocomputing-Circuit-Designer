@@ -148,6 +148,25 @@ class EventHandler {
         if(this.sketch.mouseY<0){return;};
         this.sketch.grid.resize(-event.delta/1000);
     }
+
+    keyPressed() {
+        if (this.sketch.keyCode == 46) {
+            this.delete()
+        } else if (this.sketch.keyIsDown(17)) {
+            // ctrl
+            if(this.sketch.keyIsDown(90)) {
+                // ctrl + z
+                if(this.sketch.keyIsDown(16)) {
+                    //ctrl + shift + z
+                    Action.redo();
+                } else {
+                    // ctrl + z
+                    Action.undo();
+                }
+            }
+        }
+        return false;
+    }
     
     // Deleting element(s) on canvas
     delete() {
@@ -159,7 +178,7 @@ class EventHandler {
             
             if(Component.isInActive(this.sketch.allComponents[i])) {
                 for(let edge of this.sketch.allComponents[i].connectedEdges) {
-                    if (edge != undefined) {
+                    if (edge != undefined && this.sketch.allEdges.find(elem => elem===edge)) {
                         actions.push(new Action(edge, {
                             "actionType": "delete"
                         }))
