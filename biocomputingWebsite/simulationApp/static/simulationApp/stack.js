@@ -1,36 +1,32 @@
 class Stack{
-    // Array is used to implement stack 
     constructor() 
     { 
         this.items = []; 
     } 
   
-    // push function 
+    // Adds element to stack
     push(element) 
     { 
         // push element into the items 
         this.items.push(element); 
     } 
 
-    // pop function 
+    // Removes last element from stack and returns it 
     pop() 
     { 
-        // return top most element in the stack 
-        // and removes it from the stack 
-        // Underflow if stack is empty 
         if (this.items.length == 0) 
             return "Underflow"; 
         return this.items.pop(); 
     } 
 
-    // isEmpty function 
+    // Checks if stack is empty
     isEmpty() 
     { 
         // return true if stack is empty 
         return this.items.length == 0; 
     } 
 
-    // printStack function 
+    // Prints all elements in stack
     printStack() 
     { 
         var str = ""; 
@@ -38,4 +34,6 @@ class Stack{
             str += this.items[i] + " "; 
         return str; 
     }
+
+    //FUTURE NOTE: Try adding a splice function
 }

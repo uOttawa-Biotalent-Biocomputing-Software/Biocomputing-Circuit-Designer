@@ -4,16 +4,15 @@ class EventHandler {
         this.onSketch = true;
     }
 
-    // when mouse is pressed
+    // Mouse Pressed Funtion
     mousePressed() {
         let sketch = this.sketch;
         this.onSketch = true;
 
-        // verify if the mouse is on the sketch
-        if(sketch.mouseY < 0) { //if mousePressed on top bar
+        if(sketch.mouseY < 0) {         // If mousePressed on top bar
             this.onSketch = false;
             return;
-        } else if(sketch.mouseX < 0) { //if mousePressed on sidebar
+        } else if(sketch.mouseX < 0) {  // If mousePressed on sidebar
             this.onSketch = false;
             return;
         } else{
@@ -73,6 +72,8 @@ class EventHandler {
 
 
     }
+
+    // Mouse Dragged for Drag and Drop functionality
     mouseDragged() {
         for(let comp of this.sketch.allComponents) {
             if(Component.isInActive(comp)) {
@@ -81,15 +82,16 @@ class EventHandler {
         }
     }
 
+    //Mouse Released Function
     mouseReleased() {
         let sketch = this.sketch;
-        //Drag and drop elements to canvas from sidebar
+
+        // Drag and drop elements to canvas from sidebar
         if(sketch.drag!=null && sketch.mouseX>0 && sketch.mouseY>0){
 
             let x = sketch.grid.getGridCoordinateX(sketch.mouseX) - (sketch.drag[0].width*sketch.grid.scalingFactor)/2;
             let y = sketch.grid.getGridCoordinateY(sketch.mouseY) - (sketch.drag[0].height*sketch.grid.scalingFactor)/2;
     
-            // need to changed the new componentImg in future!!
             Action.undoStack.push(new Action(new Component(sketch.drag[0], sketch.drag[1], x, y, Component.getNextId(), sketch, sketch.grid), {
             "actionType": "create",
             }));
@@ -110,19 +112,17 @@ class EventHandler {
             sketch.edgeType = sketch.select[0].id;
         }
 
+        // Stop moving component
         if(!Edge.isDrawingNewEdge && this.onSketch) {
-            console.log("stop")
             for(let comp of sketch.allComponents) {
                 if(Component.isInActive(comp)) {
-                    
-                    //stop moving
-                    comp.stopMoving();
+                    comp.stopMoving(); // Stop Moving
                 }
             }
         }
-
         Component.move = false;
 
+        // Creating new edge
         if (Edge.isDrawingNewEdge) {
             Edge.isDrawingNewEdge = false;
       
@@ -142,17 +142,19 @@ class EventHandler {
         sketch.resizeCanvas(sketch.wanted_width, sketch.wanted_height, true);
     }
 
+    // Zooming in/out of canvas
     mouseWheel(event) {
-        // call the resize method in each component
         if(this.sketch.mouseX<0){return;};
         if(this.sketch.mouseY<0){return;};
         this.sketch.grid.resize(-event.delta/1000);
     }
     
-
+    // Deleting element(s) on canvas
     delete() {
         let i = 0;
         let actions = []
+
+        // Deleting selected components
         while(i < this.sketch.allComponents.length) {
             
             if(Component.isInActive(this.sketch.allComponents[i])) {
@@ -175,6 +177,7 @@ class EventHandler {
             }
         }
 
+        // Deleting selecting edges
         i = 0;
         while(i < this.sketch.allEdges.length) {
             
@@ -187,8 +190,8 @@ class EventHandler {
                 i++
             }
         }
-
-        Action.undoStack.push(new ActionGroup(actions));
         
+        Action.undoStack.push(new ActionGroup(actions)); // Added group of selected components to undo stack
+
     }
 }

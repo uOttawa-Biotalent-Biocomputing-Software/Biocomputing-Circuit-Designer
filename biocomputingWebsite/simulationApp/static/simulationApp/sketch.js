@@ -1,3 +1,4 @@
+// Skecth is the P5.JS canvas and is used as a parameter in almost every other class
 const s = ( sketch ) => {
 
   sketch.getDimensions = () => {
@@ -15,7 +16,7 @@ const s = ( sketch ) => {
   sketch.allComponents = [];
   sketch.allEdges = [];
 
-  sketch.edgeType = 'ca'; // Default
+  sketch.edgeType = 'ca'; // Default selected arc
   
 
   // p5.js execute this method once at the loading of the page
@@ -23,6 +24,7 @@ const s = ( sketch ) => {
     let cnv = sketch.createCanvas(sketch.wanted_width, sketch.wanted_height);
     sketch.pixelDensity(1);
 
+    // Sidebar
     sketch.menu = new LoadMenues(sketch, sketch.grid);
     
     sketch.resize();
@@ -39,7 +41,6 @@ const s = ( sketch ) => {
     for (let edge of sketch.allEdges) {
       edge.update();
     }
-    
   }
 
   // handle resize events
@@ -73,11 +74,11 @@ const s = ( sketch ) => {
 }
 
 
-// create the canvas with the sketch
+// Create the canvas with the sketch
 var myp5 = new p5(s, document.getElementById("myContainer"));
 
-// handle the resize event from the body
-// call the resize method in p5
+// Handle the resize event from the body
+// Calls the resize method in p5
 function resize(){
   myp5.resize();
 }

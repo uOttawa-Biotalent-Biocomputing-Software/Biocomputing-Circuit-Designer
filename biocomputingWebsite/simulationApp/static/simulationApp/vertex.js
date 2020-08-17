@@ -1,4 +1,9 @@
 class Node {
+
+  /**
+   * Takes in shape of component to get its vertex points
+   * @param  {} contour
+   */
   constructor(contour) {
     this.contour = contour;
     this.sketch = contour.sketch;
@@ -10,6 +15,7 @@ class Node {
     this.isMouseOver = false;
   }
 
+  // Checks if mouse is over any vertex points
   getIsMouseOver() {
     this.isMouseOver =
       (((this.sketch.mouseX - this.realX) ** 2 +
@@ -22,7 +28,7 @@ class Node {
     return this.isMouseOver;
   }
 
-
+  // Updates vertex on canvas to show mouse is over point
   update(x, y) {
     this.realX = this.grid.getRealCoordinateX(x);
     this.realY = this.grid.getRealCoordinateY(y);
@@ -35,6 +41,7 @@ class Node {
     
   }
 
+  // Show vertex of component
   show() {
     this.sketch.fill(0, 0, 0, 0);
     this.sketch.ellipse(

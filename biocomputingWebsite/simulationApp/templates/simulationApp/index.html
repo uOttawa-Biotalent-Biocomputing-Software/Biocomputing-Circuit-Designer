@@ -89,15 +89,16 @@
 			}
 		};
 		
-		// paths to all of your files
+		// Paths to all of your files in array
 		var myFiles = ["{% static 'simulationApp/sbgn/sbgnComponents.json' %}", "{% static 'simulationApp/sbgn/componentTypes.json' %}"]
 
 		function callbackMulti(data) {
+			// Parsing JSON file to array
 			allComponents = JSON.parse(data[myFiles[0]]);
 			allTypes = JSON.parse(data[myFiles[1]]);
 			
+			// Creating the accordians in HTML
 			function load() {
-				
 				try {
 					myp5.menu.SortComponentTypes(allComponents, allTypes);
 					//Folding of the component menus
@@ -120,28 +121,16 @@
 					console.log("try again")
 					setTimeout(load, 25);
 				}
-
-
 			}
 			load();
-			
-			
 		}
-
 		failCallbackMulti = function(url) {
 			console.error('failed to load ' + url);
 		};
+
 		loadMultipleJson(myFiles, callbackMulti, failCallbackMulti);
 
 		var baseUrl = "{% static '' %}";
-		
-		function componentImg(imPath, name, w, h) {
-			this.imPath = imPath;
-			this.name = name;
-			this.w = w;
-			this.h = h;
-			
-		}
 	</script>
 
 

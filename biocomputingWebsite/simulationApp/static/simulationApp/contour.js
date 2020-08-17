@@ -1,4 +1,9 @@
 class RectangleContour {
+  
+  /**
+   * Creating the vertex points for the component
+   * @param  {} component
+   */
   constructor(component) {
     this.component = component;
     this.sketch = this.component.sketch;
@@ -7,6 +12,7 @@ class RectangleContour {
     this.size2 = 15;
     this.showBox = false;
 
+    // Vertex Locations
     this.nodesLocation = [
       [
         function (component) {
@@ -78,19 +84,17 @@ class RectangleContour {
     this.createNodes();
   }
 
+  // Creating an instance of the Vertex
   createNodes() {
     for (let node of this.nodesLocation) {
       this.nodes.push(new Node(this));
     }
   }
 
+  // Showing the selected componen's border and nodes
   update() {
-
-    // let showBox = Component.isInActive(this.component) || Edge.isDrawingNewEdge;
     this.showBox = Component.isInActive(this.component)
-    // console.log(this.component.id + " box | " + this.showBox);
 
-    // console.log(showBox);
     for (let i = 0; i < this.nodesLocation.length; i++) {
       this.nodes[i].update(
         this.nodesLocation[i][0](this.component),
@@ -98,7 +102,6 @@ class RectangleContour {
       );
 
       if(this.showBox || Edge.isDrawingNewEdge) {
-        // console.log(this.nodes[i]);
         this.nodes[i].show();
       }
     }
@@ -107,6 +110,7 @@ class RectangleContour {
     }
   }
 
+  // Checks if mouse is over vertex point
   isMouseOverNode() {
     let result = false
     for(let node of this.nodes) {
@@ -117,6 +121,7 @@ class RectangleContour {
     return result;
   }
 
+  // Show component border if selected
   show() {
     let paddingX = this.component.calculatePadding();
     let paddingY = this.component.calculatePadding();

@@ -1,20 +1,26 @@
 class Edge {
-
     static isDrawingNewEdge = false;
     static nextId = 0;
     static activeEdges = [];
     static edgePressed = false;
 
+    // Choosing a Unique Edge ID
     static getNextId() {
         return Edge.nextId++;
     }
 
+    // Checking if Edge is Selected
     static isInActive(edge) {
-    
-        return Edge.activeEdges.find(element => element === edge)
+        let result = Edge.activeEdges.find(element => element === edge);
+
+        return result;
     }
 
-
+    /**
+     * @param  {} from - edge starting component
+     * @param  {} sketch
+     * @param  {} type - type of connecting arc
+     */
     constructor(from, sketch, type) {
         this.from = from;
         this.to;
@@ -23,7 +29,6 @@ class Edge {
         //Line
         this.v1 = sketch.createVector(0,0);
         this.v2 = sketch.createVector(0,0);
-
 
         this.edgeType = type;
 
@@ -36,6 +41,9 @@ class Edge {
         this.create();
     }
 
+    // Check explanation in Component.JS
+
+    // Undo Component action
     executeOppositeAction(details) {
         if(details.actionType == "create") {
             this.delete();
@@ -45,6 +53,7 @@ class Edge {
         
     }
 
+    // Redo Component action
     executeAction(details) {
         if(details.actionType == "create") {
             this.create();
@@ -53,26 +62,25 @@ class Edge {
         }
     }
     
+    // Adding Edge to canvas
     create() {
-        console.log("create")
         this.sketch.allEdges.push(this);
-
     }
 
+    // Deleting Edge to canvas
     delete() {
         this.sketch.allEdges.splice(this.sketch.allEdges.indexOf(this), 1);
     }
 
     isMouseOver() {
-        let v3 = this.sketch.createVector(this.sketch.mouseX, this.sketch.mouseY);
+        let tempVector = this.sketch.createVector(this.sketch.mouseX, this.sketch.mouseY); // New vector as mouse click
         
-        let angle = (this.sketch.createVector(v3.x-this.v1.x, v3.y-this.v1.y)).angleBetween(this.sketch.createVector(this.v2.x-this.v1.x, this.v2.y-this.v1.y))
+        // Angle between (v1/v2) and (v1/tempVector)
+        let angle = (this.sketch.createVector(tempVector.x-this.v1.x, tempVector.y-this.v1.y)).angleBetween(this.sketch.createVector(this.v2.x-this.v1.x, this.v2.y-this.v1.y))
         
-        let dst = ((v3.x-this.v1.x)**2 + (v3.y-this.v1.y)**2)**0.5;
+        let dst = ((tempVector.x-this.v1.x)**2 + (tempVector.y-this.v1.y)**2)**0.5;
         let dst1 = (dst*this.sketch.sin(angle));
         let dst2 = ((this.v2.x-this.v1.x)**2 + (this.v2.y-this.v1.y)**2)**0.5;
-
-
         if(this.sketch.abs(angle) < this.sketch.PI/2 && 
            this.sketch.abs(this.sketch.PI/2 && dst1) < this.distToMouse * this.grid.scalingFactor && 
            dst < dst2) {
@@ -85,12 +93,11 @@ class Edge {
     }
     
     update() {
-        // this.isMouseOver();
         this.calculateCoordinates();
         this.showEdge();
-        
     }
 
+    // Get coordinates for v1 and v2 points location
     calculateCoordinates() {
         this.v1.x = this.from.realX;
         this.v1.y = this.from.realY;
@@ -105,6 +112,7 @@ class Edge {
         }
     }
 
+    // Choosing which edge to display on the canvas, based on topbar in sketch
     showEdge() {
         if(Edge.activeEdges.find(element => element === this)) {
             this.sketch.stroke(0, 0, 0);
@@ -185,6 +193,8 @@ class Edge {
         }
     }
 
+    // Creating the base edge properties
+    // EX. (Each edge always has a line)
     initializeEdge(drawFunction) {
         this.sketch.push();
         let a = this.sketch.atan2(this.v2.y- this.v1.y, this.v2.x-this.v1.x);
@@ -199,6 +209,7 @@ class Edge {
         this.sketch.pop()
     }
     
+    // Check if edge is connected to a node when being created
     isOnANode() {
         let onNode = false;
         let selectedNode;
@@ -222,6 +233,7 @@ class Edge {
         return onNode;
     }
 
+    // State changes when edge is connected to valid vertex
     changeState(s) {
         this.state = s;
         if(s == 1) {
