@@ -54,7 +54,7 @@ class Edge {
     }
     
     create() {
-        console.log("create")
+        // console.log("create")
         this.sketch.allEdges.push(this);
 
     }

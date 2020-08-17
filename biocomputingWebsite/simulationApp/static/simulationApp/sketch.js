@@ -70,7 +70,12 @@ const s = ( sketch ) => {
   sketch.mouseDragged = () => {
     sketch.eventHandler.mouseDragged();
   }
+  
+  sketch.keyPressed = () => {
+    sketch.eventHandler.keyPressed();
+  }
 }
+
 
 
 // create the canvas with the sketch

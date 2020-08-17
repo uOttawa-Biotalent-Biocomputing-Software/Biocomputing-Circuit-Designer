@@ -111,7 +111,7 @@ class EventHandler {
         }
 
         if(!Edge.isDrawingNewEdge && this.onSketch) {
-            console.log("stop")
+            // console.log("stop")
             for(let comp of sketch.allComponents) {
                 if(Component.isInActive(comp)) {
                     
@@ -147,6 +147,25 @@ class EventHandler {
         if(this.sketch.mouseX<0){return;};
         if(this.sketch.mouseY<0){return;};
         this.sketch.grid.resize(-event.delta/1000);
+    }
+
+    keyPressed() {
+        if (this.sketch.keyCode == 46) {
+            this.delete()
+        } else if (this.sketch.keyIsDown(17)) {
+            // ctrl
+            if(this.sketch.keyIsDown(90)) {
+                // ctrl + z
+                if(this.sketch.keyIsDown(16)) {
+                    //ctrl + shift + z
+                    Action.redo();
+                } else {
+                    // ctrl + z
+                    Action.undo();
+                }
+            }
+        }
+        return false;
     }
     
 
