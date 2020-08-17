@@ -1,11 +1,18 @@
 class RectangleContour {
+  
+  /**
+   * Creating the vertex points for the component
+   * @param  {} component
+   */
   constructor(component) {
     this.component = component;
     this.sketch = this.component.sketch;
     this.grid = this.component.grid;
     this.size1 = 10;
     this.size2 = 15;
+    this.showBox = false;
 
+    // Vertex Locations
     this.nodesLocation = [
       [
         function (component) {
@@ -36,6 +43,14 @@ class RectangleContour {
           return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
         },
         function (component) {
+          return component.y + (component.h / 2) * component.grid.scalingFactor + component.calculatePadding() / 2;
+        },
+      ],
+      [
+        function (component) {
+          return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
+        },
+        function (component) {
           return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
         },
       ],
@@ -56,35 +71,57 @@ class RectangleContour {
           return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
         },
       ],
+      [
+        function (component) {
+          return component.x - component.calculatePadding() / 2;
+        },
+        function (component) {
+          return component.y + (component.h / 2) * component.grid.scalingFactor + component.calculatePadding() / 2;
+        },
+      ],
     ];
     this.nodes = [];
     this.createNodes();
   }
 
+  // Creating an instance of the Vertex
   createNodes() {
     for (let node of this.nodesLocation) {
       this.nodes.push(new Node(this));
     }
   }
 
+  // Showing the selected componen's border and nodes
   update() {
-    let showBox = Component.active.includes(this.component.id) || Edge.isDrawingNewEdge;
+    this.showBox = Component.isInActive(this.component)
+
     for (let i = 0; i < this.nodesLocation.length; i++) {
       this.nodes[i].update(
         this.nodesLocation[i][0](this.component),
         this.nodesLocation[i][1](this.component)
       );
 
-      if(showBox) {
-        // console.log(this.nodes[i]);
+      if(this.showBox || Edge.isDrawingNewEdge) {
         this.nodes[i].show();
       }
     }
-    if(showBox) {
+    if(this.showBox || Edge.isDrawingNewEdge) {
       this.show();
     }
   }
 
+  // Checks if mouse is over vertex point
+  isMouseOverNode() {
+    let result = false
+    for(let node of this.nodes) {
+      if(node.getIsMouseOver()){
+        result = true;
+      };
+    }
+    return result;
+  }
+
+  // Show component border if selected
   show() {
     let paddingX = this.component.calculatePadding();
     let paddingY = this.component.calculatePadding();

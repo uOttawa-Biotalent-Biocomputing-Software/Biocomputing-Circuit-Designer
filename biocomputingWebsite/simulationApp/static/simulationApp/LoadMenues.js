@@ -1,13 +1,23 @@
 class LoadMenues {
 
-
+    /**
+     * Loads the sidebar and topbar buttons
+     * @constructor
+     * @param  {} sketch
+     * @param  {} grid
+     */
     constructor (sketch, grid) {
         this.sketch = sketch;
         this.grid = grid;
         this.typesList = [];
         
     }
-
+    
+    /**
+     * Sorts each component into their repected component type, intialzed in JSON file
+     * @param  {} components - sbgnComponent.JSON as imported
+     * @param  {} types - componentTypes.JSON as imported
+     */
     SortComponentTypes(components, types) {
         for(let type of types["Components Types"]) {
             let comps = [];
@@ -24,6 +34,13 @@ class LoadMenues {
 
 class ComponentType {
     
+    /**
+     * Creates an accordian in HTML for the component types and adds the corresponding compoents
+     * @param  {} type
+     * @param  {} components
+     * @param  {} sketch
+     * @param  {} grid
+     */
     constructor (type, components ,sketch, grid) {
         this.sketch = sketch;
         this.grid = grid;
@@ -49,6 +66,13 @@ class ComponentType {
 }
 
 class SBGN_Component {
+    /**
+     * Creating an SBGN Compoent class
+     * @param  {} type
+     * @param  {} component
+     * @param  {} sketch
+     * @param  {} grid
+     */
     constructor (type, component, sketch, grid) {
         this.sketch = sketch;
         this.grid = grid;
@@ -56,17 +80,24 @@ class SBGN_Component {
         this.type = type;
         this.parent;
         
-        if (type.location == "side") {
+        if (type.location == "side") {      //Sidebar component
             this.div = this.sketch.createDiv();
             this.div.parent(document.getElementById(this.type.id));
             this.div.class("grid-item");
             this.div.id(this.component.id);
+
             this.parent = document.getElementById(this.component.id)
         } 
-        else if(type.location == "top") {
+        else if(type.location == "top") {   //Topbar Component
+
             this.div = this.sketch.createDiv();
             this.div.parent(document.getElementsByClassName("top-bar")[0]);
-            this.div.class("top-bar-element");
+
+            if(type.folder == "connecting_arcs/"){
+                this.div.class("top-bar-element");
+            }else{
+                this.div.class("top-bar-interact");
+            }
             this.div.id(this.component.id);
             this.parent = document.getElementById(this.component.id);
             
@@ -77,6 +108,7 @@ class SBGN_Component {
         this.img.parent(this.parent);
         this.img.id = "img-" + this.component.id;
         this.img.title = this.component.name;
+
         this.div.mousePressed(eval(this.component.function));
         this.img.size(this.component.width, this.component.height);
 

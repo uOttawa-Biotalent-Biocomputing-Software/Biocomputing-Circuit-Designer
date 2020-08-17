@@ -6,6 +6,7 @@
             "location":"side",
             "folder":"entity_pool_nodes/"
         },
+
         {
             "name":"Logic Operators",
             "id":"lo",
@@ -32,6 +33,12 @@
             "id":"connecting-arcs",
             "location":"top",
             "folder":"connecting_arcs/"
+        },
+        {
+            "name":"Interactive Buttons",
+            "id":"interactive-buttons",
+            "location":"top",
+            "folder":"page_buttons/"
         }
     ]
 }

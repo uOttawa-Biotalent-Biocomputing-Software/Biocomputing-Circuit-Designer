@@ -83,6 +83,33 @@
         },
 
 
+        {
+            "name": "Back",
+            "id":"back",
+            "typeId": "interactive-buttons",
+            "img": "back.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {Action.undo()}"
+        },
+        {
+            "name": "Forward",
+            "id":"forward",
+            "typeId": "interactive-buttons",
+            "img": "forward.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {Action.redo()}"
+        },
+        {
+            "name": "Delete",
+            "id":"delete",
+            "typeId": "interactive-buttons",
+            "img": "delete.png",
+            "width": 30,
+            "height": 24,
+            "function": "() => {this.sketch.eventHandler.delete()}"
+        },
 
 
         {
@@ -121,6 +148,7 @@
             "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
+
         {
             "name": "Simple Chemical",
             "id": "simple-chemical",
@@ -139,8 +167,6 @@
             "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
-
-
 
 
         {
@@ -170,8 +196,6 @@
             "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         },
-
-
 
 
         {
@@ -241,6 +265,5 @@
             "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
         }
-
     ]
 }
