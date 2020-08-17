@@ -157,7 +157,7 @@ class EventHandler {
             
             if(Component.isInActive(this.sketch.allComponents[i])) {
                 for(let edge of this.sketch.allComponents[i].connectedEdges) {
-                    if (edge != undefined) {
+                    if (edge != undefined && this.sketch.allEdges.find(elem => elem===edge)) {
                         actions.push(new Action(edge, {
                             "actionType": "delete"
                         }))
