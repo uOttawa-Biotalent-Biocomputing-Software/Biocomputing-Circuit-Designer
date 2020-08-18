@@ -25,6 +25,13 @@
             "location":"side",
             "folder":"reference_node/"
         },
+
+        {
+            "name":"Logic Gates",
+            "id":"lg",
+            "location":"side",
+            "folder":"logic_gates/"
+        },
         
         
         

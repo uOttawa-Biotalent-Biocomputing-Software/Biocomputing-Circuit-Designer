@@ -171,7 +171,7 @@
 
         {
             "name": "And",
-            "id": "and",
+            "id": "and-lo",
             "typeId": "lo",
             "img": "and.png",
             "width": 60,
@@ -180,7 +180,7 @@
         },
         {
             "name": "Not",
-            "id": "not",
+            "id": "not-lo",
             "typeId": "lo",
             "img": "not.png",
             "width": 60,
@@ -189,7 +189,7 @@
         },
         {
             "name": "Or",
-            "id": "or",
+            "id": "or-lo",
             "typeId": "lo",
             "img": "or.png",
             "width": 60,
@@ -261,6 +261,78 @@
             "id": "tag",
             "typeId": "rn",
             "img": "tag.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "And",
+            "id": "and",
+            "typeId": "lg",
+            "img": "and.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Or",
+            "id": "or",
+            "typeId": "lg",
+            "img": "or.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Buffer",
+            "id": "buffer",
+            "typeId": "lg",
+            "img": "buffer.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Not",
+            "id": "not",
+            "typeId": "lg",
+            "img": "not.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Nor",
+            "id": "nor",
+            "typeId": "lg",
+            "img": "nor.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Nand",
+            "id": "nand",
+            "typeId": "lg",
+            "img": "nand.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Xor",
+            "id": "xor",
+            "typeId": "lg",
+            "img": "xor.png",
+            "width": 60,
+            "height": 48,
+            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+        },
+        {
+            "name": "Xnor",
+            "id": "xnor",
+            "typeId": "lg",
+            "img": "xnor.png",
             "width": 60,
             "height": 48,
             "function": "() => {this.sketch.drag = [this.component, this.type];}"
