@@ -126,10 +126,8 @@ class EventHandler {
         if (Edge.isDrawingNewEdge) {
             Edge.isDrawingNewEdge = false;
       
-            let valid = sketch.allEdges[sketch.allEdges.length -1].isOnANode();
-            if (valid) {
-              sketch.allEdges[sketch.allEdges.length -1].changeState(1);
-            } else {
+            // let valid = sketch.allEdges[sketch.allEdges.length -1].isOnANode();
+            if (!sketch.allEdges[sketch.allEdges.length -1].changeState(1)) {
               sketch.allEdges.pop();
             }
           }

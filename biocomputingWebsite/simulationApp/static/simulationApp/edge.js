@@ -119,7 +119,9 @@ class Edge {
         } else {
             this.sketch.stroke(10, 10, 10, 220)
         }
-        if (this.edgeType == 'ca') {
+        if (this.edgeType == 'co' || this.edgeType == 'ea' ||this.edgeType == 'la' || this.from.component.type.id == "lg") {
+            this.initializeEdge(() => {return 0});
+        } else if (this.edgeType == 'ca') {
 
             this.initializeEdge(() => {
                 let radius = 17 * this.grid.scalingFactor;
@@ -129,9 +131,6 @@ class Edge {
                 
                 return radius;
             })
-        }   
-        else if (this.edgeType == 'co' || this.edgeType == 'ea' ||this.edgeType == 'la') {
-            this.initializeEdge(() => {return 0});
         }
         else if (this.edgeType == 'in') {
             
@@ -237,13 +236,20 @@ class Edge {
     // State changes when edge is connected to valid vertex
     changeState(s) {
         this.state = s;
-        if(s == 1) {
-            this.to.component.connectedEdges.push(this);
-            this.from.component.connectedEdges.push(this);
-
-            Action.undoStack.push(new Action(this, {
-                "actionType": "create"
-            }));
+        if(s == 1 && this.isOnANode()) {
+            if((this.to.component.type.id == "lg" && this.from.component.type.id == "lg") || (this.to.component.type.id != "lg" && this.from.component.type.id != "lg")) {
+                this.to.component.connectedEdges.push(this);
+                this.from.component.connectedEdges.push(this);
+    
+                Action.undoStack.push(new Action(this, {
+                    "actionType": "create"
+                }));
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
     
