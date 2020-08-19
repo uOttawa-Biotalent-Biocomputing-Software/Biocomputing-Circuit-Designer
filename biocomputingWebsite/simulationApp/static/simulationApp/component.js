@@ -62,7 +62,11 @@ class Component {
     this.id = id;
     this.sketch = sketch;
     this.grid = grid;
-    this.padding = 0.01;
+    if(this.type.id == "lg") {
+      this.padding = 0;
+    } else {
+      this.padding = 0.01;
+    }
     this.rectangleContour = new RectangleContour(this);
     this.connectedEdges = [];
     this.create();
@@ -112,7 +116,7 @@ class Component {
   update() {
     this.show();
     this.sketch.stroke(0, 0, 0);
-
+    this.sketch.strokeWeight(1 + this.grid.scalingFactor)
     this.rectangleContour.update();
   }
 

@@ -115,9 +115,9 @@ class Edge {
     // Choosing which edge to display on the canvas, based on topbar in sketch
     showEdge() {
         if(Edge.activeEdges.find(element => element === this)) {
-            this.sketch.stroke(0, 0, 0);
+            this.sketch.stroke(100, 100, 100);
         } else {
-            this.sketch.stroke(100, 100, 100)
+            this.sketch.stroke(10, 10, 10, 220)
         }
         if (this.edgeType == 'ca') {
 
@@ -196,6 +196,7 @@ class Edge {
     // Creating the base edge properties
     // EX. (Each edge always has a line)
     initializeEdge(drawFunction) {
+        this.sketch.strokeWeight(2.5*this.grid.scalingFactor)
         this.sketch.push();
         let a = this.sketch.atan2(this.v2.y- this.v1.y, this.v2.x-this.v1.x);
         this.sketch.translate(this.v2.x, this.v2.y);

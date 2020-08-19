@@ -20,7 +20,7 @@ class RectangleContour {
             return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2
           },
           function (component) {
-            return component.y + (component.h *(0.47)) * component.grid.scalingFactor + component.calculatePadding() / 2;
+            return component.y + (component.h *(0.5)) * component.grid.scalingFactor + component.calculatePadding() / 2;
           },
         ],
         
@@ -33,7 +33,7 @@ class RectangleContour {
               return component.x - component.calculatePadding() / 2;
             },
             function (component) {
-              return component.y + (component.h *(0.47)) * component.grid.scalingFactor + component.calculatePadding() / 2;
+              return component.y + (component.h *(0.50)) * component.grid.scalingFactor + component.calculatePadding() / 2;
             },
           ],
         )
@@ -44,7 +44,7 @@ class RectangleContour {
               return component.x - component.calculatePadding() / 2;
             },
             function (component) {
-              return component.y + (component.h *(0.27)) * component.grid.scalingFactor + component.calculatePadding() / 2;
+              return component.y + (component.h *(0.30)) * component.grid.scalingFactor + component.calculatePadding() / 2;
             },
           ]
         );
@@ -54,7 +54,7 @@ class RectangleContour {
               return component.x - component.calculatePadding() / 2;
             },
             function (component) {
-              return component.y + (component.h *(2/3)) * component.grid.scalingFactor + component.calculatePadding() / 2;
+              return component.y + (component.h *(0.70)) * component.grid.scalingFactor + component.calculatePadding() / 2;
             },
           ]
         )
