@@ -272,7 +272,8 @@
             "img": "and.png",
             "width": 90,
             "height": 50,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.drag = [this.component, this.type];}",
+            "in" : 2
         },
         {
             "name": "Or",
@@ -281,7 +282,8 @@
             "img": "or.png",
             "width": 90,
             "height": 50,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.drag = [this.component, this.type];}",
+            "in" : 2
         },
         {
             "name": "Buffer",
@@ -290,7 +292,8 @@
             "img": "buffer.png",
             "width": 90,
             "height": 50,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.drag = [this.component, this.type];}",
+            "in" : 1
         },
         {
             "name": "Not",
@@ -299,7 +302,8 @@
             "img": "not.png",
             "width": 90,
             "height": 50,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.drag = [this.component, this.type];}",
+            "in" : 1
         },
         {
             "name": "Nor",
@@ -308,7 +312,8 @@
             "img": "nor.png",
             "width": 90,
             "height": 50,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.drag = [this.component, this.type];}",
+            "in" : 2
         },
         {
             "name": "Nand",
@@ -317,7 +322,8 @@
             "img": "nand.png",
             "width": 90,
             "height": 50,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.drag = [this.component, this.type];}",
+            "in" : 2
         },
         {
             "name": "Xor",
@@ -326,7 +332,8 @@
             "img": "xor.png",
             "width": 90,
             "height": 50,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.drag = [this.component, this.type];}",
+            "in" : 2
         },
         {
             "name": "Xnor",
@@ -335,7 +342,8 @@
             "img": "xnor.png",
             "width": 90,
             "height": 50,
-            "function": "() => {this.sketch.drag = [this.component, this.type];}"
+            "function": "() => {this.sketch.drag = [this.component, this.type];}",
+            "in" : 2
         }
     ]
 }

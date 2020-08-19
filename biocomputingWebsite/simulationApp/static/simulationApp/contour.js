@@ -13,73 +13,121 @@ class RectangleContour {
     this.showBox = false;
 
     // Vertex Locations
-    this.nodesLocation = [
-      [
-        function (component) {
-          return component.x - component.calculatePadding() / 2;
-        },
-        function (component) {
-          return component.y - component.calculatePadding() / 2;
-        },
-      ],
-      [
-        function (component) {
-          return component.x + component.w * component.grid.scalingFactor / 2;
-        },
-        function (component) {
-          return component.y - component.calculatePadding() / 2;
-        },
-      ],
-      [
-        function (component) {
-          return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
-        },
-        function (component) {
-          return component.y - component.calculatePadding() / 2;
-        },
-      ],
-      [
-        function (component) {
-          return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
-        },
-        function (component) {
-          return component.y + (component.h / 2) * component.grid.scalingFactor + component.calculatePadding() / 2;
-        },
-      ],
-      [
-        function (component) {
-          return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
-        },
-        function (component) {
-          return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
-        },
-      ],
-      [
-        function (component) {
-          return component.x + component.w * component.grid.scalingFactor / 2;
-        },
-        function (component) {
-          return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
-        },
-        2,
-      ],
-      [
-        function (component) {
-          return component.x - component.calculatePadding() / 2;
-        },
-        function (component) {
-          return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
-        },
-      ],
-      [
-        function (component) {
-          return component.x - component.calculatePadding() / 2;
-        },
-        function (component) {
-          return component.y + (component.h / 2) * component.grid.scalingFactor + component.calculatePadding() / 2;
-        },
-      ],
-    ];
+    if(component.type.id == "lg") {
+      this.nodesLocation = [
+        [
+          function (component) {
+            return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2
+          },
+          function (component) {
+            return component.y + (component.h *(0.47)) * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+        ],
+        
+        
+      ]
+      if(component.component.in == 1) {
+        this.nodesLocation.push(
+          [
+            function (component) {
+              return component.x - component.calculatePadding() / 2;
+            },
+            function (component) {
+              return component.y + (component.h *(0.47)) * component.grid.scalingFactor + component.calculatePadding() / 2;
+            },
+          ],
+        )
+      } else if(component.component.in == 2) {
+        this.nodesLocation.push(
+          [
+            function (component) {
+              return component.x - component.calculatePadding() / 2;
+            },
+            function (component) {
+              return component.y + (component.h *(0.27)) * component.grid.scalingFactor + component.calculatePadding() / 2;
+            },
+          ]
+        );
+        this.nodesLocation.push(
+          [
+            function (component) {
+              return component.x - component.calculatePadding() / 2;
+            },
+            function (component) {
+              return component.y + (component.h *(2/3)) * component.grid.scalingFactor + component.calculatePadding() / 2;
+            },
+          ]
+        )
+      }
+    } else {
+      this.nodesLocation = [
+        [
+          function (component) {
+            return component.x - component.calculatePadding() / 2;
+          },
+          function (component) {
+            return component.y - component.calculatePadding() / 2;
+          },
+        ],
+        [
+          function (component) {
+            return component.x + component.w * component.grid.scalingFactor / 2;
+          },
+          function (component) {
+            return component.y - component.calculatePadding() / 2;
+          },
+        ],
+        [
+          function (component) {
+            return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+          function (component) {
+            return component.y - component.calculatePadding() / 2;
+          },
+        ],
+        [
+          function (component) {
+            return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+          function (component) {
+            return component.y + (component.h / 2) * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+        ],
+        [
+          function (component) {
+            return component.x + component.w * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+          function (component) {
+            return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+        ],
+        [
+          function (component) {
+            return component.x + component.w * component.grid.scalingFactor / 2;
+          },
+          function (component) {
+            return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+          2,
+        ],
+        [
+          function (component) {
+            return component.x - component.calculatePadding() / 2;
+          },
+          function (component) {
+            return component.y + component.h * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+        ],
+        [
+          function (component) {
+            return component.x - component.calculatePadding() / 2;
+          },
+          function (component) {
+            return component.y + (component.h / 2) * component.grid.scalingFactor + component.calculatePadding() / 2;
+          },
+        ],
+      ];
+    }
     this.nodes = [];
     this.createNodes();
   }
