@@ -115,11 +115,13 @@ class Edge {
     // Choosing which edge to display on the canvas, based on topbar in sketch
     showEdge() {
         if(Edge.activeEdges.find(element => element === this)) {
-            this.sketch.stroke(0, 0, 0);
+            this.sketch.stroke(100, 100, 100);
         } else {
-            this.sketch.stroke(100, 100, 100)
+            this.sketch.stroke(10, 10, 10, 220)
         }
-        if (this.edgeType == 'ca') {
+        if (this.edgeType == 'co' || this.edgeType == 'ea' ||this.edgeType == 'la' || this.from.component.type.id == "lg") {
+            this.initializeEdge(() => {return 0});
+        } else if (this.edgeType == 'ca') {
 
             this.initializeEdge(() => {
                 let radius = 17 * this.grid.scalingFactor;
@@ -129,9 +131,6 @@ class Edge {
                 
                 return radius;
             })
-        }   
-        else if (this.edgeType == 'co' || this.edgeType == 'ea' ||this.edgeType == 'la') {
-            this.initializeEdge(() => {return 0});
         }
         else if (this.edgeType == 'in') {
             
@@ -196,6 +195,7 @@ class Edge {
     // Creating the base edge properties
     // EX. (Each edge always has a line)
     initializeEdge(drawFunction) {
+        this.sketch.strokeWeight(2.5*this.grid.scalingFactor)
         this.sketch.push();
         let a = this.sketch.atan2(this.v2.y- this.v1.y, this.v2.x-this.v1.x);
         this.sketch.translate(this.v2.x, this.v2.y);
@@ -236,13 +236,20 @@ class Edge {
     // State changes when edge is connected to valid vertex
     changeState(s) {
         this.state = s;
-        if(s == 1) {
-            this.to.component.connectedEdges.push(this);
-            this.from.component.connectedEdges.push(this);
-
-            Action.undoStack.push(new Action(this, {
-                "actionType": "create"
-            }));
+        if(s == 1 && this.isOnANode()) {
+            if((this.to.component.type.id == "lg" && this.from.component.type.id == "lg") || (this.to.component.type.id != "lg" && this.from.component.type.id != "lg")) {
+                this.to.component.connectedEdges.push(this);
+                this.from.component.connectedEdges.push(this);
+    
+                Action.undoStack.push(new Action(this, {
+                    "actionType": "create"
+                }));
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
     
