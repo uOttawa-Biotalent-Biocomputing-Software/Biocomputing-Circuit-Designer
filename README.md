@@ -1,4 +1,4 @@
-# website
+# Biocomputing-Circuit-Designer
 
 ### Running django website
 
