@@ -1,0 +1,51 @@
+{
+    "Components Types" : [
+        {
+            "name":"Entity Pool Nodes",
+            "id":"epn",
+            "location":"side",
+            "folder":"entity_pool_nodes/"
+        },
+
+        {
+            "name":"Logic Operators",
+            "id":"lo",
+            "location":"side",
+            "folder":"logic_operators/"
+        },
+        {
+            "name":"Process Nodes",
+            "id":"pn",
+            "location":"side",
+            "folder":"process_nodes/"
+        },
+        {
+            "name":"Reference Nodes",
+            "id":"rn",
+            "location":"side",
+            "folder":"reference_node/"
+        },
+
+        {
+            "name":"Logic Gates",
+            "id":"lg",
+            "location":"side",
+            "folder":"logic_gates/"
+        },
+        
+        
+        
+        {
+            "name":"Connecting Arcs",
+            "id":"connecting-arcs",
+            "location":"top",
+            "folder":"connecting_arcs/"
+        },
+        {
+            "name":"Interactive Buttons",
+            "id":"interactive-buttons",
+            "location":"top",
+            "folder":"page_buttons/"
+        }
+    ]
+}

@@ -1,0 +1,136 @@
+/*Index page*/
+:root {
+  --top-bar-height: 7vh;
+  --side-bar-width: 12vw;
+}
+
+body {
+  overflow: hidden;
+}
+
+.index-left {
+  position: relative;
+  width: var(--side-bar-width);
+  flex-grow: 1;
+}
+.scrollable {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.index-right {
+  flex-grow: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: calc(100% - var(--side-bar-width));
+  height: 100%;
+}
+
+/*Sidebar*/
+.components {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.accordion{
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  height: 10vh;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4;
+  text-decoration: none;
+}
+
+.accordion:active, .accordion:focus {
+    outline: none;
+}
+
+.active, .accordion:hover{
+  background-color: #ccc;
+}
+
+.accordion:after {
+  content: '\02C5';
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\02C4";
+}
+
+.panel {
+  background-color: white;
+  overflow: hidden;
+  width: 100%;
+  max-height: 0;
+  display: flex;
+  transition: max-height 0.2s ease-out;
+  grid-template-columns: 83px 83px 83px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.grid-item{
+  margin: 0.2em;
+  cursor: pointer;
+  flex-basis: 25%;
+}
+
+
+/* Topbar */
+.top-bar {
+  width: 100%;
+  /* height: var(--top-bar-height); */
+  /* flex-grow: 1; */
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+
+.sketchbox {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+#myContainer {
+  width: 100%; 
+  height: calc(100% - var(--top-bar-height)); 
+  background-color: white;
+  position: relative;
+}
+
+#defaultCanvas0 {
+  width: 100%;
+  height: 100%;
+}
+
+.top-bar-element {
+  width: min-content;
+  height: min-content;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid black;
+}
+.top-bar-interact {
+  width: min-content;
+  height: min-content;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+#ca {
+  border: 2px solid red;
+}
