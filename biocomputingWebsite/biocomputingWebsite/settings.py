@@ -35,7 +35,7 @@ except:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["bccd-287420.uk.r.appspot.com", "biocomputing.biomakerspace.ca"]
+ALLOWED_HOSTS = ["bccd-287420.uk.r.appspot.com", "biocomputing.biomakerspace.ca", "127.0.0.1"]
 
 
 # Application definition

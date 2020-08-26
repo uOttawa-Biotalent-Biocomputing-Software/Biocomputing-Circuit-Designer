@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block bodysetting %}<body id="body" style="height: 93.6vh; margin: 0px;" onresize="resize()">{% endblock bodysetting %}
+{% block bodysetting %}<body id="body" style="height: 100vh; margin: 0px;" onresize="resize()">{% endblock bodysetting %}
 
 {% block content %}
+	{% block nav %}
+	{% endblock nav %}
+	
 	<link rel="stylesheet" type="text/css" href="{% static 'simulationApp/css/simulation.css' %}"></link>
 
 	<div class="sketchbox">
